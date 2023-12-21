@@ -1,0 +1,35 @@
+- release_date: 01/16/2024
+  due_date: 01/23/2024
+  number: 0
+  title: >
+    Cloudlab and Kathara
+
+- release_date: 01/25/2024
+  due_date: 02/08/2024
+  number: 1
+  title: >
+    Socket programming and measurement
+
+- release_date: 02/28/2024
+  due_date: 02/27/2024
+  number: 2
+  title: >
+    Implementing a switch/router in P4
+
+- release_date: 02/27/2024
+  due_date: 03/19/2024
+  number: 3
+  title: >
+    Supporting ARP, ICMP, RIP in the router
+
+- release_date: 03/19/2024
+  due_date: 04/09/2024
+  number: 4
+  title: >
+    Congestion control and flow control
+
+- release_date: 04/09/2024
+  due_date: 04/29/2024
+  number: 5
+  title: >
+    Implementing a DNS server

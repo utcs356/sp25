@@ -1,0 +1,59 @@
+- date: T 01/16
+  lecturer: 
+  title: >
+    <strong>Introduction to computer networks</strong>
+  slides: 
+  video: 
+  notes:
+  readings:
+    - P&D Textbook, XX
+  logistics:
+    - Assignment 0 is out
+
+- date: Th 01/18
+  lecturer: 
+  title: >
+    <strong>Packet switching</strong>
+  slides: 
+  video: 
+  notes:
+  readings:
+    - P&D Textbook, XX
+  logistics:
+
+- date: T 01/23
+  lecturer:
+  title: >
+    <strong>Layering and protocols</strong>
+  recitation: 
+  slides: 
+  notes: 
+  video: 
+  readings:
+    - P&D Textbook, XX
+  logistics:
+
+- date: Th 01/25
+  lecturer:
+  title: >
+    <strong>Framing and socket programming</strong>
+  recitation: 
+  slides: 
+  notes: 
+  video: 
+  readings:
+    - P&D Textbook, XX
+  logistics:
+
+
+- date: T 03/14
+  lecturer:
+  quiz: >
+    <strong>Spring break - No Classes</strong>
+  logistics:
+
+- date: Th 03/16
+  lecturer:
+  quiz: >
+    <strong>Spring break - No Classes</strong>
+  logistics:
