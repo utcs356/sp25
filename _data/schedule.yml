@@ -1,48 +1,57 @@
 - date: T 01/16
   lecturer: 
   title: >
-    <strong>Introduction to computer networks</strong>
+    Course overview and introduction to computer networks
   slides: 
   video: 
   notes:
   readings:
-    - P&D Textbook, XX
+    - P&D 1.1, 1.2
   logistics:
     - Assignment 0 is out
 
 - date: Th 01/18
   lecturer: 
   title: >
-    <strong>Packet switching</strong>
+    Packet switching
   slides: 
   video: 
   notes:
   readings:
-    - P&D Textbook, XX
+    - P&D 1.1, 1.2
   logistics:
 
 - date: T 01/23
   lecturer:
   title: >
-    <strong>Layering and protocols</strong>
+    <strong></strong>
   recitation: 
   slides: 
   notes: 
   video: 
   readings:
-    - P&D Textbook, XX
   logistics:
 
 - date: Th 01/25
   lecturer:
   title: >
-    <strong>Framing and socket programming</strong>
+    <strong></strong>
   recitation: 
   slides: 
   notes: 
   video: 
   readings:
-    - P&D Textbook, XX
+  logistics:
+
+- date: Th 01/25
+  lecturer:
+  title: >
+    <strong></strong>
+  recitation: 
+  slides: 
+  notes: 
+  video: 
+  readings:
   logistics:
 
 

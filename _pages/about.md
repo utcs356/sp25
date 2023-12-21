@@ -16,6 +16,9 @@ implementation standpoint. The primary focus of the course will be on
 foundational ideas, architecture, protocols and software used in networks that
 comprise the Internet.
 
+### Textbook
+* [Computer Networks: Systems Approach](https://book.systemsapproach.org/){:target="\_blank"} (availble online) by Larry Peterson and Bruce Davie
+
 ### Topics
 * Physical and data link layer protocols
 * Naming and addressing

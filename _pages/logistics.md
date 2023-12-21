@@ -20,6 +20,7 @@ title: Logistics
 * Quizzes (30%): There will be three in-class quizzes.
 * Programming assignments (60%): There will be five programming assignments.
 * Class participation (10%): Students are expected to attend class, actively ask questions and participate in discussions.
+* Grades will be uploaded to [Canvas](https://utexas.instructure.com/courses/1384497).
 
 ***
 
