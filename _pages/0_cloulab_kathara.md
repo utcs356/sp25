@@ -35,11 +35,11 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 * Once you select the cluster you can instantiate the experiment by entering the time and day when you want to start the experiment. Once your experiment is ready you will receive a notification email. You can navigate to your CloudLab user dashboard where you can see your list of active experiments.
 * On clicking on the experiment name, you will be navigated to a webpage describing project details. Click on the list view on that page which opens a table where you can obtain the ssh login command to log in to your machine.
 * Try to login to the machine and check for the number of CPU cores available and memory available on the node. This step will only work if you have uploaded your ssh key to your CloudLab account ( [here](https://www.cloudlab.us/ssh-keys.php) ).
-* **If you find yourself stuck on any of the above steps, don’t hesitate to contact the TAs!**
+* **If you find yourself stuck on any of the above steps, don’t hesitate to post a question to Ed!**
 
 
 ### Policies on Using CloudLab Resources
 * The nodes you receive from CloudLab are real hardware machines sitting in different clusters. Therefore, we ask you not to hold the nodes for too long.
 * CloudLab gives users 16 hours to start with, and users can extend it for a longer time. Manage your time efficiently and only hold onto those nodes when you are working on the assignment. 
 * You should use a private git repository to manage your code, and you must terminate the nodes when you are not using them. If you do have a need to extend the nodes, do not extend them by more than 1 day. We will terminate any cluster running for more than 48 hours.
-* As a member of the `cs356` project, you have permission to create new experiments in the default group in addition to the group are you invited to. Stick to your own group and use naming formats as mentioned. For more information related to this, please refer to https://deanofstudents.utexas.edu/conduct/academicintegrity.php
+* As a member of the `utcs356` project, you have permission to create new experiments in the default group in addition to the group are you invited to. Stick to your own group and use naming formats as mentioned. For more information related to this, please refer to https://deanofstudents.utexas.edu/conduct/academicintegrity.php

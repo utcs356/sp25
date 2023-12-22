@@ -56,7 +56,7 @@ Each quiz will count equally toward the overall quiz grade.
 
 ***
 
-### Course policies
+### Course Policies
 
 **Academic integrity** <br/>
 All material you submit in this course (reading responses, project reports, and

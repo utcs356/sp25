@@ -17,7 +17,8 @@ foundational ideas, architecture, protocols and software used in networks that
 comprise the Internet.
 
 ### Textbook
-* [Computer Networks: Systems Approach](https://book.systemsapproach.org/){:target="\_blank"} (availble online) by Larry Peterson and Bruce Davie
+* Required: [Computer Networks: Systems Approach](https://book.systemsapproach.org/){:target="\_blank"} (available online) by Larry Peterson and Bruce Davie
+* Supplementary: [TCP Congestion Control: A Systems Approach](hhttps://tcpcc.systemsapproach.org/){:target="\_blank"} (available online) by Larry Peterson, Lawrence Brakmo, and Bruce Davie
 
 ### Topics
 * Physical and data link layer protocols
