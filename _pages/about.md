@@ -41,7 +41,7 @@ comprise the Internet.
 ***
 
 - **Unique number:** 51085
-- **Time:** Tuesday & Thursday 9:30 PM - 10:45 PM
+- **Time:** Tuesday & Thursday 9:30 AM - 10:45 AM
 - **Location:** GDC 1.304 
 - **Discussion:** [Ed discussion](https://edstem.org/us/courses/50367){:target="\_blank"}
 
