@@ -7,7 +7,7 @@ logo:
 news: true
 ---
 
-## Welcome to CS 356, Spring 2024 Edition!
+### Welcome to CS 356, Spring 2024 Edition!
 
 ### Overview
 
