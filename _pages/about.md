@@ -7,6 +7,8 @@ logo:
 news: true
 ---
 
+## Welcome to CS 356, Spring 2024 Edition!
+
 ### Overview
 
 This course is an introduction to computer networks and is

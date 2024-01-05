@@ -83,7 +83,13 @@ title: Schedule
         {% endif %}
     </td>
     <td>
-        <p>{{ lecture.logistics }}</p>
+        {% if lecture.logistics %}
+        <ul>
+        {% for logistic in lecture.logistics %}
+            <li>{{ logistic }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
     </td>
     {% endif %}
 </tr>
