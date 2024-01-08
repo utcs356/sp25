@@ -37,23 +37,23 @@ After you completed the above steps, the project leader will approve your reques
 An experiment in CloudLab means the instantiation of a profile. You can think a profile as a pre-configured VM image includes OS and necessary setup. An experiment lasts only for the reserved hours, and all the changes you made on top of the profile will be discarded. Make sure that you use a private git repository to save your code.
 
 1. To start a new experiment, go to your CloudLab dashboard and click on the Experiments tab in the upper left corner, then select Start Experiment. This will lead to the profile selection panel.
-![start_exp_step1]({{site.url}}/assets/img/assignments/assignment0/start_exp_step1.png)
+![start_exp_step1]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step1.png)
 2. Click on Change Profile.
-![start_exp_step2]({{site.url}}/assets/img/assignments/assignment0/start_exp_step2.png)
+![start_exp_step2]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step2.png)
 3. Select a profile from the list. Choose the `cs356-base` profile in the `utcs356` project. With this profile, you will be able to launch 1 machine with the Ubuntu 22.04.2 LTS image with Docker and Kathara additionally installed.
-![start_exp_step3]({{site.url}}/assets/img/assignments/assignment0/start_exp_step3.png)
+![start_exp_step3]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step3.png)
 4. Click on Next to move to the next panel (Parameterize).
-![start_exp_step4]({{site.url}}/assets/img/assignments/assignment0/start_exp_step4.png)
+![start_exp_step4]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step4.png)
 5. Click on Next to move to the next panel (Finalize). You don't need to parameterize an experiment unless explicitly mentioned.
-![start_exp_step5]({{site.url}}/assets/img/assignments/assignment0/start_exp_step5.png)
+![start_exp_step5]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step5.png)
 6. Here you should name your experiment with `CSLogin1-CSLogin2` (`CSLogin1` is the cs username of Member 1), select `utcs356` as the project and your respective group (you were/will be invited). You also need to specify from which cluster you want to start your experiment. Please select the Wisconsin cluster, if it fails, then try another cluster. Click on Next to move to the next panel (Schedule).
-![start_exp_step6]({{site.url}}/assets/img/assignments/assignment0/start_exp_step6.png)
+![start_exp_step6]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step6.png)
 7. Enter the desired experiment duration and the time/date when you want to start the experiment. If you want to start your experiment as soon as possible, skip the `Start on date/time` field. Once your experiment is ready you will receive a notification email.
-![start_exp_step7]({{site.url}}/assets/img/assignments/assignment0/start_exp_step7.png)
+![start_exp_step7]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step7.png)
 8. You can navigate to your CloudLab user dashboard where you can see your list of active experiments.On clicking on the experiment name, you will be navigated to a webpage describing project details. 
-![start_exp_step8_1]{{site.url}}(/assets/img/assignments/assignment0/start_exp_step8_1.png)
+![start_exp_step8_1]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_1.png)
 Click on the list view on that page which opens a table where you can obtain the ssh login command to log in to your machine.
-![start_exp_step8_2]{{site.url}}(/assets/img/assignments/assignment0/start_exp_step8_2.png)
+![start_exp_step8_2]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_2.png)
 
 9. Try to login to the machine by executing the provided ssh command in your terminal. This step will only work if you have uploaded your ssh public key to your CloudLab account. Add your public key if you did not add it during the registration ([here](https://www.cloudlab.us/ssh-keys.php)). 
 
@@ -61,7 +61,7 @@ Click on the list view on that page which opens a table where you can obtain the
 
 ### Tasks
 #### Part 1: Check for the available resources
-Check for the number of CPU cores available (use `$ lshw -class cpu -businfo`) and memory available on the node (use `free -h`). 
+Check for the number of CPU cores available (use `$ lshw -class cpu -businfo`) and memory available on the node (use `$ free -h`). 
 **Report** the available resources in your report. 
 #### Part 2: Executing Kathará
 Throughout the assignments, we will use [Kathará](https://www.kathara.org/), an open source container-based network emulation system. With the network emulation tools like Kathará, we can test (network) applications without multiple servers and network devices.
