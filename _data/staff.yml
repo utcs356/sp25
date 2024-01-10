@@ -2,7 +2,7 @@ Instructors:
     - name: Daehyeok Kim
       email: daehyeok@utexas.edu
       url: https://daehyeok.kim/
-      office-hours: Tue, 4:00pm - 5:00pm
+      office-hours: Tue 4pm - 5pm
       image: staff/daehyeok.jpg
       location:  GDC 6.824
 
@@ -10,6 +10,6 @@ TAs:
     - name: Jeongyoon Moon
       email: jeongyoonm@utexas.edu
       url:
-      office-hours: Mon, 3:00pm-4:00pm, </br>Fri, 3:00pm - 4:00pm
+      office-hours: MF 3pm - 4pm
       location:  GDC TBD
       image: staff/jeongyoon.jpg
