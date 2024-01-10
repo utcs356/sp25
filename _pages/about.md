@@ -9,18 +9,19 @@ news: true
 
 ### Welcome to CS 356, Spring 2024 Edition!
 
-### Overview
+### Course Overview
 
-This course is an introduction to computer networks and is
-suitable for undergraduates and beginning graduate students. The course will
-investigate computer networks and network protocols from both a conceptual and
-implementation standpoint. The primary focus of the course will be on
-foundational ideas, architecture, protocols and software used in networks that
-comprise the Internet.
+This is an introductory course in computer networks that is suitable for undergraduate and beginning graduate students. The course will explore computer networks and network protocols, both from a conceptual and implementation standpoint. The main focus of the course will be on foundational ideas, architecture, protocols, and software used in networks that make up the Internet. The course aims to achieve the following goals:
+
+* To learn what computer networks are and how they work today
+* To understand why they are designed the way they are and how they are likely to evolve
+* To learn how to write networked applications and services and program software routers through programming assignments
+
+The course is structured around lectures by the instructor with open discussion. Students will form groups of one or two people for programming assignments.
+
 
 ### Textbook
 * Required: [Computer Networks: Systems Approach](https://book.systemsapproach.org/){:target="\_blank"} (available online) by Larry Peterson and Bruce Davie
-* Supplementary: [TCP Congestion Control: A Systems Approach](hhttps://tcpcc.systemsapproach.org/){:target="\_blank"} (available online) by Larry Peterson, Lawrence Brakmo, and Bruce Davie
 
 ### Topics
 * Physical and data link layer protocols
@@ -36,7 +37,7 @@ comprise the Internet.
 
 ### Prerequisites
 - CS 439 (Principles of Computer Systems) or equivalent
-- Python programming experience
+- C and Python programming experience
 
 ***
 
