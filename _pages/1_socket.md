@@ -4,11 +4,11 @@ permalink: /assignments/assignment1
 title: "Assignment 1: Socket Programming and Measurement"
 ---
 ### Part 0: Setup and Overview
-Clone the git repository contains the skeleton code for this assignment.  
-`$ git clone `  
-`Makefile` is included in the directory, so you can compile your code with `$ make` and clean the binary with `$ make clean`.
-Your task is to complete `src/iperfer.c` to meet the specifications in Part 1 and perform measurements using your program.  
+Clone the git repository that contains Kathara labs and the skeleton code needed for this assignment.  
+* `$ git clone `  **TODO: make a skeleton code and public repository**   
 
+`Makefile` is included in the directory, so you can compile your code with `$ make` and remove the compiled binary with `$ make clean`.
+Your task is to complete `src/iperfer.c` to meet the specifications in Part 1 and perform measurements using your program.
 
 ### Part 1: Write iperfer.c
 * Client mode: Send TCP packets to a specific host for a specified time window and track how much data was sent during the time window.
@@ -38,20 +38,22 @@ Your task is to complete `src/iperfer.c` to meet the specifications in Part 1 an
         * After the connection is established, received data in chunks of 1000bytes
         * When the connection is closed, the program should print out the elapsed time, the total number of bytes received (in kilobytes), and the rate at which the program received data (in Mbps) (1kilobyte=1000bytes, 1megabit = 1,000,000 bits = 125,000 bytes)
 
-**Report** your iperfer client results when run it for 10 seconds in the given `two_hosts_direct` topology. Two hosts, h1 and h2, are directly connected in this topology.
-
+**TODO**: Make Kathara toplogies.    
+**Report** your iperfer client results when run it for 10 seconds in the given `two_hosts_direct` topology. Two hosts, h1 and h2, are directly connected to each other in this topology.
 
 ### Part 2: Measurement on a virtual network
 In this part of the assignment, you will use the tool you wrote (iperfer) and ping to measure a given virtual network's end-to-end bandwidth and latency. We will use `six_hosts_two_routers` topology. The virtual network toplogy is formed as follows:
 * There are 6 hosts, `h[1-6]`, and 2 routers, `r[1-2]`.
 * `h1`,`h2`,`h3` are connected to `r1`, and `h4`,`h5`,`h6` are connected to `r2`. `r1` and `r2` are connected with a single link.  
-Q1: Measure and report link latency and throughput between two adjacent routers, `r1` and `r2`.  
-Q2: Measure and report path latency and throughput between two hosts, `h1` and `h4`.  
-Q3: Effects of multiplexing 
-We will study what happens when multiple hosts connected to `r1` simultaneously talk to hosts connected to `r2`. Report the average RTT and bandwidth measurement varying the number of host pairs. The host pairs are (`h1`,`h4`), (`h2`,`h5`), (`h3`,`h6`).  
-Q4: Increase the bandwidth of the link between `r1` and `r2` and repeat 3.  
+* **TODO**: Add figure.  
 
-### Submission and grading
+**Q1**: Measure and report link latency and throughput between two adjacent routers, `r1` and `r2`.  
+**Q2**: Measure and report path latency and throughput between two hosts, `h1` and `h4`.  
+**Q3**: Effects of multiplexing  
+We will study what happens when multiple hosts connected to `r1` simultaneously talk to hosts connected to `r2`. Report the average RTT and bandwidth measurement varying the number of host pairs. The host pairs are (`h1`,`h4`), (`h2`,`h5`), (`h3`,`h6`).  
+**Q4**: Increase the bandwidth of the link between `r1` and `r2` and repeat 3.  
+
+### Submission
 You must submit:
 * A tar ball file of the modified assignment1 directory.
     * `$ tar -zcvf assignment1 assign1_username1_username2.tar.gz`
@@ -59,18 +61,19 @@ You must submit:
 * A pdf file contains the Part 1 results and the measurement results for Part 2.
     * The PDF file must contain the names and eids of all group memebers.
 
-### Grading:
-* correctness of iperfer.py
-	* Based on our test cases: 40%
-	* TODO: test case / rubric
+### Grading
+* `iperfer.c` implementation
+	* Command line argument verification 10%
+    * Server mode implementation 15%
+    * Client mode implementation 15%
 * Part 1 results
-    * client-side result screenshot: 10%
-	* server-side result screenshot: 10%
-* Measurement results and your explanation of results.
-	* Q1 10% - do the numbers match the link bandwidth and latency?
-    * Q2 10% - do the numbers match the link bandwidth and latency?
-	* Q3 10% - do the numbers decrease when adding more host pairs?
-	* Q4 10% - are the numbers are better than Q3?
+    * Client-side result: 10%
+	* Server-side result: 10%
+* Part 2 results.
+	* Q1: 10%
+    * Q2: 10%
+	* Q3: 10%
+	* Q4: 10%
 
 ### Appendix. Kathara tutorial
 Kathara lab is a set of preconfigured (virtual) devices. A basic Kathara lab is a directory tree containing:  
@@ -80,4 +83,7 @@ Kathara lab is a set of preconfigured (virtual) devices. A basic Kathara lab is 
         * if arg is a number ⇒ value is the name of a collision domain to which eth arg should be attached
         * if arg is not a number, then it must be an option and value the argument
 * Subdirectories: contains the configuration settings for each device
-* `<device_name>.startup` files that describe actions performed by devices when they are started shell script that is executed right after its startup
+* `<device_name>.startup` files that describe actions performed by devices when they are started.
+
+To deploy virtual network, move to the Kathara lab directory then type `$ kathara lstart`. Then the xterm terminal connected to each virtual network device would appear. Some useful kathara commands are summarized below:  
+**TODO**
