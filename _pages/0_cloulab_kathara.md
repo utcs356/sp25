@@ -8,6 +8,11 @@ title: "Assignment 0: Cloudlab and Kathara"
 
 #### This assignment must be done individually (i.e., not in a group).
 
+* (The list will be replaced with the table of contents.)
+{:toc}
+
+***
+
 ### Overview
 You will do your assignments for CS 356 using  [CloudLab](http://cloudlab.us/) . CloudLab is a research facility that provides bare-metal access and control over a substantial set of computing, storage, and networking resources. If you haven’t worked in CloudLab before, you need to register a CloudLab account.
 This small assignment walks you through the CloudLab registration process and shows you how to start an experiment in CloudLab.
