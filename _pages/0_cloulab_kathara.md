@@ -5,8 +5,9 @@ title: "Assignment 0: Cloudlab and Kathara"
 ---
 
 #### **Released:** 01/16/2024 <br/> **Due:**	01/25/2024
-
+{: .no_toc}
 #### This assignment must be done individually (i.e., not in a group).
+{: .no_toc}
 
 * (The list will be replaced with the table of contents.)
 {:toc}
