@@ -4,7 +4,15 @@ permalink: /assignments/assignment0
 title: "Assignment 0: Cloudlab and Kathara"
 ---
 
-#### **Released:** 01/16/2024 <br/> **Due:**	01/23/2024
+#### **Released:** 01/16/2024 <br/> **Due:**	01/25/2024
+{: .no_toc}
+#### This assignment must be done individually (i.e., not in a group).
+{: .no_toc}
+
+* (The list will be replaced with the table of contents.)
+{:toc}
+
+***
 
 #### This assignment must be done individually (i.e., not in a group).
 
@@ -16,20 +24,22 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 
 **NOTE**: `$ [shell_command]` indicates to execute `[shell_command]` in your terminal.
 
-**TODO: Add Windows support**
-
 ### Register a CloudLab account
 * Visit https://cloudlab.us and create an account using your UT Austin email address as login.
 	* Click `Join Existing Project` and enter `utcs356`.
-	* Create ssh key pair and upload your public key during the account setup.
-		1. Install OpenSSH \\
-		macOS: `$ brew install openssh`\\
-		Ubuntu: `$ sudo apt-get install openssh-client openssh-server`  
-		2. Generate a key pair with `ssh-keygen`\\
-		You can use the below example as it is or try other cryptographic algorithms you prefer (see [man ssh-keygen](https://man7.org/linux/man-pages/man1/ssh-keygen.1.html))  
-		Example: `$ ssh-keygen -t rsa -b 4096`
-		3. Type enter without typing any character when the prompt asks for the file path. The private key will be save into the default location, `~/.ssh/id_rsa`. `~/.ssh/id_rsa` is your private key and `~/.ssh/id_rsa.pub` is your public key (upload this during the account registration).\\
-		+) If you want to save your keys other than the default location, enter a file path (e.g., `~/foo/mykey`) to save your private key when the prompt asks for it. `~/foo/mykey.pub` would be the public key in this case.
+	* Create ssh key pair and upload your public key during the account setup. 
+		* Windows
+			1. Install [MobaXterm](https://mobaxterm.mobatek.net/).
+			2. Follow instructions in this [link](https://docs.gcc.rug.nl/hyperchicken/generate-key-pair-mobaxterm/) to generate a key pair.
+		* Ubuntu and macOS
+			1. Install OpenSSH \\
+			macOS: `$ brew install openssh`\\
+			Ubuntu: `$ sudo apt-get install openssh-client openssh-server`  
+			2. Generate a key pair with `ssh-keygen`\\
+			You can use the below example as it is or try other cryptographic algorithms you prefer (see [man ssh-keygen](https://man7.org/linux/man-pages/man1/ssh-keygen.1.html))  
+			Example: `$ ssh-keygen -t rsa -b 4096`
+			3. Type enter without typing any character when the prompt asks for the file path. The private key will be save into the default location, `~/.ssh/id_rsa`. `~/.ssh/id_rsa` is your private key and `~/.ssh/id_rsa.pub` is your public key (upload this during the account registration).\\
+			+) If you want to save your keys other than the default location, enter a file path (e.g., `~/foo/mykey`) to save your private key when the prompt asks for it. `~/foo/mykey.pub` would be the public key in this case.
 
 * If you already have an account, click your username at the top right corner and then select  `Start/Join Project`, Type `utcs356` into the ProjectID field.
 
@@ -68,32 +78,36 @@ Check for the number of CPU cores available (use `$ lshw -class cpu -businfo`) a
 #### Part 2: Executing Kathará
 Throughout the assignments, we will use [Kathará](https://www.kathara.org/), an open source container-based network emulation system. With the network emulation tools like Kathará, we can test (network) applications without multiple servers and network devices.
 
-0. Setup
+1. Setup  
 After ssh to the reserved node, type the commands below.  
 `$ sudo usermod -aG docker $USER`  
 `$ touch ~/.Xauthority`   
-**TODO: Setup Git repository**
 
-1. Install and launch Xterm  
-Kathará launches each network node as a container and spawns an Xterm terminal for each node. To make this work, you have to install an X display server on your local computer.   
-* For Mac, install [XQuartz](https://www.xquartz.org/).
-Execute Xterm by clicking on XQuartz>Applications>Terminal.  
-![xquartz_xterm]({{site.baseurl}}/assets/img/assignments/assignment0/xquartz_xterm.png)   
-Then type   
-`ssh -X <cloudlab_id>@<cloudlab_host>` (add `-X` flag to the `[ssh_command]`)
+2. Install and enable remote application display  
+Kathará launches each network node as a container and spawns an Xterm terminal for each node. To access the terminals on your local machine, you have to install an X display server and enable X11 forwarding on your local computer.
+	* For Mac, install [XQuartz](https://www.xquartz.org/).
+	Execute Xterm by clicking on XQuartz>Applications>Terminal.  
+	![xquartz_xterm]({{site.baseurl}}/assets/img/assignments/assignment0/xquartz_xterm.png)   
+	Then type below on your local machine.    
+	`$ ssh -X <cloudlab_id>@<cloudlab_host>` (add `-X` flag to the `[ssh_command]`)  
+	`-X` flag enables X11 forwarding, which allows us to access remote application display.
 
+	* For Linux, Xterm is installed by default. You just need to type the below command on your local machine.  
+	`$ ssh -X <cloudlab_id>@<cloudlab_host>` (add `-X` flag to the `[ssh_command]`)
 
-2. Type basic commands on the Kathara node.   
-Run the below commands.  
-`$ git clone git@github.com:utcs356/assignment1.git`  
-`$ cd assignment1/lab`  
+	* For Windows, **TODO**
+
+3. Type basic commands on the Kathara node.   
+Run the below commands.   
+`$ git clone https://github.com/utcs356/assignment1.git`  
+`$ cd assignment1/labs/two_hosts_direct`  
 `$ kathara lstart`  
-Wait for Xterm popups. 4 terminals should appear.
-Each terminal is connected to the virtual network device on the virtual network generated by Kathará. There are 4 virtual network devices in this Kathara lab, `end1`, `end2`, `r1`, and `r2`.  
-Run `$ ifconfig` to identify the network interfaces and their IP addresses on each device. ([man ifconfig](https://man7.org/linux/man-pages/man8/ifconfig.8.html))   
-**Report** the IP addresses of network interfaces attached to each device.
+Wait for Xterm popups. 2 terminals should appear.
+Each terminal is connected to the virtual network device on the virtual network generated by Kathará. There are 2 virtual network devices in this Kathara lab `h1`, and `h2`.  
+Run `$ ifconfig` to identify the network interfaces and their IP addresses on each device (terminal). ([man ifconfig](https://man7.org/linux/man-pages/man8/ifconfig.8.html))   
+**Report** the IP address of the network interface attached to each device.
 
-NOTE: Throughout the assignments you should use Xterm to run Kathará commands. You can use other terminals for other commands.
+**NOTE:** Throughout the assignments, you should follow these steps to run Kathará commands.
 
 #### Deliverable
 Your report should be a pdf file named `assign0_groupX.pdf`, where `X` is your group number. Your report must include your group’s number, members, and their EIDs. Please submit one report per group.
