@@ -13,7 +13,7 @@
 - date: Th 01/18
   lecturer: 
   title: >
-    <strong>Design requirements</strong>
+    <strong>Design requirements (cont'd) & Architecture</strong>
   slides: 
   video: 
   notes:
@@ -24,7 +24,7 @@
 - date: T 01/23
   lecturer:
   title: >
-    <strong>Architecture</strong>
+    <strong>Performance metrics & Socket programming</strong>
   recitation: 
   slides: 
   notes: 
@@ -36,7 +36,7 @@
 - date: Th 01/25
   lecturer:
   title: >
-    <strong>Performance metrics & Socket programming</strong>
+    <strong>Link layer overview & Encoding</strong>
   recitation: 
   slides: 
   notes: 
@@ -50,7 +50,7 @@
 - date: T 01/30
   lecturer:
   title: >
-    <strong>Link layer overview & Encoding</strong>
+    <strong>Framing & Error detection</strong>
   recitation: 
   slides: 
   notes: 
@@ -62,7 +62,7 @@
 - date: Th 02/01
   lecturer:
   title: >
-    <strong>Framing & Error detection</strong>
+    <strong>Reliability</strong>
   recitation: 
   slides: 
   notes: 
@@ -74,7 +74,7 @@
 - date: T 02/06
   lecturer:
   title: >
-    <strong>Reliability</strong>
+    <strong>Ethernet</strong>
   recitation: 
   slides: 
   notes: 
@@ -86,7 +86,7 @@
 - date: Th 02/08
   lecturer:
   title: >
-    <strong>Ethernet</strong>
+    <strong>WiFi</strong>
   recitation: 
   slides: 
   notes: 
@@ -98,7 +98,7 @@
 - date: T 02/13
   lecturer:
   title: >
-    <strong>WiFi & P4 programming</strong>
+    <strong>P4 programming</strong>
   recitation: 
   slides: 
   notes: 
