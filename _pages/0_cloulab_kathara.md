@@ -8,7 +8,7 @@ title: "Assignment 0: Cloudlab and Kathara"
 
 ### Overview
 You will do your assignments for CS 356 using  [CloudLab](http://cloudlab.us/) . CloudLab is a research facility that provides bare-metal access and control over a substantial set of computing, storage, and networking resources. If you haven’t worked in CloudLab before, you need to register a CloudLab account.
-This small assignment walks you through the CloudLab registration process and shows you how to start an experiment in CloudLab.
+This small assignment walks you through the CloudLab registration process and shows you how to start an experiment in CloudLab. In addition, you will test your own program on top of [Kathara](https://www.kathara.org/). Kathara is a network emulator that emulates multiple network devices and connectivity between them on a single machine.  
 You should submit a per-group report that shows you have successfully followed the process.
 Most importantly, it introduces our policies on using CloudLab that will be enforced throughout the semester.
 
@@ -18,9 +18,6 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 * Visit https://cloudlab.us and create an account using your UT Austin email address as login.
 	* Click `Join Existing Project` and enter `utcs356`.
 	* Create ssh key pair and upload your public key during the account setup. 
-		* Windows
-			1. Install [MobaXterm](https://mobaxterm.mobatek.net/).
-			2. Follow instructions in this [link](https://docs.gcc.rug.nl/hyperchicken/generate-key-pair-mobaxterm/) to generate a key pair.
 		* Ubuntu and macOS
 			1. Install OpenSSH \\
 			macOS: `$ brew install openssh`\\
@@ -30,6 +27,15 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 			Example: `$ ssh-keygen -t rsa -b 4096`
 			3. Type enter without typing any character when the prompt asks for the file path. The private key will be save into the default location, `~/.ssh/id_rsa`. `~/.ssh/id_rsa` is your private key and `~/.ssh/id_rsa.pub` is your public key (upload this during the account registration).\\
 			+) If you want to save your keys other than the default location, enter a file path (e.g., `~/foo/mykey`) to save your private key when the prompt asks for it. `~/foo/mykey.pub` would be the public key in this case.
+		* Windows
+			1. Install [MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html) and execute it.
+			2. Click on Tools>MobaKeyGen 
+			![windows_keygen_1]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_1.png)	
+			3. Select parameters and click on Generate. You can use the below parameters (RSA with 4096bits) or other parameters you want.
+			![windows_keygen_2]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_2.png)
+			4. Move your cursor to generate random numbers. If you don't the key will not be generated.  
+			5. Copy and paste the generated public key to the account setup page. Save your public and private key to your preferred location.
+			![windows_keygen_3]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_3.png)
 
 * If you already have an account, click your username at the top right corner and then select  `Start/Join Project`, Type `utcs356` into the ProjectID field.
 
@@ -58,6 +64,11 @@ Click on the list view on that page which opens a table where you can obtain the
 ![start_exp_step8_2]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_2.png)
 
 9. Try to login to the machine by executing the provided ssh command in your terminal. This step will only work if you have uploaded your ssh public key to your CloudLab account. Add your public key if you did not add it during the registration ([here](https://www.cloudlab.us/ssh-keys.php)). 
+* Ubuntu and macOS : `$ssh <cloudlab_id>@<cloudlab_host>`
+* Windows:
+	1. Click on Session.
+	2. On the SSH tab, type `<cloudlab_host>` on `Remote host`, select the `Specify username` checkbox, and type 	`<cloudlab_id>`. Select the `X11-Forwarding` and `Use private key` checkboxes. Click on the blue file icon and select the private key file you saved in the previous step. Launch a SSH session by clicking on OK.  
+	![windows_ssh_setup]({{site.baseurl}}/assets/img/assignments/assignment0/windows_ssh_setup.png)	
 
 **If you find yourself stuck on any of the above steps, don’t hesitate to post a question to Ed!**
 
@@ -72,6 +83,7 @@ Throughout the assignments, we will use [Kathará](https://www.kathara.org/), an
 After ssh to the reserved node, type the commands below.  
 `$ sudo usermod -aG docker $USER`  
 `$ touch ~/.Xauthority`   
+Then **restart the SSH session** to make sure the changes are applied.    
 
 2. Install and enable remote application display  
 Kathará launches each network node as a container and spawns an Xterm terminal for each node. To access the terminals on your local machine, you have to install an X display server and enable X11 forwarding on your local computer.
@@ -85,7 +97,7 @@ Kathará launches each network node as a container and spawns an Xterm terminal 
 	* For Linux, Xterm is installed by default. You just need to type the below command on your local machine.  
 	`$ ssh -X <cloudlab_id>@<cloudlab_host>` (add `-X` flag to the `[ssh_command]`)
 
-	* For Windows, **TODO**
+	* For Windows, MobaXterm will use Xterm for SSH sessions by default.
 
 3. Type basic commands on the Kathara node.   
 Run the below commands.   
