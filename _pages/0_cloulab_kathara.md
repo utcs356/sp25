@@ -20,9 +20,11 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 
 **NOTE**: `$ [shell_command]` indicates to execute `[shell_command]` in your terminal.
 
-### Register a CloudLab account
-* Visit https://cloudlab.us and create an account using your UT Austin email address as login.
-	* Click `Join Existing Project` and enter `utcs356`.
+### Register a CloudLab Account
+* Visit [CloudLab](https://cloudlab.us/signup.php) and create an account using your UT Austin email address as an email.
+![cloudlab_registration]({{site.baseurl}}/assets/img/assignments/assignment0/cloudlab_registration.png)
+	* Select `Join Existing Project` and enter `utcs356`.
+	* Fill out your information. Use your UT email address as an email.
 	* Create ssh key pair and upload your public key during the account setup. 
 		* Ubuntu and macOS
 			1. Install OpenSSH \\
@@ -31,58 +33,58 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 			2. Generate a key pair with `ssh-keygen`\\
 			You can use the below example as it is or try other cryptographic algorithms you prefer (see [man ssh-keygen](https://man7.org/linux/man-pages/man1/ssh-keygen.1.html))  
 			Example: `$ ssh-keygen -t rsa -b 4096`
-			3. Type enter without typing any character when the prompt asks for the file path. The private key will be save into the default location, `~/.ssh/id_rsa`. `~/.ssh/id_rsa` is your private key and `~/.ssh/id_rsa.pub` is your public key (upload this during the account registration).\\
-			+) If you want to save your keys other than the default location, enter a file path (e.g., `~/foo/mykey`) to save your private key when the prompt asks for it. `~/foo/mykey.pub` would be the public key in this case.
-			+) If you want additional security, type passphrase when the prompt asks for it.
+			3. Type enter without typing any character when the prompt asks for the file path. The private key will be saved into the default location, `~/.ssh/id_rsa`. `~/.ssh/id_rsa` is your private key and `~/.ssh/id_rsa.pub` is your public key (upload this during the account registration).\\
+			+) If you want to save your keys other than the default location, enter a file path (e.g., `~/foo/mykey`) to save your private key when the prompt asks for it. `~/foo/mykey.pub` would be the public key in this case.   
+			+) If you want additional security, type a passphrase when the prompt asks for it.
 
 		* Windows
 			1. Install [MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html) and execute it.
 			2. Click Tools>MobaKeyGen 
 			![windows_keygen_1]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_1.png)	
-			3. Select parameters and click Generate. You can use the below parameters (RSA with 4096bits) or other parameters you want.
+			3. Select parameters and click `Generate`. You can use the below parameters (RSA with 4096bits) or other parameters you want.
 			![windows_keygen_2]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_2.png)
-			4. Move your cursor to generate random numbers. If you don't the key will not be generated.  
-			5. Copy and paste the generated public key to the account setup page. Save your public and private key to your preferred location.  
+			4. Move your cursor to generate random numbers. If you don't, the process will hang.    
+			5. Copy and paste the generated public key to the account setup page. Save your public and private keys to your preferred location.  
 			+) If you want additional security, type `Key passphrase` before saving the keys.  
 			![windows_keygen_3]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_3.png)
 
 * If you already have an account, click your username at the top right corner and then select `Start/Join Project` and type `utcs356` into the ProjectID field.
 
-Once you complete the above steps, the project leader will approve your request to join the project so that you can start an experiment.
+Once you complete the above steps, the instructor or TA will approve your request to join the project so that you can start an experiment.
 
 ### Start an Experiment
 An experiment in CloudLab means the instantiation of a profile. You can think of a profile as a pre-configured VM image that includes OS and necessary setup. An experiment lasts only for the reserved hours, and all the changes you made on top of the profile will be discarded. Make sure that you use a private git repository to save your code.
 
-1. To start a new experiment, go to your CloudLab dashboard and click the `Experiments` tab in the upper left corner, then select Start Experiment. This will lead to the profile selection panel.
+1. To start a new experiment, go to your CloudLab dashboard and click the `Experiments` tab in the upper left corner. Then select `Start Experiment`, moving to the profile selection panel.
 ![start_exp_step1]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step1.png)
 2. Click `Change Profile`.
 ![start_exp_step2]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step2.png)
 3. Select a profile from the list. Choose the `cs356-base` profile in the `utcs356` project. With this profile, you can launch one machine with the Ubuntu 22.04.2 LTS image with Docker and Kathara additionally installed.
 ![start_exp_step3]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step3.png)
-4. Click `Next` to move to the next panel (Parameterize).
+4. Click `Next` to move to the next panel (`Parameterize`).
 ![start_exp_step4]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step4.png)
-5. Click `Next` to move to the next panel (Finalize). You don't need to parameterize an experiment unless explicitly mentioned.
+5. Click `Next` to move to the next panel (`Finalize`). You don't need to parameterize an experiment unless explicitly mentioned.
 ![start_exp_step5]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step5.png)
-6. Here, you should name your experiment with `CSLogin1-CSLogin2` (`CSLogin1` is the cs username of Member 1), select `utcs356` as the project and your respective group (you were/will be invited). You also need to specify from which cluster you want to start your experiment. Please select the Wisconsin cluster, if it fails, then try another cluster. Click on `Next` to move to the next panel (Schedule).
+6. Here, you should name your experiment with `CSLogin1-CSLogin2` (`CSLogin1` is the cs username of Member 1), select `utcs356` as `Project`, and your assignment group as `Group` (You will be invited. If you're not yet invited, it is ok to use `cs356` as a group for this assignment). You need to specify from which cluster you want to start your experiment. Please select the Wisconsin cluster. If it fails, then try another cluster. Click `Next` to move to the next panel (`Schedule`).
 ![start_exp_step6]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step6.png)
 7. Enter the desired experiment duration and the time/date when you want to start the experiment. If you want to start your experiment as soon as possible, skip the `Start on date/time` field. Once your experiment is ready you will receive a notification email.
 ![start_exp_step7]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step7.png)
-8. You can navigate to your CloudLab user dashboard to see your list of active experiments. You will be navigated to a webpage describing project details by clicking on the experiment name. 
+8. You can navigate to your CloudLab user dashboard to see your list of active experiments. You will move to a webpage describing project details by clicking on the experiment name. 
 ![start_exp_step8_1]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_1.png)
-Click the `List View` on that page, which opens a table where you can obtain the SSH login command to log in to your machine.
+Click the `List View` on that page, which opens a table where you can obtain the SSH login command (`ssh <cloudlab_id>@<cloudlab_host>`) to log in to your machine.
 ![start_exp_step8_2]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_2.png)
 
-9. Try to login to the machine by executing the provided ssh command in your terminal. This step will only work if you have uploaded your ssh public key to your CloudLab account. Add your public key if you did not add it during the registration ([here](https://www.cloudlab.us/ssh-keys.php)). 
-* Ubuntu and macOS : `$ssh <cloudlab_id>@<cloudlab_host>`
-* Windows:
-	1. Click `Session`.
-	2. On the SSH tab, type `<cloudlab_host>` on `Remote host`, select the `Specify username` checkbox, and type 	`<cloudlab_id>`. Select the `X11-Forwarding` and `Use private key` checkboxes. Click the blue file icon and select the private key file you saved in the previous step. Launch a SSH session by clicking on `OK`.  
+9. Try to login to the machine by executing the provided SSH command in your terminal. This step will only work if you have uploaded your SSH public key to your CloudLab account. Add your public key if you did not add it during the registration ([here](https://www.cloudlab.us/ssh-keys.php)). 
+	* Ubuntu and macOS : `$ ssh <cloudlab_id>@<cloudlab_host>`
+	* Windows:  On the MobaXterm window,
+		1. Click `Session`.
+		2. On the SSH tab, type `<cloudlab_host>` on `Remote host`, select the `Specify username` checkbox, and type 	`<cloudlab_id>`. Select the `X11-Forwarding` and `Use private key` checkboxes. Click the blue file icon and select the private key file you saved in the previous step. Launch an SSH session by clicking on `OK`.  
 	![windows_ssh_setup]({{site.baseurl}}/assets/img/assignments/assignment0/windows_ssh_setup.png)	
 
 **If you find yourself stuck on any of the above steps, don’t hesitate to post a question to Ed!**
 
 ### Tasks
-#### Part 1: Check for the available resources
+#### Part 1: Check for the Available Resources
 Check for the number of CPU cores available (use `$ lshw -class cpu -businfo`) and memory available (use `$ free -h`) on the node you reserved. 
 **Report** the available resources in your report. 
 #### Part 2: Executing Kathará
