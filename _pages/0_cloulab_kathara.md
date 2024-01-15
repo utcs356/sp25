@@ -39,7 +39,7 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 
 		* Windows
 			1. Install [MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html) and execute it.
-			2. Click Tools>MobaKeyGen 
+			2. Click `Tools>MobaKeyGen` 
 			![windows_keygen_1]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_1.png)	
 			3. Select parameters and click `Generate`. You can use the below parameters (RSA with 4096bits) or other parameters you want.
 			![windows_keygen_2]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_2.png)
