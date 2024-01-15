@@ -126,7 +126,7 @@ Your report should be a pdf file named `assign0_groupX.pdf`, where `X` is your g
 
 
 ### Policies on Using CloudLab Resources
-* The nodes you receive from CloudLab are real hardware machines sitting in different clusters. Therefore, we ask you not to hold the nodes for too long.
+* Please read and follow Cloudlab's [Acceptable Use Policy](https://www.cloudlab.us/aup.php).
 * CloudLab gives users 16 hours to start with, and users can extend it longer. You can manage your time efficiently and only hold onto those nodes when working on the assignment. 
 * You should use a private git repository to manage your code and terminate the nodes when you are not using them. If you do need to extend the nodes, do not extend them by more than one day. We will terminate any cluster running for more than 48 hours.
 * As a member of the `utcs356` project, you have permission to create new experiments in the default group in addition to the group you are invited to. Stick to your own group and use naming formats as mentioned. For more information related to this, please refer to https://deanofstudents.utexas.edu/conduct/academicintegrity.php
