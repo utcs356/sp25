@@ -22,7 +22,7 @@ requires professor's prior approval.
 
 All code and results you submit must be the original work of your group.
 Cheating and plagiarism will not be tolerated and will be dealt with in
-accordance with [University of Texas policies and
+accordance with the [University of Texas policies and
 procedures](https://deanofstudents.utexas.edu/conduct/index.php).
 
 
