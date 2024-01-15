@@ -1,13 +1,11 @@
 ---
 layout: about
 permalink: /
-title: Computer Networks
+title: Welcome to CS 356, Spring 2024 Edition!
 description: CS 356 Computer Networks - University of Texas at Austin
 logo: 
 news: true
 ---
-
-### Welcome to CS 356, Spring 2024 Edition!
 
 ### Course Overview
 

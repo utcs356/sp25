@@ -10,7 +10,7 @@ will be due 2-3 weeks after it is assigned.
 
 Prior experience has shown that students who begin projects shortly after they
 are assigned are more likely to succeed. Projects submitted after the day and
-time they are due will be penalized 15% of the total points of the assignment
+time they are due will be penalized 10% of the total points of the assignment
 per day, unless you have made prior arrangements with me due to extenuating
 circumstances.
 
@@ -22,7 +22,7 @@ requires professor's prior approval.
 
 All code and results you submit must be the original work of your group.
 Cheating and plagiarism will not be tolerated and will be dealt with in
-accordance with [University of Texas policies and
+accordance with the [University of Texas policies and
 procedures](https://deanofstudents.utexas.edu/conduct/index.php).
 
 
