@@ -14,7 +14,7 @@ title: "Assignment 0: Cloudlab and Kathara"
 
 ### Overview
 You will do your assignments for CS 356 using  [CloudLab](http://cloudlab.us/). CloudLab is a research facility that provides bare-metal access and control over a substantial set of computing, storage, and networking resources. If you haven’t worked in CloudLab before, you need to register a CloudLab account.
-This small assignment walks you through the CloudLab registration process and shows you how to start an experiment in CloudLab.
+This small assignment walks you through the CloudLab registration process and shows you how to start an experiment in CloudLab. In addition, you will t
 You should submit a per-group report that shows you have successfully followed the process.
 Most importantly, it introduces our policies on using CloudLab that will be enforced throughout the semester.
 
@@ -33,6 +33,8 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 			Example: `$ ssh-keygen -t rsa -b 4096`
 			3. Type enter without typing any character when the prompt asks for the file path. The private key will be save into the default location, `~/.ssh/id_rsa`. `~/.ssh/id_rsa` is your private key and `~/.ssh/id_rsa.pub` is your public key (upload this during the account registration).\\
 			+) If you want to save your keys other than the default location, enter a file path (e.g., `~/foo/mykey`) to save your private key when the prompt asks for it. `~/foo/mykey.pub` would be the public key in this case.
+			+) If you want additional security, type passphrase when the prompt asks for it.
+
 		* Windows
 			1. Install [MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html) and execute it.
 			2. Click on Tools>MobaKeyGen 
@@ -40,7 +42,8 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 			3. Select parameters and click on Generate. You can use the below parameters (RSA with 4096bits) or other parameters you want.
 			![windows_keygen_2]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_2.png)
 			4. Move your cursor to generate random numbers. If you don't the key will not be generated.  
-			5. Copy and paste the generated public key to the account setup page. Save your public and private key to your preferred location.
+			5. Copy and paste the generated public key to the account setup page. Save your public and private key to your preferred location.  
+			+) If you want additional security, type `Key passphrase` before saving the keys.  
 			![windows_keygen_3]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_3.png)
 
 * If you already have an account, click your username at the top right corner and then select `Start/Join Project` and type `utcs356` into the ProjectID field.
@@ -115,6 +118,7 @@ Each terminal is connected to the virtual network device on the virtual network 
 Run `$ ifconfig` to identify the network interfaces and their IP addresses on each device (terminal). ([man ifconfig](https://man7.org/linux/man-pages/man8/ifconfig.8.html))   
 **Report** the IP address of the network interface attached to each device.
 
+**NOTE:** Don't forget `$ kathara lclean` when your Kathara experiment is done.  
 **NOTE:** You should follow these steps to run Kathará commands throughout the assignments.
 
 #### Deliverable
