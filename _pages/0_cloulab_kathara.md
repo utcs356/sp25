@@ -13,8 +13,8 @@ title: "Assignment 0: Cloudlab and Kathara"
 ***
 
 ### Overview
-You will do your assignments for CS 356 using  [CloudLab](http://cloudlab.us/). CloudLab is a research facility that provides bare-metal access and control over a substantial set of computing, storage, and networking resources. If you haven’t worked in CloudLab before, you need to register a CloudLab account.
-This small assignment walks you through the CloudLab registration process and shows you how to start an experiment in CloudLab. In addition, you will t
+You will do your assignments for CS 356 using  [CloudLab](http://cloudlab.us/) and [Kathara](https://www.kathara.org/). CloudLab is a research facility that provides bare-metal access and control over a substantial set of computing, storage, and networking resources. If you haven’t worked in CloudLab before, you need to register a CloudLab account. Kathara is a network emulation tool that enables you to test your network programs without multiple physical servers and network devices.
+This small assignment walks you through the CloudLab registration process and shows you how to start an experiment in CloudLab. In addition, you will try out Kathara.
 You should submit a per-group report that shows you have successfully followed the process.
 Most importantly, it introduces our policies on using CloudLab that will be enforced throughout the semester.
 
@@ -37,9 +37,9 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 
 		* Windows
 			1. Install [MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html) and execute it.
-			2. Click on Tools>MobaKeyGen 
+			2. Click Tools>MobaKeyGen 
 			![windows_keygen_1]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_1.png)	
-			3. Select parameters and click on Generate. You can use the below parameters (RSA with 4096bits) or other parameters you want.
+			3. Select parameters and click Generate. You can use the below parameters (RSA with 4096bits) or other parameters you want.
 			![windows_keygen_2]({{site.baseurl}}/assets/img/assignments/assignment0/windows_keygen_2.png)
 			4. Move your cursor to generate random numbers. If you don't the key will not be generated.  
 			5. Copy and paste the generated public key to the account setup page. Save your public and private key to your preferred location.  
@@ -53,30 +53,30 @@ Once you complete the above steps, the project leader will approve your request 
 ### Start an Experiment
 An experiment in CloudLab means the instantiation of a profile. You can think of a profile as a pre-configured VM image that includes OS and necessary setup. An experiment lasts only for the reserved hours, and all the changes you made on top of the profile will be discarded. Make sure that you use a private git repository to save your code.
 
-1. To start a new experiment, go to your CloudLab dashboard and click the Experiments tab in the upper left corner, then select Start Experiment. This will lead to the profile selection panel.
+1. To start a new experiment, go to your CloudLab dashboard and click the `Experiments` tab in the upper left corner, then select Start Experiment. This will lead to the profile selection panel.
 ![start_exp_step1]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step1.png)
-2. Click on Change Profile.
+2. Click `Change Profile`.
 ![start_exp_step2]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step2.png)
 3. Select a profile from the list. Choose the `cs356-base` profile in the `utcs356` project. With this profile, you can launch one machine with the Ubuntu 22.04.2 LTS image with Docker and Kathara additionally installed.
 ![start_exp_step3]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step3.png)
-4. Click on Next to move to the next panel (Parameterize).
+4. Click `Next` to move to the next panel (Parameterize).
 ![start_exp_step4]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step4.png)
-5. Click on Next to move to the next panel (Finalize). You don't need to parameterize an experiment unless explicitly mentioned.
+5. Click `Next` to move to the next panel (Finalize). You don't need to parameterize an experiment unless explicitly mentioned.
 ![start_exp_step5]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step5.png)
-6. Here, you should name your experiment with `CSLogin1-CSLogin2` (`CSLogin1` is the cs username of Member 1), select `utcs356` as the project and your respective group (you were/will be invited). You also need to specify from which cluster you want to start your experiment. Please select the Wisconsin cluster, if it fails, then try another cluster. Click on Next to move to the next panel (Schedule).
+6. Here, you should name your experiment with `CSLogin1-CSLogin2` (`CSLogin1` is the cs username of Member 1), select `utcs356` as the project and your respective group (you were/will be invited). You also need to specify from which cluster you want to start your experiment. Please select the Wisconsin cluster, if it fails, then try another cluster. Click on `Next` to move to the next panel (Schedule).
 ![start_exp_step6]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step6.png)
 7. Enter the desired experiment duration and the time/date when you want to start the experiment. If you want to start your experiment as soon as possible, skip the `Start on date/time` field. Once your experiment is ready you will receive a notification email.
 ![start_exp_step7]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step7.png)
 8. You can navigate to your CloudLab user dashboard to see your list of active experiments. You will be navigated to a webpage describing project details by clicking on the experiment name. 
 ![start_exp_step8_1]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_1.png)
-Click on the list view on that page, which opens a table where you can obtain the SSH login command to log in to your machine.
+Click the `List View` on that page, which opens a table where you can obtain the SSH login command to log in to your machine.
 ![start_exp_step8_2]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_2.png)
 
 9. Try to login to the machine by executing the provided ssh command in your terminal. This step will only work if you have uploaded your ssh public key to your CloudLab account. Add your public key if you did not add it during the registration ([here](https://www.cloudlab.us/ssh-keys.php)). 
 * Ubuntu and macOS : `$ssh <cloudlab_id>@<cloudlab_host>`
 * Windows:
-	1. Click on Session.
-	2. On the SSH tab, type `<cloudlab_host>` on `Remote host`, select the `Specify username` checkbox, and type 	`<cloudlab_id>`. Select the `X11-Forwarding` and `Use private key` checkboxes. Click on the blue file icon and select the private key file you saved in the previous step. Launch a SSH session by clicking on OK.  
+	1. Click `Session`.
+	2. On the SSH tab, type `<cloudlab_host>` on `Remote host`, select the `Specify username` checkbox, and type 	`<cloudlab_id>`. Select the `X11-Forwarding` and `Use private key` checkboxes. Click the blue file icon and select the private key file you saved in the previous step. Launch a SSH session by clicking on `OK`.  
 	![windows_ssh_setup]({{site.baseurl}}/assets/img/assignments/assignment0/windows_ssh_setup.png)	
 
 **If you find yourself stuck on any of the above steps, don’t hesitate to post a question to Ed!**
@@ -97,7 +97,7 @@ Then **restart the SSH session** to make sure the changes are applied.
 2. Install and enable remote application display  
 Kathará launches each network node as a container and spawns an Xterm terminal for each node. To access the terminals on your local machine, you must install an X display server and enable X11 forwarding on your local computer.
 	* For Mac, install [XQuartz](https://www.xquartz.org/).
-	Execute Xterm by clicking on XQuartz>Applications>Terminal.  
+	Execute Xterm by clicking `XQuartz>Applications>Terminal`.  
 	![xquartz_xterm]({{site.baseurl}}/assets/img/assignments/assignment0/xquartz_xterm.png)   
 	Then type below on your local machine.    
 	`$ ssh -X <cloudlab_id>@<cloudlab_host>` (add `-X` flag to the `[ssh_command]`)  
