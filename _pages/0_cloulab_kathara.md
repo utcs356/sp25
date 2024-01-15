@@ -41,7 +41,7 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 
 Once you complete the above steps, the project leader will approve your request to join the project so that you can start an experiment.
 
-### Start An Experiment
+### Start an Experiment
 An experiment in CloudLab means the instantiation of a profile. You can think of a profile as a pre-configured VM image that includes OS and necessary setup. An experiment lasts only for the reserved hours, and all the changes you made on top of the profile will be discarded. Make sure that you use a private git repository to save your code.
 
 1. To start a new experiment, go to your CloudLab dashboard and click the Experiments tab in the upper left corner, then select Start Experiment. This will lead to the profile selection panel.
