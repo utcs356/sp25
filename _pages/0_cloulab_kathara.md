@@ -33,7 +33,7 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 			2. Generate a key pair with `ssh-keygen`\\
 			You can use the below example as it is or try other cryptographic algorithms you prefer (see [man ssh-keygen](https://man7.org/linux/man-pages/man1/ssh-keygen.1.html))  
 			Example: `$ ssh-keygen -t rsa -b 4096`
-			3. Type enter without typing any character when the prompt asks for the file path. The private key will be saved into the default location, `~/.ssh/id_rsa`. `~/.ssh/id_rsa` is your private key and `~/.ssh/id_rsa.pub` is your public key (upload this during the account registration).\\
+			3. Type enter without typing any character when the prompt asks for the file path and passphrase. The private key will be saved into the default location, `~/.ssh/id_rsa`. `~/.ssh/id_rsa` is your private key and `~/.ssh/id_rsa.pub` is your public key (upload this during the account registration).\\
 			+) If you want to save your keys other than the default location, enter a file path (e.g., `~/foo/mykey`) to save your private key when the prompt asks for it. `~/foo/mykey.pub` would be the public key in this case.   
 			+) If you want additional security, type a passphrase when the prompt asks for it.
 
