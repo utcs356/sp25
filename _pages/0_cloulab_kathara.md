@@ -85,7 +85,7 @@ Click the `List View` on that page, which opens a table where you can obtain the
 
 ### Tasks
 #### Part 1: Check for the Available Resources
-Check for the number of CPU cores available (use `$ lshw -class cpu` or `$ lscpu`) and memory available (use `$ free -h`) on the node you reserved. 
+Check for the number of CPU cores available (use `$ sudo lshw -class cpu` or `$ lscpu`) and memory available (use `$ free -h`) on the node you reserved. 
 **Report** the available resources in your report. 
 #### Part 2: Executing Kathará
 Throughout the assignments, we will use [Kathará](https://www.kathara.org/), an open-source container-based network emulation system. With the network emulation tools like Kathará, we can test (network) applications without multiple servers and network devices.
