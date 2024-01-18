@@ -13,24 +13,24 @@
 - date: Th 01/18
   lecturer: 
   title: >
-    <strong>Design requirements (cont'd) & Architecture</strong>
-  slides: https://drive.google.com/file/d/1F0uQ7VHTDTWEiAEcCSVYVbHvECvRVoJ9/view?usp=drive_link
+    <strong>Design requirements</strong>
+  slides: https://drive.google.com/file/d/1-K_bSeYhUbiSYROW_2v_3SE_w-0DqRgB/view?usp=drive_link
   video: 
   notes:
   readings:
-  - P&D 1.2.3 - 1.3
+  - P&D 1.2.3 - 1.2.5
   logistics:
 
 - date: T 01/23
   lecturer:
   title: >
-    <strong>Performance metrics & Socket programming</strong>
+    <strong>Architecture & Performance metrics & Sockets</strong>
   recitation: 
   slides: 
   notes: 
   video: 
   readings:
-  - P&D 1.4 and 1.5
+  - P&D 1.3 - 1.5
   logistics:
 
 - date: Th 01/25
@@ -42,7 +42,7 @@
   notes: 
   video: 
   readings:
-  - P&D 2.1 and 2.2
+  - P&D 2.1 - 2.2
   logistics:
   - Assignment 0 is due <br/>
   - Assignment 1 is out
@@ -56,7 +56,7 @@
   notes: 
   video: 
   readings:
-  - P&D 2.3 and 2.4
+  - P&D 2.3 - 2.4
   logistics:
 
 - date: Th 02/01
