@@ -24,7 +24,7 @@
 - date: T 01/23
   lecturer:
   title: >
-    <strong>Architecture & Performance metrics & Sockets</strong>
+    <strong>Architecture & Performance metrics</strong>
   recitation: 
   slides: https://drive.google.com/file/d/1-Sb66V4RFvQu7vnAGua5-w1COMwbjVH9/view?usp=drive_link
   notes: 
@@ -36,13 +36,13 @@
 - date: Th 01/25
   lecturer:
   title: >
-    <strong>Link layer overview & Encoding</strong>
+    <strong>Sockets & Link layer overview & Encoding</strong>
   recitation: 
   slides: 
   notes: 
   video: 
   readings:
-  - P&D 2.1 - 2.2
+  - P&D 1.4, 2.1 - 2.2
   logistics:
   - Assignment 0 is due <br/>
   - Assignment 1 is out
