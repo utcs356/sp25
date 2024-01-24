@@ -22,6 +22,20 @@ title: Logistics
 * Class participation (10%): Students are expected to attend class, actively ask questions and participate in discussions.
 * Grades will be uploaded to [Canvas](https://utexas.instructure.com/courses/1384497).
 
+#### Letter grade assignments
+* 100-93%: A
+* 92.99-90%: A-
+* 89.99-87%: B+
+* 86.99-83%: B
+* 82.99-80%: B-
+* 79.99-77%: C+
+* 76.99-73%: C
+* 72.99-70%: C-
+* 69.99-67%: D+
+* 66.99-63%: D
+* 62.99-60.01%: D-
+* 60-0%: F
+
 ***
 
 ### Programming Assignments

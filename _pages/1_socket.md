@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /assignments/assignment1
-title: "Assignment 1: Socket Programming and Measurement"
+title: "Assignment 1: TBD"
 ---
 {: .no_toc}
 
@@ -135,3 +135,4 @@ A Kathara lab is a set of preconfigured (virtual) devices. It is basically a dir
 * `<device_name>.startup` files that describe actions performed by devices when they are started.
 
 To deploy a virtual network, move to the Kathara lab directory then type `$ kathara lstart`. Then the XTerm terminal connected to each virtual network device would appear. To terminate the deployment, type `$ kathara lclean`. Some useful kathara commands are summarized [here](https://www.kathara.org/man-pages/kathara.1.html).  
+
