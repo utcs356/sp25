@@ -20,7 +20,7 @@ When you want to make changes to your private repository on a CloudLab node, you
         * Once you install the `GitHub Pull Requests and Issues` extension on VS Code, you can authenticate the remote server through VS Code and a web browser. You also can clone the repository on VS Code to the remote server. 
         * Refer to [link1](https://vscode.github.com/) and [link2](https://code.visualstudio.com/docs/sourcecontrol/github).
     * With personal access tokens:
-        * You can generate a personal access token for the account/repositories so that you can access your repositories over HTTPS with the token. 
+        * You can generate a personal access token for the account/repositories to access your repositories over HTTPS with the token. 
         * Refer to [this link](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) for details.
     * With SSH key, (You should repeat the below steps for every instantiation)
         1. Generate SSH key pair with `ssh-keygen` on the CloudLab node. 
