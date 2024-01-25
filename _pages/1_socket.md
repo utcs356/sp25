@@ -11,10 +11,52 @@ title: "Assignment 1: Socket Programming and Measurement"
 
 ### Part 0: Setup and Overview
 #### Setup
-1. Get the skeleton code for A1.
-Fork the [git repository](https://github.com/utcs356/assignment1.git) that contains Kathara labs and the skeleton code needed for this assignment. Keep your repository private.  
+1. **Get the skeleton code for A1 and setup your private repository.**   
+Make a copy of the [git repository](https://github.com/utcs356/assignment1.git) that contains Kathara labs and the skeleton code needed for this assignment. Keep your repository private.  
+    * Simple way
+        1. Clone the git repository   
+        * If you are using an SSH key for GitHub authentication:   
+        `$ git clone git@github.com:utcs356/assignment1.git`
+        or
+        * If you are using a token or VS Code authentication:   
+        `$ git clone https://github.com/utcs356/assignment1.git`
+        2. Make your own directory and copy and paste the contents.   
+        `$ mkdir [your_directory]`
+        `$ cp -r assignment1/* [your_directory]`
+        3. Initialize the git repository and setup a private repository.   
+        `$ cd [your_directory]`
+        `$ git init`
+        `$ git add *`
+        `$ git commit -m "Initial commit"`
+        Then create a new private repository on GitHub. You should be able to get the repository URL.   
+        4. Link the remote repository and your local git directory.
+            `$ git remote add origin REMOTE-URL`
+            `$ git push -u origin main` (assuming the default branch is `main`)
+            You may have to setup your github account information.
+    </br>
+    * A way to deal with future assignment1 template changes conveniently   
+        1. Clone the repository with --bare option   
+            * If you are using an SSH key for GitHub authentication:    
+            `$ git clone --bare git@github.com:utcs356/assignment1.git`
+            or
+            * If you are using a token or VS Code authentication:   
+            `$ git clone --bare https://github.com/utcs356/assignment1.git`
+        2. Create a new private repository on GitHub and name it assignment1 
+        3. Mirror-push your bare clone to your private repository.    
+            `$ cd assignment1.git`
+            * If you are using an SSH key for GitHub authentication:   
+            `$ git push --mirror git@github.com:[your_username]/assignment1.git`
+            or
+            * If you are using a token or VS Code authentication:    
+            `$ git push --mirror https://github.com/[your_username]/assignment1.git`
+        4. Remove the bare clone    
+        `$ cd ..`    
+        `$ rm -rf assignment1.git`
+        5. Now you have a private fork of the repository.
 
-2. Store and manage your code.
+
+
+2. **Setup authentication on a CloudLab node**  
 When you want to make changes to your private repository on a CloudLab node, you have to authenticate every time you instantiate an experiment. This is because your authentication information is cleaned up upon the end of the experiment. There are three ways to authenticate your account on the reserved node.
     * With SSH key and SSH agent forwarding, (recommended) 
         1. Prepare a key pair that is registered for your GitHub account. Refer to this [link](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
@@ -40,6 +82,11 @@ When you want to make changes to your private repository on a CloudLab node, you
         * You can generate a personal access token for the account/repositories to access your repositories over HTTPS with the token. 
         * Refer to [this link](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) for details.
 
+**Note**: You should instantiate your experiment in the same way in A0.
+* Make sure to use profile `cs356-base`
+* Make sure to specify your group during instantiation. 
+If you cannot see the `Group` options yet, please contact TA through Ed or email.
+* You should SSH to the node using XTerm for Part 1 and Part 2 experiments.
 
 **Note**: Don't forget to execute below for every experiment instantiation.   
 * After ssh to the reserved node, type the commands below.  
