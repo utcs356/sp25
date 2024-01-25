@@ -16,16 +16,29 @@ Fork the [git repository](https://github.com/utcs356/assignment1.git) that conta
 
 2. Store and manage your code.
 When you want to make changes to your private repository on a CloudLab node, you have to authenticate every time you instantiate an experiment. This is because your authentication information is cleaned up upon the end of the experiment. There are three ways to authenticate your account on the reserved node.
-    * With VS Code:  
+    * With SSH key and SSH agent forwarding, (recommended) 
+        1. Prepare a key pair that is registered for your GitHub account. Refer to this [link](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+            * Check if the key is added properly with `$ ssh -T git@github.com`
+        2. Launch a local `ssh-agent` and add your key for GitHub authentication to `ssh-agent`. Then SSH to the CloudLab node with the SSH agent forwarding option.
+            * For macOS and Linux:   
+                `$ eval (ssh-agent)`
+                `$ ssh-add <path_to_your_private_key>`
+                `$ [ssh command] -A`
+           
+            * For Windows:
+                1. On MobaXterm, move to the `Settings>Configuration>SSH` tab.
+                2. Select the `Use internal SSH agent MobAgent` checkbox and `Forward SSH Agents` checkbox, and unselect `Use external Pageant`.
+                3. Add your GitHub key by clicking `+` button. Then click `OK`
+                4. SSH to the CloudLab node as you did in A0.
+             * Check if the ssh-agent forwarding works properly with `$ ssh -T git@github.com` in the CloudLab node. 
+        3. You should be able to clone your private repository with the SSH URL.  
+
+    * With VS Code: (recommended if you use VS Code)  
         * Once you install the `GitHub Pull Requests and Issues` extension on VS Code, you can authenticate the remote server through VS Code and a web browser. You also can clone the repository on VS Code to the remote server. 
         * Refer to [link1](https://vscode.github.com/) and [link2](https://code.visualstudio.com/docs/sourcecontrol/github).
     * With personal access tokens:
         * You can generate a personal access token for the account/repositories so that you can access your repositories over HTTPS with the token. 
         * Refer to [this link](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) for details.
-    * With SSH key, (You should repeat the below steps for every instantiation)
-        1. Generate SSH key pair with `ssh-keygen` on the CloudLab node. 
-        2. Upload the generated public key to `Settings>SSH and GPG keys>New SSH key` on GitHub.
-        3. Clone your repository with the SSH option. 
 
 
 **Note**: Don't forget to execute below for every experiment instantiation.   
