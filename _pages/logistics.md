@@ -51,7 +51,7 @@ penalized 10% of the total points of the assignment per day, unless you have
 made prior arrangements with me due to extenuating circumstances.
 
 You should pick your own group members for your projects, but you may use the
-Piazza site for the course to help find group members. You can switch group members between projects but check with the TAs and professor
+Ed discussion to find group members. You can switch group members between projects but check with the TAs and professor
 first. Completing a project individually requires the instructor's prior approval.
 
 All code and results you submit must be the original work of your group.
