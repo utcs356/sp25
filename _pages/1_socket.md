@@ -63,10 +63,9 @@ When you want to make changes to your private repository on a CloudLab node, you
             * Check if the key is added properly with `$ ssh -T git@github.com`
         2. Launch a local `ssh-agent` and add your key for GitHub authentication to `ssh-agent`. Then SSH to the CloudLab node with the SSH agent forwarding option.
             * For macOS and Linux:   
-                `$ eval (ssh-agent)`
-                `$ ssh-add <path_to_your_private_key>`
-                `$ [ssh command] -A`
-           
+                `$ ssh-agent`   
+                `$ ssh-add <path_to_your_private_key>`   
+                `$ [ssh command] -A`   
             * For Windows:
                 1. On MobaXterm, move to the `Settings>Configuration>SSH` tab.
                 2. Select the `Use internal SSH agent MobAgent` checkbox and `Forward SSH Agents` checkbox, and unselect `Use external Pageant`.
