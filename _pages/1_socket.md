@@ -135,8 +135,8 @@ In this part of the assignment, you will use the tool you wrote (`iperfer`) and 
 * `h1`,`h2`,`h3` are connected to `r1`, and `h4`,`h5`,`h6` are connected to `r2`. `r1` and `r2` are connected with a single link.
 ![Part 2 Topology]({{site.baseurl}}/assets/img/assignments/assignment1/P2_topology.png)
 
-**NOTE**: To measure the average RTT (or latency), use `$ ping -c [number_of_pings] [remote_ip_address]`.    
-For example, if you want to ping to `h4` 10 times, the command is `$ ping -c 10 30.1.1.7`.
+**NOTE**: To measure the average RTT (or latency), use `$ ping -c [number_of_pings] [remote_ip_address]`.     
+For example, if you want to ping to `h4` 10 times, the command is `$ ping -c 10 30.1.1.7`.    
 **NOTE**: To measure the bandwidth (or throughput) between two hosts (say `h1` and `h4`), execute `iperfer` as a client mode on one host then execute `iperfer` as a server mode on the other host.
 
 #### **Q1**: Basic measurements 
