@@ -135,7 +135,7 @@ In this part of the assignment, you will use the tool you wrote (`iperfer`) and 
 * `h1`,`h2`,`h3` are connected to `r1`, and `h4`,`h5`,`h6` are connected to `r2`. `r1` and `r2` are connected with a single link.
 ![Part 2 Topology]({{site.baseurl}}/assets/img/assignments/assignment1/P2_topology.png)
 
-**NOTE**: To measure the average RTT (or latency), use `$ ping -c [number_of_pings] [remote_ip_address]`.  
+**NOTE**: To measure the average RTT (or latency), use `$ ping -c [number_of_pings] [remote_ip_address]`.    
 For example, if you want to ping to `h4` 10 times, the command is `$ ping -c 10 30.1.1.7`.
 **NOTE**: To measure the bandwidth (or throughput) between two hosts (say `h1` and `h4`), execute `iperfer` as a client mode on one host then execute `iperfer` as a server mode on the other host.
 
@@ -148,13 +148,14 @@ For example, if you want to ping to `h4` 10 times, the command is `$ ping -c 10 
 * How does it compare to the measured latency in Q1?
 
 #### **Q3**: Impact of multiplexing on throughput
-* Report the throughput between every pair of hosts varying the number of host pairs that conduct measurements. 
-    * The host pairs are (`h1`,`h4`), (`h2`,`h5`), (`h3`,`h6`).  
+* Report the throughput between a pair of hosts varying the number of host pairs that conduct measurements. 
+    * The host pairs are (`h1`,`h4`), (`h2`,`h5`), (`h3`,`h6`). 
+    * e.g., First, measure throughput between (`h1`,`h4`). Then measure throughput between (`h1`, `h4`) and throughput between (`h2`,`h5`) simultaneously. Finally, do the measurements on (`h1`,`h4`), (`h2`,`h5`), and (`h3`,`h6`) simultaneously.
 * How does it compare to the measured throughput in Q1?
 * What's the trend between measured throughput and the number of host pairs?
 
 #### **Q4**: Impact of link capacity on end-to-end throughput and latency.
-* Decrease link rate between `r1` and `r2` to 10Mbps. This can be done by uncommenting line #5 in the `labs/six_hosts_two_routers/r1.startup` file. You have to relaunch the Kathara lab after every change.
+* Decrease link rate between `r1` and `r2` to 10Mbps. This can be done by uncommenting line #5 in the `labs/six_hosts_two_routers/r1.startup` file. You have to clean up the previous Kathara lab before every change. Relaunch it after the change.
 * Measure and report path latency and throughput between two hosts, `h1` and `h4`.
 * How does it change compared to Q1? 
 
