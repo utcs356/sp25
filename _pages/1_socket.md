@@ -155,8 +155,9 @@ For example, if you want to ping to `h4` 10 times, the command is `$ ping -c 10 
 * What's the trend between measured throughput and the number of host pairs?
 
 #### **Q4**: Impact of link capacity on end-to-end throughput and latency.
-* Decrease link rate between `r1` and `r2` to 10Mbps. This can be done by uncommenting line #5 in the `labs/six_hosts_two_routers/r1.startup` file. You have to clean up the previous Kathara lab before every change. Relaunch it after the change.
-* Measure and report path latency and throughput between two hosts, `h1` and `h4`.
+* Decrease link rate between `r1` and `r2` to 10Mbps. This can be done by uncommenting line #5 in the `labs/six_hosts_two_routers/r1.startup` file. You have to clean up the previous Kathara lab before every change. Relaunch it after the change.   
+* Measure and report path latency and throughput between two hosts, `h1` and `h4`.   
+**Edit**: For this experiment, please use `h1` as a client and `h4` as a server as the provided Kathara lab configuration only limits the one-way bandwidth.
 * How does it change compared to Q1? 
 
 #### **Q5**: Impact of link latency on end-to-end throughput and latency.
