@@ -3,6 +3,7 @@ layout: page
 permalink: /assignments/assignment1
 title: "Assignment 1: Socket Programming and Measurement"
 ---
+#### **Released:** 01/25/2024 <br/> **Due:**	02/13/2024
 {: .no_toc}
 
 * (The list will be replaced with the table of contents.)
@@ -10,22 +11,81 @@ title: "Assignment 1: Socket Programming and Measurement"
 
 ### Part 0: Setup and Overview
 #### Setup
-1. Get the skeleton code for A1.
-Fork the [git repository](https://github.com/utcs356/assignment1.git) that contains Kathara labs and the skeleton code needed for this assignment. Keep your repository private.  
+1. **Get the skeleton code for A1 and setup your private repository.**   
+Make a copy of the [git repository](https://github.com/utcs356/assignment1.git) that contains Kathara labs and the skeleton code needed for this assignment. Keep your repository private.  
+    * Simple way
+        1. Clone the git repository   
+        * If you are using an SSH key for GitHub authentication:   
+        `$ git clone git@github.com:utcs356/assignment1.git`
+        or
+        * If you are using a token or VS Code authentication:   
+        `$ git clone https://github.com/utcs356/assignment1.git`
+        2. Make your own directory and copy and paste the contents.   
+        `$ mkdir [your_directory]`
+        `$ cp -r assignment1/* [your_directory]`
+        3. Initialize the git repository and setup a private repository.   
+        `$ cd [your_directory]`
+        `$ git init`
+        `$ git add *`
+        `$ git commit -m "Initial commit"`
+        Then create a new private repository on GitHub. You should be able to get the repository URL.   
+        4. Link the remote repository and your local git directory.
+            `$ git remote add origin REMOTE-URL`
+            `$ git push -u origin main` (assuming the default branch is `main`)
+            You may have to setup your github account information.
+    </br>
+    * A way to deal with future assignment1 template changes conveniently   
+        1. Clone the repository with --bare option   
+            * If you are using an SSH key for GitHub authentication:    
+            `$ git clone --bare git@github.com:utcs356/assignment1.git`
+            or
+            * If you are using a token or VS Code authentication:   
+            `$ git clone --bare https://github.com/utcs356/assignment1.git`
+        2. Create a new private repository on GitHub and name it assignment1 
+        3. Mirror-push your bare clone to your private repository.    
+            `$ cd assignment1.git`
+            * If you are using an SSH key for GitHub authentication:   
+            `$ git push --mirror git@github.com:[your_username]/assignment1.git`
+            or
+            * If you are using a token or VS Code authentication:    
+            `$ git push --mirror https://github.com/[your_username]/assignment1.git`
+        4. Remove the bare clone    
+        `$ cd ..`    
+        `$ rm -rf assignment1.git`
+        5. Now you have a private fork of the repository.
 
-2. Store and manage your code.
+
+
+2. **Setup authentication on a CloudLab node**  
 When you want to make changes to your private repository on a CloudLab node, you have to authenticate every time you instantiate an experiment. This is because your authentication information is cleaned up upon the end of the experiment. There are three ways to authenticate your account on the reserved node.
-    * With VS Code:  
+    * With SSH key and SSH agent forwarding, (recommended) 
+        1. Prepare a key pair that is registered for your GitHub account. Refer to this [link](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+            * Check if the key is added properly with `$ ssh -T git@github.com`
+        2. Launch a local `ssh-agent` and add your key for GitHub authentication to `ssh-agent`. Then SSH to the CloudLab node with the SSH agent forwarding option.
+            * For macOS and Linux:   
+                `$ ssh-agent`   
+                `$ ssh-add <path_to_your_private_key>`   
+                `$ [ssh command] -A`   
+            * For Windows:
+                1. On MobaXterm, move to the `Settings>Configuration>SSH` tab.
+                2. Select the `Use internal SSH agent MobAgent` checkbox and `Forward SSH Agents` checkbox, and unselect `Use external Pageant`.
+                3. Add your GitHub key by clicking `+` button. Then click `OK`
+                4. SSH to the CloudLab node as you did in A0.
+             * Check if the ssh-agent forwarding works properly with `$ ssh -T git@github.com` in the CloudLab node. 
+        3. You should be able to clone your private repository with the SSH URL.  
+
+    * With VS Code: (recommended if you use VS Code)  
         * Once you install the `GitHub Pull Requests and Issues` extension on VS Code, you can authenticate the remote server through VS Code and a web browser. You also can clone the repository on VS Code to the remote server. 
         * Refer to [link1](https://vscode.github.com/) and [link2](https://code.visualstudio.com/docs/sourcecontrol/github).
     * With personal access tokens:
-        * You can generate a personal access token for the account/repositories so that you can access your repositories over HTTPS with the token. 
+        * You can generate a personal access token for the account/repositories to access your repositories over HTTPS with the token. 
         * Refer to [this link](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) for details.
-    * With SSH key, (You should repeat the below steps for every instantiation)
-        1. Generate SSH key pair with `ssh-keygen` on the CloudLab node. 
-        2. Upload the generated public key to `Settings>SSH and GPG keys>New SSH key` on GitHub.
-        3. Clone your repository with the SSH option. 
 
+**Note**: You should instantiate your experiment in the same way in A0.
+* Make sure to use profile `cs356-base`
+* Make sure to specify your group during instantiation. 
+If you cannot see the `Group` options yet, please contact TA through Ed or email.
+* You should SSH to the node using XTerm for Part 1 and Part 2 experiments.
 
 **Note**: Don't forget to execute below for every experiment instantiation.   
 * After ssh to the reserved node, type the commands below.  
@@ -75,6 +135,10 @@ In this part of the assignment, you will use the tool you wrote (`iperfer`) and 
 * `h1`,`h2`,`h3` are connected to `r1`, and `h4`,`h5`,`h6` are connected to `r2`. `r1` and `r2` are connected with a single link.
 ![Part 2 Topology]({{site.baseurl}}/assets/img/assignments/assignment1/P2_topology.png)
 
+**NOTE**: To measure the average RTT (or latency), use `$ ping -c [number_of_pings] [remote_ip_address]`.     
+For example, if you want to ping to `h4` 10 times, the command is `$ ping -c 10 30.1.1.7`.    
+**NOTE**: To measure the bandwidth (or throughput) between two hosts (say `h1` and `h4`), execute `iperfer` as a client mode on one host then execute `iperfer` as a server mode on the other host.
+
 #### **Q1**: Basic measurements 
 * Measure and report average RTT and throughput between two adjacent routers, `r1` and `r2`. 
 * Measure and report average RTT and throughput between two hosts, `h1` and `h4`.
@@ -84,14 +148,18 @@ In this part of the assignment, you will use the tool you wrote (`iperfer`) and 
 * How does it compare to the measured latency in Q1?
 
 #### **Q3**: Impact of multiplexing on throughput
-* Report the throughput between every pair of hosts varying the number of host pairs that conduct measurements. 
-    * The host pairs are (`h1`,`h4`), (`h2`,`h5`), (`h3`,`h6`).  
+* Report the throughput between a pair of hosts varying the number of host pairs that conduct measurements. 
+    * The host pairs are (`h1`,`h4`), (`h2`,`h5`), (`h3`,`h6`). 
+    * e.g., First, measure throughput between (`h1`,`h4`). Then measure throughput between (`h1`, `h4`) and throughput between (`h2`,`h5`) simultaneously. Finally, do the measurements on (`h1`,`h4`), (`h2`,`h5`), and (`h3`,`h6`) simultaneously.
 * How does it compare to the measured throughput in Q1?
 * What's the trend between measured throughput and the number of host pairs?
 
 #### **Q4**: Impact of link capacity on end-to-end throughput and latency.
-* Decrease link rate between `r1` and `r2` to 10Mbps. This can be done by uncommenting line #5 in the `labs/six_hosts_two_routers/r1.startup` file. You have to relaunch the Kathara lab after every change.
-* Measure and report path latency and throughput between two hosts, `h1` and `h4`.
+* Decrease link rate between `r1` and `r2` to 10Mbps. This can be done by uncommenting line #5 in the `labs/six_hosts_two_routers/r1.startup` file. You have to clean up the previous Kathara lab before every change. Relaunch it after the change.   
+* Measure and report path latency and throughput between two hosts, `h1` and `h4`.   
+**Edit**: For this experiment, please use `h1` as a client and `h4` as a server as the provided Kathara lab configuration only limits the one-way bandwidth.   
+**Edit**: Alternatively, you can add the below to `r2.startup` in addition to uncommenting line #5 to change the bi-directional link bandwidth. Make sure commenting it out after this experiment.   
+`tc qdisc add dev eth1 root tbf rate 10mbit buffer 10mb latency 10ms`  
 * How does it change compared to Q1? 
 
 #### **Q5**: Impact of link latency on end-to-end throughput and latency.
@@ -135,3 +203,4 @@ A Kathara lab is a set of preconfigured (virtual) devices. It is basically a dir
 * `<device_name>.startup` files that describe actions performed by devices when they are started.
 
 To deploy a virtual network, move to the Kathara lab directory then type `$ kathara lstart`. Then the XTerm terminal connected to each virtual network device would appear. To terminate the deployment, type `$ kathara lclean`. Some useful kathara commands are summarized [here](https://www.kathara.org/man-pages/kathara.1.html).  
+
