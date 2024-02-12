@@ -78,7 +78,7 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
             * Upon miss, drop the packet.
         * Complete the definition of `table arp_table`.
             * Perform exact matching on the `next_hop` in the `metadata meta`.
-            * Upon hit, change the dstMAC (provided by the controller) using `action change_mac`.
+            * Upon hit, change the dstMAC (provided by the controller) using `action change_dst_mac`.
             * Upon miss, drop the packet.
         * Complete the definition of `table dmac_forward`.
             * Perform exact matching on the destination MAC address of the packet.
@@ -105,3 +105,7 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
 * You may use `ping` to check whether your router is working as expected on a host (`h[1-3]`).  
 * To check if the packet arrives at a host, use `tcpdump -i <interface>` to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more detail, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html).
 * To verify IPv4 checksum and check the TTL field, add the `-v` flag to the `tcpdump` command.
+
+### Submission
+Please submit your code (modified assignment2 repository) to the Canvas Assignments page in either `tar.gz` or `zip` format.  
+The naming format for the file is `assign2_groupX.[tar.gz/zip]`.
