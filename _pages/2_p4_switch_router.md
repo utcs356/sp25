@@ -6,14 +6,14 @@ title: "Assignment 2: Software Switch and Router with P4"
 
 ### Part 0: Setup
 Unlike the previous assignments, we will use the `cs356-p4` profile instead of `cs356-base` in this assignment.
-It includes a Kathara image with P4 utilities so that you can run your P4 code on a virtual device. 
+It includes a Kathara image with P4 utilities to run your P4 code on a virtual device. 
 To get a skeleton code, clone the [git repository](https://github.com/utcs356/assignment2.git) and make your own private repository as in A1. (refer to A1 setup)
-The task is to implement a basic switch and router with P4 (data plane) and Python (control plane).
+The task is implementing a basic switch and router with P4 (data plane) and Python (control plane).
 
 #### Tip: Using `tmux` to access Kathara nodes  
 After you launch the Kathara lab with `$ kathara lstart`, you can connect to each Kathara node from any terminal you want by using `$ kathara connect <host_name>`. For example, if you want to open a terminal for `s1` in the `star_four_hosts` Kathara lab, execute `$ kathara connect s1`. **Note that the command only works in the Kathara lab directory.**
 
-However, opening multiple SSH terminals is cumbersome to connect to different Kathara nodes, and there's a tool called `tmux` to rescue. With `tmux`, you can create multiple windows (full-sized terminals) and divide them into panes (splitted terminals) on a single SSH connection. Start a new tmux session on a SSH terminal, by typing `$ tmux`. To execute the tmux command such as creating and splitting a window, you should first type the trigger key (`Ctrl+b` by default) to change the cursor from a terminal to the `tmux` command bar. You can split the window vertically with `Ctrl+b %` and horizontally with `Ctrl+b "`. You can move cursors from a pane to adjacent panes by using `Ctrl+b <arrow_key>`. Make panes/windows as many as you want, then connect to the Kathara node on each pane/window by using `$ kathara connect <host_name>`.
+However, opening multiple SSH terminals to connect to different Kathara nodes is cumbersome, and there's a tool called `tmux` to rescue it. With `tmux`, you can create multiple windows (full-sized terminals) and divide them into panes (splitted terminals) on a single SSH connection. Start a new tmux session on a SSH terminal, by typing `$ tmux`. To execute the tmux command such as creating and splitting a window, you should first type the trigger key (`Ctrl+b` by default) to change the cursor from a terminal to the `tmux` command bar. You can split the window vertically with `Ctrl+b %` and horizontally with `Ctrl+b "`. You can move cursors from a pane to adjacent panes by using `Ctrl+b <arrow_key>`. Make panes/windows as many as you want, then connect to the Kathara node on each pane/window by using `$ kathara connect <host_name>`.
 
 Refer to [here](https://tmuxcheatsheet.com/) for more details on how to use `tmux`.
 
@@ -25,7 +25,7 @@ Refer to [here](https://tmuxcheatsheet.com/) for more details on how to use `tmu
 * For every experiment instantiation, you should
     * `$ sudo usermod -aG docker $USER`   
     `$ touch ~/.Xauthority`  
-    Then restart the SSH session to make sure the changes are applied.
+    Then, restart the SSH session to make sure the changes are applied.
     * Clone your private repository and push the changes you made.
 
 ### Part 1: Switching with P4
@@ -62,9 +62,9 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
 * After starting the Kathara lab, compile the P4 code with `$ bash compile_p4.sh` on `s1` after `$ cd /shared`. 
 * Then launch the compiled P4 program with `$ bash run_switch.sh` and the controller with `$ bash run_controller.sh` on each router. They are all located in the `shared` directory.
 2. Test the functionality.
-* You may use `ping` to check whether your switch is working as expected on a host (`h[1-4]`).  
+* You may use `ping` to check whether your switch works as expected on a host (`h[1-4]`).  
 * Once you implement forwarding, the packet should arrive at each host in the local network except the sender for every ping.
-* Once you implement MAC learning, the packet should arrive at each host in the local network except the sender only for the first ping. Then the packet must arrive only at the destination host until the table entry expires.
+* Once you implement MAC learning, the packet should arrive at each host in the local network except the sender only for the first ping. Then, the packet must arrive only at the destination host until the table entry expires.
 * To check if the packet arrives at a host, use `tcpdump -i <interface>` to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more details, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html).
 
 ### Part 2: Router with P4
@@ -79,7 +79,7 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
 2. Implement a routing table
     * P4 task: Define tables and actions.
         * Complete the definition of `table ipv4_route`. 
-            * Perform longest prefix matching on dstIP.
+            * Perform the longest prefix matching on dstIP.
             * Upon hit, record the next hop IP address (provided by the controller) in the `metadata meta`'s `next_hop` field using `action forward_to_next_hop`.
             * Upon miss, drop the packet.
         * Complete the definition of `table arp_table`.
@@ -87,15 +87,15 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
             * Upon hit, change the dstMAC (provided by the controller) using `action change_dst_mac`.
             * Upon miss, drop the packet.
         * Complete the definition of `table dmac_forward`.
-            * Perform exact matching on the destination MAC address of the packet.
-            * Upon hit, change the egress port. (provided by the controller). Change the source MAC address to the egress port's MAC address. (provided by the controller). Do this by completing and using `action forward_to_port`.
+            * Perform an exact match on the destination MAC address of the packet.
+            * Upon hit, change the egress port. (provided by the controller). Update the source MAC address to the egress port's MAC address. (provided by the controller). Do this by completing and using `action forward_to_port`.
             * Upon miss, drop the packet.
         * Apply the tables in the `apply` block.
         
     * Controller task: Install table entries. 
     Parsing of routing information is provided in the skeleton code. Your task is to install the table entries for each table defined in the P4 code. **Table entry insertion API is provided, and please refer to the Appendix for the details.**
         * `ipv4_route`: Install table entries with the destination IP address as a key, `forward_to_next_hop` as an action, and `next_hop_ip` as an action parameter.
-        * `arp_table`: Install table entries with the `next_hop` in the metadat as a key, `change_mac` as an action, and `next_hop_mac` as an action parameter.
+        * `arp_table`: Install table entries with the `next_hop` in the metadata as a key, `change_mac` as an action, and `next_hop_mac` as an action parameter.
         * `dmac_forward`: Install table entries with the MAC address as a key, `forward_to_port()` as an action, and `egress_port` and `egress_mac` as action parameters.
 
 3. Checksum and TTL
@@ -108,7 +108,7 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
 * After starting the Kathara lab, compile the P4 code with `$ bash compile_p4.sh` on `r[1-3]` after `$ cd /shared`. 
 * Then launch the compiled P4 program with `$ bash run_switch.sh` and the controller with `$ bash r[1-3]_run_controller.sh` on each router.  
 2. Test the functionality.
-* You may use `ping` to check whether your router is working as expected on a host (`h[1-3]`).  
+* You may use `ping` to check whether your router works as expected on a host (`h[1-3]`).  
 * To check if the packet arrives at a host, use `$ tcpdump -i <interface>` to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more details, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html).
 * To verify IPv4 checksum and check the TTL field, add the `-v` flag to the `tcpdump` command.
 
@@ -124,7 +124,7 @@ def buildTableEntry(self,
                     table_name, # human-readable table name in string
                     match_fields=None, # a dictionary with a human-readable match field as a key and its value as a value
                     default_action=False, # human-readable default action name in string (This action is executed upon miss)
-                    action_name=None, # human-readable action name in string (This action is executed upon hit)
+                    action_name=None, # human-readable action name in a string (This action is executed upon hit)
                     action_params=None, # a dictionary with a human-readable action parameter name as a key and its value as a value
                     priority=None # unused in our case ):
 ```
