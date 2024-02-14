@@ -4,6 +4,12 @@ permalink: /assignments/assignment2
 title: "Assignment 2: Software Switch and Router with P4"
 ---
 
+#### **Released:** 02/14/2024 <br/> **Due:**	03/05/2024
+{: .no_toc}
+
+* (The list will be replaced with the table of contents.)
+{:toc}
+
 ### Part 0: Setup
 Unlike the previous assignments, we will use the `cs356-p4` profile instead of `cs356-base` in this assignment.
 It includes a Kathara image with P4 utilities to run your P4 code on a virtual device. 
