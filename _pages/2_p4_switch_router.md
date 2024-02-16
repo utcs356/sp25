@@ -58,9 +58,9 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
         * Define `struct mac_learn_digest_t`.  
         * Complete the `action learn()`.
 
-* Controller task: Install table entries for the tables when a digest message arrives. Set the timeout for the entries. **Table entry insertion API is provided, and please refer to the Appendix for the details.**
-    * `smac_table`: Install a table entry with the MAC address as a key. `NoAction()` as an action.
-    * `dmac_forward`: Install a table entry with the MAC address as a key, `forward_to_port()` as an action, and `egress_port` as an action parameter.
+    * Controller task: Install table entries for the tables when a digest message arrives. Set the timeout for the entries. **Table entry insertion API is provided, and please refer to the Appendix for the details.**
+        * `smac_table`: Install a table entry with the MAC address as a key. `NoAction()` as an action.
+        * `dmac_forward`: Install a table entry with the MAC address as a key, `forward_to_port()` as an action, and `egress_port` as an action parameter.
 
 #### Test your implementation.
 1.  Compile the P4 code and launch the P4 and controller program.  
@@ -96,9 +96,9 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
             * Perform an exact match on the destination MAC address of the packet.
             * Upon hit, change the egress port. (provided by the controller). Update the source MAC address to the egress port's MAC address. (provided by the controller). Do this by completing and using `action forward_to_port`.
             * Upon miss, drop the packet.
-        * Apply the tables in the `apply` block.
+        * Apply the tables in the `apply` block.    
         
-    * Controller task: Install table entries. 
+    * Controller task: Install table entries.    
     Parsing of routing information is provided in the skeleton code. Your task is to install the table entries for each table defined in the P4 code. **Table entry insertion API is provided, and please refer to the Appendix for the details.**
         * `ipv4_route`: Install table entries with the destination IP address as a key, `forward_to_next_hop` as an action, and `next_hop_ip` as an action parameter.
         * `arp_table`: Install table entries with the `next_hop` in the metadata as a key, `change_mac` as an action, and `next_hop_mac` as an action parameter.
@@ -123,25 +123,29 @@ Please submit your code (modified assignment2 repository) to the Canvas Assignme
 The naming format for the file is `assign2_groupX.[tar.gz/zip]`.
 
 ### Appendix: Table Insertion API for `controller.py`
-1. Create a table entry you want to insert
-In the skeleton code, the instance of the `helper` class, `p4info_helper`, is already created and initialized. Its role is to interpret the human-readable format of P4 objects in the way that the P4 program understands. To build a table entry in a way that the P4 program understands, you can use the `helper` class's `buildTableEntry()` method.  Its API is described below.
-```    
-def buildTableEntry(self,
-                    table_name, # human-readable table name in string
-                    match_fields=None, # a dictionary with a human-readable match field as a key and its value as a value
-                    default_action=False, # human-readable default action name in string (This action is executed upon miss)
-                    action_name=None, # human-readable action name in a string (This action is executed upon hit)
-                    action_params=None, # a dictionary with a human-readable action parameter name as a key and its value as a value
-                    priority=None # unused in our case ):
-```
-For the value for the `match_fields` and `action_params` dictionaries, here's a guideline to the format of the value:
-* IP address: String in the dotted decimal notation (e.g., `10.0.0.1`)
-* IP prefix for longest prefix matching: a tuple with IP prefix in string and prefix length in integer. (e.g., `(10.0.0.0, 24)` which means the table key is in the range `10.0.0.[1-255]`)
-* MAC address: String in the `xx:xx:xx:xx:xx:xx` format (e.g., `00:00:0a:00:00:01`)
-* Port number: Integer
-To set a timeout, you should change the attribute, `idle_timeout_ns`, of the table entry as below in integer and the unit of nanoseconds.
-`table_entry.idle_timeout_ns = int(1 * 1e9) # timeout is 1 second`
+1. Create a table entry you want to insert.   
+    In the skeleton code, the instance of the `helper` class, `p4info_helper`, is already created and initialized. Its role is to interpret the human-readable format of P4 objects in the way that the P4 program understands. To build a table entry in a way that the P4 program understands, you can use the `helper` class's `buildTableEntry()` method.  Its API is described below.
+    ```    
+    def buildTableEntry(self,
+                        table_name, # human-readable table name in string
+                        match_fields=None, # a dictionary with a human-readable match field as a key and its value as a value
+                        default_action=False, # human-readable default action name in string (This action is executed upon miss)
+                        action_name=None, # human-readable action name in a string (This action is executed upon hit)
+                        action_params=None, # a dictionary with a human-readable action parameter name as a key and its value as a value
+                        priority=None # unused in our case ):
+    ```
+    For the value for the `match_fields` and `action_params` dictionaries, here's a guideline to the format of the value:
+    * IP address: String in the dotted decimal notation (e.g., `10.0.0.1`)
+    * IP prefix for longest prefix matching: a tuple with IP prefix in string and prefix length in integer. (e.g., `(10.0.0.0, 24)` which means the table key is in the range `10.0.0.[1-255]`)
+    * MAC address: String in the `xx:xx:xx:xx:xx:xx` format (e.g., `00:00:0a:00:00:01`)
+    * Port number: Integer
+    To set a timeout, you should change the attribute, `idle_timeout_ns`, of the table entry as below in integer and the unit of nanoseconds.
+    `table_entry.idle_timeout_ns = int(1 * 1e9) # timeout is 1 second`
+    For more details, you can refer to the file, `assignment2/labs/star_four_hosts/shared/utils/p4runtime_lib/helper.py`.
 
+2. Send a table entry to the switch.   
+    The `Bmv2SwitchConnection` object, `s1`, is provided and initialized. The object is the abstraction of a connection between the switch and the controller.
+    To add a table entry you built in the above step, you can simply call the `WriteTableEntry` method of the `Bmv2SwitchConnectoin` object with `table_entry` as a parameter. (e.g., `s1.WriteTableEntry(table_entry)`)
 
 #### Usage example
 Say there's a `l2_simple_switch.p4` and it defines a table in the ingress control block as below. 
@@ -175,9 +179,5 @@ for eth_src_addr, port_id in mac_to_port.items():
         action_name="MyIngress.forward_to_port",
         action_params={"egress_port": port_id}
     )
+    s1.WriteTableEntry(table_entry)
 ```
-For more details, you can refer to the file, `assignment2/labs/star_four_hosts/shared/utils/p4runtime_lib/helper.py`.
-
-2. Send a table entry to the switch.
-The `Bmv2SwitchConnection` object, `s1`, is provided and initialized. The object is the abstraction of a connection between the switch and the controller.
-To add a table entry you built in the above step, you can simply call the `WriteTableEntry` method of the `Bmv2SwitchConnectoin` object with `table_entry` as a parameter. (e.g., `s1.BmvSwitchConnection(table_entry)`)
