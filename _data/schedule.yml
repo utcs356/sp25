@@ -237,24 +237,25 @@
 - date: Th 03/28
   lecturer:
   title: >
-    <strong>Congestion control</strong>
+    <strong>Congestion control (1)</strong>
   recitation: 
   slides: 
   notes: 
   video: 
   readings:
-  - P&D 6.3 -- 6.5
+  - P&D 6.3 
   logistics:
 
 - date: T 04/02
   lecturer:
   title: >
-    <strong>Security 1: TBD</strong>
+    <strong>Congestion control (2)</strong>
   recitation: 
   slides: 
   notes: 
   video: 
   readings:
+  - P&D 6.4
   logistics:
 
 - date: Th 04/04
