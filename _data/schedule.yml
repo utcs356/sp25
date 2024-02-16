@@ -176,7 +176,7 @@
   - Assignment 2 is due
   - Assignment 3 is out
 
-- date: T 03/07
+- date: Th 03/07
   lecturer:
   title: >
     <strong>UDP and TCP basics</strong>
@@ -201,7 +201,7 @@
   logistics:
 
 
-- date: Th 03/19
+- date: T 03/19
   lecturer:
   title: >
     <strong>TCP flow control, Reliable delivery</strong>
@@ -261,7 +261,7 @@
 - date: Th 04/04
   lecturer:
   title: >
-    <strong>Security 2: TBD</strong>
+    <strong>Security</strong>
   recitation: 
   slides: 
   notes: 
@@ -272,7 +272,7 @@
 - date: T 04/09
   lecturer:
   title: >
-    <strong>Application 1: TBD</strong>
+    <strong>Application</strong>
   recitation: 
   slides: 
   notes: 
@@ -283,7 +283,7 @@
 - date: Th 04/11
   lecturer:
   title: >
-    <strong>Application 2: TBD</strong>
+    <strong>Application</strong>
   recitation: 
   slides: 
   notes: 
