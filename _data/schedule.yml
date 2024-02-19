@@ -221,20 +221,7 @@
     <strong>Quiz 2</strong>
   logistics:
 
-
 - date: T 03/26
-  lecturer:
-  title: >
-    <strong>Resource allocation</strong>
-  recitation: 
-  slides: 
-  notes: 
-  video: 
-  readings:
-  - P&D 6.1 -- 6.2
-  logistics:
-
-- date: Th 03/28
   lecturer:
   title: >
     <strong>Congestion control (1)</strong>
@@ -246,7 +233,7 @@
   - P&D 6.3 
   logistics:
 
-- date: T 04/02
+- date: Th 03/28
   lecturer:
   title: >
     <strong>Congestion control (2)</strong>
@@ -257,6 +244,19 @@
   readings:
   - P&D 6.4
   logistics:
+
+- date: T 04/02
+  lecturer:
+  title: >
+    <strong>Resource allocation</strong>
+  recitation: 
+  slides: 
+  notes: 
+  video: 
+  readings:
+  - P&D 6.1 -- 6.2
+  logistics:
+
 
 - date: Th 04/04
   lecturer:
