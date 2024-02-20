@@ -104,6 +104,7 @@
   notes: 
   video: 
   readings:
+  - <a href="https://staging.p4.org/p4-spec/docs/P4-16-v1.2.4.html">P4 language spec</a>
   logistics:
   - Assignment 1 is due
   - Assignment 2 is out
@@ -177,8 +178,14 @@
 
 - date: Th 03/07
   lecturer:
-  quiz: >
-    <strong>Quiz 2</strong>
+  title: >
+    <strong>UDP and TCP basics</strong>
+  recitation: 
+  slides: 
+  notes: 
+  video: 
+  readings:
+  - P&D 5.1 -- 5.2.3
   logistics:
 
 - date: T 03/12
@@ -193,19 +200,8 @@
     <strong>Spring break - No Classes</strong>
   logistics:
 
-- date: T 03/19
-  lecturer:
-  title: >
-    <strong>UDP and TCP basics</strong>
-  recitation: 
-  slides: 
-  notes: 
-  video: 
-  readings:
-  - P&D 5.1 -- 5.2.3
-  logistics:
 
-- date: Th 03/21
+- date: T 03/19
   lecturer:
   title: >
     <strong>TCP flow control, Reliable delivery</strong>
@@ -219,7 +215,37 @@
   - Assignment 3 is due
   - Assignment 4 is out
 
+- date: Th 03/21
+  lecturer:
+  quiz: >
+    <strong>Quiz 2</strong>
+  logistics:
+
 - date: T 03/26
+  lecturer:
+  title: >
+    <strong>Congestion control (1)</strong>
+  recitation: 
+  slides: 
+  notes: 
+  video: 
+  readings:
+  - P&D 6.3 
+  logistics:
+
+- date: Th 03/28
+  lecturer:
+  title: >
+    <strong>Congestion control (2)</strong>
+  recitation: 
+  slides: 
+  notes: 
+  video: 
+  readings:
+  - P&D 6.4
+  logistics:
+
+- date: T 04/02
   lecturer:
   title: >
     <strong>Resource allocation</strong>
@@ -231,33 +257,11 @@
   - P&D 6.1 -- 6.2
   logistics:
 
-- date: Th 03/28
-  lecturer:
-  title: >
-    <strong>Congestion control</strong>
-  recitation: 
-  slides: 
-  notes: 
-  video: 
-  readings:
-  - P&D 6.3 -- 6.5
-  logistics:
-
-- date: T 04/02
-  lecturer:
-  title: >
-    <strong>Security 1: TBD</strong>
-  recitation: 
-  slides: 
-  notes: 
-  video: 
-  readings:
-  logistics:
 
 - date: Th 04/04
   lecturer:
   title: >
-    <strong>Security 2: TBD</strong>
+    <strong>Security</strong>
   recitation: 
   slides: 
   notes: 
@@ -268,7 +272,7 @@
 - date: T 04/09
   lecturer:
   title: >
-    <strong>Application 1: TBD</strong>
+    <strong>Application</strong>
   recitation: 
   slides: 
   notes: 
@@ -279,7 +283,7 @@
 - date: Th 04/11
   lecturer:
   title: >
-    <strong>Application 2: TBD</strong>
+    <strong>Application</strong>
   recitation: 
   slides: 
   notes: 
