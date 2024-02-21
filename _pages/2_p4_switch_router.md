@@ -63,7 +63,7 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
         * `dmac_forward`: Install a table entry with the MAC address as a key, `forward_to_port()` as an action, and `egress_port` as an action parameter.
 
 #### Test your implementation.
-1.  Compile the P4 code and launch the P4 and controller program.  
+1.  Compile the P4 code and launch the P4 and controller program on the switch (`s1`).  
 * All the necessary commands are provided as script files in the Kathara lab's `shared` directory. 
 * After starting the Kathara lab, compile the P4 code with `$ bash compile_p4.sh` on `s1` after `$ cd /shared`. 
 * Then launch the compiled P4 program with `$ bash run_switch.sh` and the controller with `$ bash run_controller.sh` on each router. They are all located in the `shared` directory.
@@ -105,11 +105,62 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
         * `dmac_forward`: Install table entries with the MAC address as a key, `forward_to_port()` as an action, and `egress_port` and `egress_mac` as action parameters.
 
 3. Checksum and TTL
-    * Complete `MyVerifyChecksum()` and `MyUpdateChecksum()`. Use `extern verify_checksum()` and `extern update_checksum`. Their definitions are in this [link](https://github.com/p4lang/p4c/blob/main/p4include/v1model.p4). Use HashAlgorithm.csum16 as a hash algorithm.
     * Decrement the TTL field of the IPv4 header by 1. Complete the definition of `action decrement_ttl()` and call the action in the `apply` block in `MyIngress()`.
+    * Complete `MyVerifyChecksum()` and `MyUpdateChecksum()`. Use `extern verify_checksum()` and `extern update_checksum`. They are defined in this [link](https://github.com/p4lang/p4c/blob/main/p4include/v1model.p4#L483). Below are the definitions.
+        * `extern void verify_checksum<T, O>(in bool condition, in T data, in O checksum, HashAlgorithm algo);`
+        * `extern void update_checksum<T, O>(in bool condition, in T data, inout O checksum, HashAlgorithm algo);`
+            * If the `condition` is false, the operation is not applied. (They don't indicate a checksum error and change the checksum value.)
+            * `data` is a tuple of values whose checksum is computed. The types of the values should be bit<W>, int<W>, or varbit<W>.
+            * `checksum` is the checksum of `data` that will be verified or updated.
+            * Use `HashAlgorithm.csum16` as `algo`
+            * You don't have to specify `T` and `O` explicitly.
+            * Usage example: 
+                ```
+                header myproto_t {
+                    bit<4> ver;
+                    bit<4> hlen;
+                    bit<8> flags;
+                    bit<16> id;
+                    bit<16> len;
+                    bit<16> csum;
+                }
+                struct headers {
+                    myproto_t myproto;
+                }
+                ...
+                control MyVerifyChecksum(inout headers hdr, inout metadata meta) {
+                    apply {
+                        verify_checksum(true,
+                            /* A tuple is enclosed in curly brackets*/
+                            { hdr.myproto.ver,
+                                hdr.myproto.hlen,
+                                hdr.myproto.flags,
+                                hdr.myproto.id,
+                                hdr.myproto.len
+                            },
+                            hdr.myproto.csum, 
+                            HashAlgorithm.csum16);
+                    }
+                }
+                ...
+                control MyComputeChecksum(inout headers hdr, inout metadata meta) {
+                    apply {
+                        update_checksum(true,
+                            /* A tuple is enclosed in curly brackets*/
+                            { hdr.myproto.ver,
+                                hdr.myproto.hlen,
+                                hdr.myproto.flags,
+                                hdr.myproto.id,
+                                hdr.myproto.len
+                            },
+                            hdr.myproto.csum, 
+                            HashAlgorithm.csum16);
+                    }
+                }
+                ```
 
 #### Test your implementation.
-1. Compile the P4 code and launch the P4 and controller program.  
+1. Compile the P4 code and launch the P4 and controller program on the routers (`r[1-3]`).  
 * All the necessary commands are provided as script files in the Kathara lab's `shared` directory. 
 * After starting the Kathara lab, compile the P4 code with `$ bash compile_p4.sh` on `r[1-3]` after `$ cd /shared`. 
 * Then launch the compiled P4 program with `$ bash run_switch.sh` and the controller with `$ bash r[1-3]_run_controller.sh` on each router.  
