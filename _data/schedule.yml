@@ -328,18 +328,13 @@
 
 - date: Th 04/25
   lecturer:
-  title: >
-    <strong>Wrap up & Review</strong>
-  recitation: 
-  slides: 
-  notes: 
-  video: 
-  readings:
-  logistics:
-
-- date: T 04/30
-  lecturer:
   quiz: >
     <strong>Quiz 3</strong>
+  logistics:
+
+- date: F 04/26
+  lecturer:
+  quiz: >
+    <strong></strong>
   logistics:
   - Assignment 5 is due
