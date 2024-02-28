@@ -67,11 +67,13 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
 * All the necessary commands are provided as script files in the Kathara lab's `shared` directory. 
 * After starting the Kathara lab, compile the P4 code with `$ bash compile_p4.sh` on `s1` after `$ cd /shared`. 
 * Then launch the compiled P4 program with `$ bash run_switch.sh` and the controller with `$ bash run_controller.sh` on each router. They are all located in the `shared` directory.
+
 2. Test the functionality.
 * You may use `ping` to check whether your switch works as expected on a host (`h[1-4]`).  
 * Once you implement forwarding, the packet should arrive at each host in the local network except the sender for every ping.
-* Once you implement MAC learning, the packet should arrive at each host in the local network except the sender only for the first ping. Then, the packet must arrive only at the destination host until the table entry expires.
-* To check if the packet arrives at a host, use `tcpdump -i <interface>` to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more details, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html).
+* Once you implement MAC learning, the packet should arrive at each host in the local network except the sender until the table insertion is done. Then, the packet must arrive only at the destination host until the table entry expires. In other words, if the broadcasting behavior disappears after some time, you have implemented MAC learning properly.
+* To check if the packet arrives at a host, use `tcpdump -i <interface>` to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more details, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html). Use `tcpdump -i any` to sniff packets from all interfaces.
+* If you started the assignment before Feb 28 and the controller crashes with the error message that the table entry already exists, please apply this [patch](https://edstem.org/us/courses/50367/discussion/4455289) to your repository.
 
 ### Part 2: Router with P4
 #### Overview 
@@ -166,7 +168,7 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
 * Then launch the compiled P4 program with `$ bash run_switch.sh` and the controller with `$ bash r[1-3]_run_controller.sh` on each router.  
 2. Test the functionality.
 * You may use `ping` to check whether your router works as expected on a host (`h[1-3]`).  
-* To check if the packet arrives at a host, use `$ tcpdump -i <interface>` to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more details, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html).
+* To check if the packet arrives at a host, use `$ tcpdump -i <interface>` to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more details, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html). Use `tcpdump -i any` to sniff packets from all interfaces.
 * To verify IPv4 checksum and check the TTL field, add the `-v` flag to the `tcpdump` command.
 
 ### Submission
@@ -180,7 +182,7 @@ The naming format for the file is `assign2_groupX.[tar.gz/zip]`.
     def buildTableEntry(self,
                         table_name, # human-readable table name in string
                         match_fields=None, # a dictionary with a human-readable match field as a key and its value as a value
-                        default_action=False, # human-readable default action name in string (This action is executed upon miss)
+                        default_action=False, # human-readable default action name in string (This is not necessary if you already define the default_action in the P4 code)
                         action_name=None, # human-readable action name in a string (This action is executed upon hit)
                         action_params=None, # a dictionary with a human-readable action parameter name as a key and its value as a value
                         priority=None # unused in our case ):
