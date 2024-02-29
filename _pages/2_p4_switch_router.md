@@ -118,6 +118,8 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
             * You don't have to specify `T` and `O` explicitly.
             * Usage example: 
                 ```
+                /* Checksum will be calculated over all header fields but csum */
+                /* as in the IP header checksum computation */
                 header myproto_t {
                     bit<4> ver;
                     bit<4> hlen;
@@ -125,6 +127,8 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
                     bit<16> id;
                     bit<16> len;
                     bit<16> csum;
+                    bit<32> srcAddr;
+                    bit<32> dstAddr;
                 }
                 struct headers {
                     myproto_t myproto;
@@ -138,7 +142,9 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
                                 hdr.myproto.hlen,
                                 hdr.myproto.flags,
                                 hdr.myproto.id,
-                                hdr.myproto.len
+                                hdr.myproto.len,
+                                hdr.myproto.srcAddr,
+                                hdr.myproto.dstAddr
                             },
                             hdr.myproto.csum, 
                             HashAlgorithm.csum16);
@@ -153,7 +159,9 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
                                 hdr.myproto.hlen,
                                 hdr.myproto.flags,
                                 hdr.myproto.id,
-                                hdr.myproto.len
+                                hdr.myproto.len,
+                                hdr.myproto.srcAddr,
+                                hdr.myproto.dstAddr
                             },
                             hdr.myproto.csum, 
                             HashAlgorithm.csum16);
