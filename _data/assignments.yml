@@ -16,13 +16,13 @@
   title: >
     Software Switch and Router with P4 
 
-- release_date: 03/05/2024
-  due_date: 03/21/2024
+- release_date: 03/07/2024
+  due_date: 03/28/2024
   number: 3
   title: >
     Supporting ARP, ICMP, RIP in the router
 
-- release_date: 03/21/2024
+- release_date: 03/28/2024
   due_date: 04/11/2024
   number: 4
   title: >
