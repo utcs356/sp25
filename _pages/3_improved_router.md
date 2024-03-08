@@ -10,11 +10,11 @@ title: 	"Assignment 3: Supporting ARP, ICMP, RIP in the Router"
 
 ### Part 0: Setup
 Like Assignment 2, we will use the `cs356-p4` profile in this assignment.
-To get a skeleton code, clone the [git repository](https://github.com/utcs356/assignment3.git) and make your own private repository as in A1. (refer to A1 setup) Make sure to copy the provided `.gitignore` to your private repository as well as other files.
-The task is implementing features on the Layer-3 router incrementally.
+To get the skeleton code, clone the [git repository](https://github.com/utcs356/assignment3.git) and create a private repository as in A1. (Refer to A1 setup.) Make sure to copy the provided `.gitignore` to your private repository and other files.
+The task is to implement features on the Layer-3 router incrementally.
 #### Important Note
-* You should execute `$ bash setup.sh` upon every `$ git clone` to automate updating your change in the `src` directory to the `labs` directory. Otherwise, you have to copy and paste your code every time you make changes.
-* Do NOT modify the provided skeleton code other than the commented as `PARTn_TODO`. In this assignment, there is a lot of skeleton code doing tedious work on your behalf, so you can focus on the core logic. You may read comments to understand the skeleton code.
+* You should execute `$ bash setup.sh` upon every `$ git clone` to automate updating your change in the `src` directory to the `labs` directory. Otherwise, you must copy and paste your code whenever you make changes.
+* Do NOT modify the provided skeleton code other than the commented as `PARTn_TODO` (e.g., `PART1_TODO`). In this assignment, a lot of skeleton code is doing tedious work on your behalf so you can focus on the core logic. You can just read the comments to understand the skeleton code.
 * Part 3 topology has six routers, so use tmux on your choice of terminal instead of XTerm terminal. Other than splitting a window to panes, you can create a new tmux window within a session by typing `Ctrl+b c` and navigate the windows using `Ctrl+b p` and `Ctrl_b n`. (Don't forget to pause after Ctrl+b) Please refer to [here](https://tmuxcheatsheet.com/) for more details on how to use `tmux`.
 
 ### Part 1: ICMP
@@ -58,7 +58,7 @@ Once the router receives the ARP reply, it forwards the reply to the controller.
 * All the necessary commands are provided as script files in the Kathara lab's `shared` directory. 
 * After starting the Kathara lab, compile the P4 code with `$ bash compile_p4.sh` on one of the routers (e.g., `r1`) after `$ cd /shared`. 
 * Then, on each router, launch the compiled P4 program with `$ bash run_router.sh` and the controller with `$ bash r[1-3]_run_controller.sh`. 
-2. After implementing both tasks, try to run `$ ping 20.0.0.10` on `h1`. It should work and the ARP request and reply packets should appear along the path. You may check these with `$tcpdump -i any arp` on `r1` and `r2`.  
+2. After implementing both tasks, try running `$ ping 20.0.0.10` on `h1`. It should work, and the ARP request and reply packets should appear along the path. You may check these with `$tcpdump—i any arp` on `r1` and `r2`.  
 
 ### Part 3: RIP
 #### Overview
@@ -68,13 +68,13 @@ Your tasks are implementing part of RIP protocol support on `src/controller.py`.
 #### Tasks
 All the tasks are on the `src/controller.py` file.   
 
-**Task 1**: Complete the `mergeRoute` method of the `Route` class. The `Route` class stores routing information (i.e., next hop IP and cost). The information would be associated with a certain destination IP address and stored in the `routing_table` dictionary. Refer to the skeleton code for the detailed specification.    
+**Task 1**: Complete the `mergeRoute` method of the `Route` class. The `Route` class stores routing information (i.e., next hop IP and cost). The information would be associated with a certain destination IP address and stored in the `routing_table` dictionary. Refer to the skeleton code for detailed specifications.    
 
-**Task 2**: Complete the RIP response handling logic. Once the router receives an RIP response, it forwards the packet to the controller. Then the controller should update or install the routing table entries if the routes in the RIP response are for unknown destinations or known but with cheaper cost. Your job is handling the routing table entry updates and installations. Refer to the skeleton code for more details. It should be quite similar to what you've done in A2 other than the RIP-specific logic.    
+**Task 2**: Complete the RIP response handling logic. Once the router receives an RIP response, it forwards the packet to the controller. Then, the controller should update or install the routing table entries if the routes in the RIP response are for unknown destinations or known but with cheaper costs. Your job is handling the routing table entry updates and installations. Please take a look at the skeleton code for more details. Other than the RIP-specific logic, it should be quite similar to what you've done in A2.    
 
 **Notes for Task 2**: 
-* When you build the table entry for `ipv4_route` (lpm table), use a prefix length of 32 for the `match_fields` parameter of `p4info_helper.buildTableEntry`. In part 3, we don't use the notion of subnet for simplicity.
-* When you update the existing table entry, specify `is_modify=True` as the parameter of `s1.WriteTableEntry`.
+* When you build the table entry for `ipv4_route` (a LPM table), use a prefix length of 32 for the `match_fields` parameter of `p4info_helper.buildTableEntry`. In part 3, we don't use the notion of a subnet for simplicity.
+* When you update an existing table entry, specify `is_modify=True` as the parameter of `s1.WriteTableEntry`.
 
 #### Test your implementation
 1. Compile the P4 code and launch the P4 and controller program on the routers (`r[1-6]`). You may want to test your program on the subset of the routers to ease debugging.
@@ -90,7 +90,7 @@ The naming format for the file is `assign3_groupX.[tar.gz/zip]`.
 
 ### Appendix: Table Insertion API for `controller.py`
 1. Create a table entry you want to insert.   
-    In the skeleton code, the instance of the `helper` class, `p4info_helper`, is already created and initialized. Its role is to interpret the human-readable format of P4 objects in the way that the P4 program understands. To build a table entry in a way that the P4 program understands, you can use the `helper` class's `buildTableEntry()` method.  Its API is described below.
+    In the skeleton code, the `helper` class instance, `p4info_helper`, is already created and initialized. Its role is to interpret the human-readable format of P4 objects as the P4 program understands. To build a table entry in a way that the P4 program understands, you can use the `helper` class's `buildTableEntry()` method.  Its API is described below.
     ```    
     def buildTableEntry(self,
                         table_name, # human-readable table name in string
@@ -110,11 +110,12 @@ The naming format for the file is `assign3_groupX.[tar.gz/zip]`.
     For more details, you can refer to the file, `assignment2/labs/star_four_hosts/shared/utils/p4runtime_lib/helper.py`.
 
 2. Send a table entry to the switch.   
-    The `Bmv2SwitchConnection` object, `s1`, is provided and initialized. The object is the abstraction of a connection between the switch and the controller.
-    To add a table entry you built in the above step, you can simply call the `WriteTableEntry` method of the `Bmv2SwitchConnectoin` object with `table_entry` as a parameter. (e.g., `s1.WriteTableEntry(table_entry)`) When you update the existing table entry, specify `is_modify=True` as the parameter of `s1.WriteTableEntry`. (e.g., `s1.WriteTableEntry(table_entry, is_modify=True)`) 
+    The `Bmv2SwitchConnection` object, `s1`, is provided and initialized. It is an abstraction of a connection between the switch and the controller.
+    To add a table entry you built in the above step, you can simply call the `WriteTableEntry` method of the `Bmv2SwitchConnectoin` object with `table_entry` as a parameter (e.g., `s1.WriteTableEntry(table_entry)`).
+    When you update an existing table entry, specify `is_modify=True` as the parameter of `s1.WriteTableEntry` (e.g., `s1.WriteTableEntry(table_entry, is_modify=True)`). 
 
 #### Usage example
-Say there's a `l2_simple_switch.p4` and it defines a table in the ingress control block as below. 
+Say there's a `l2_simple_switch.p4`, which defines a table in the ingress control block, as below. 
 ```p4
 ...
 control MyIngress() {
