@@ -204,7 +204,7 @@
 - date: T 03/19
   lecturer:
   title: >
-    <strong>TCP flow control, Reliable delivery</strong>
+    <strong>TCP sliding window</strong>
   recitation: 
   slides: 
   notes: 
