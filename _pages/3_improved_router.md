@@ -13,7 +13,7 @@ Like Assignment 2, we will use the `cs356-p4` profile in this assignment.
 To get the skeleton code, clone the [git repository](https://github.com/utcs356/assignment3.git) and create a private repository as in A1. (Refer to A1 setup.) Make sure to copy the provided `.gitignore` to your private repository and other files.
 The task is to implement features on the Layer-3 router incrementally.
 #### Important Note
-* You should execute `$ bash setup.sh` upon every `$ git clone` to automate updating your change in the `src` directory to the `labs` directory. Otherwise, you must copy and paste your code whenever you make changes.
+* You should execute `$ bash setup.sh` upon every `$ git clone` and `$ git pull` to automate updating your change in the `src` directory to the `labs` directory. Otherwise, you must copy and paste your code whenever you make changes.
 * Do NOT modify the provided skeleton code other than the commented as `PARTn_TODO` (e.g., `PART1_TODO`). In this assignment, a lot of skeleton code is doing tedious work on your behalf so you can focus on the core logic. You can just read the comments to understand the skeleton code.
 * Part 3 topology has six routers, so use tmux on your choice of terminal instead of XTerm terminal. Other than splitting a window to panes, you can create a new tmux window within a session by typing `Ctrl+b c` and navigate the windows using `Ctrl+b p` and `Ctrl_b n`. (Don't forget to pause after Ctrl+b) Please refer to [here](https://tmuxcheatsheet.com/) for more details on how to use `tmux`.
 
