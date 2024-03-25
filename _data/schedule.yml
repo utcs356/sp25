@@ -222,7 +222,7 @@
 - date: T 03/26
   lecturer:
   title: >
-    <strong>Congestion control (1)</strong>
+    <strong>Queuing disciplines</strong>
   recitation: 
   slides: 
   notes: 
@@ -234,7 +234,7 @@
 - date: Th 03/28
   lecturer:
   title: >
-    <strong>Congestion control (2)</strong>
+    <strong>Congestion control (1)</strong>
   recitation: 
   slides: 
   notes: 
@@ -248,7 +248,7 @@
 - date: T 04/02
   lecturer:
   title: >
-    <strong>Resource allocation</strong>
+    <strong>Congestion control (2)</strong>
   recitation: 
   slides: 
   notes: 
