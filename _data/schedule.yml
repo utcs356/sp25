@@ -222,7 +222,7 @@
 - date: T 03/26
   lecturer:
   title: >
-    <strong>Resource allocation and Queuing disciplines</strong>
+    <strong>TCP sliding window (cont'd) and Resource allocation</strong>
   recitation: 
   slides: 
   notes: 
@@ -234,7 +234,7 @@
 - date: Th 03/28
   lecturer:
   title: >
-    <strong>Congestion control (1)</strong>
+    <strong>Queuing disciplines and Congestion control (1)</strong>
   recitation: 
   slides: 
   notes: 
