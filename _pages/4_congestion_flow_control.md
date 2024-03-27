@@ -10,7 +10,7 @@ In this assignment, we recommend you to use `cs356-base` profile on CloudLab for
 To get the skeleton code, clone the [git repository](https://github.com/utcs356/assignment4.git) and create a private repository as in A1. (Refer to A1 setup.) 
 
 #### Overview
-In this assignment, you will be writing the sending and receiving transport-level code for implementing a simple reliable data transfer protocol. Your transport layer must ensure reliable transmission of packet even when there are packet corruptions and losses.To simplify the process of implementation and testing, your code will be run in a network simulation environment unlike previous assignments. The network simulator is included in the provided skeleton code, and you should NOT modify it.
+In this assignment, you will be writing the sending and receiving transport-level code for implementing a simple reliable data transfer protocol. Your transport layer must ensure reliable transmission of packet even when there are packet corruptions and losses. To simplify the process of implementation and testing, your code will be run in a network simulation environment unlike previous assignments. The network simulator is included in the provided skeleton code, and you should NOT modify it.
 
 ### Part 1: Stop and Wait
 In the assignment directory, copy your skeleton code by typing `$ cp skeleton.py part1.py`. Please write your part 1 code to `part1.py`. Please read the comments in the source code in `BASIC DATA STRUCTURES` and `STUDENT-CALLABLE FUNCTIONS` before implementation.
