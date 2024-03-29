@@ -7,7 +7,7 @@ title: "Assignment 4: Reliable Transport Protocol"
 ### Part 0: Setup and Overview
 #### Setup
 In this assignment, we recommend you use `cs356-base` or `cs356-p4` profile on CloudLab for implementing and testing your code.
-To get the skeleton code, clone the [git repository](https://github.com/utcs356/assignment4.git) and create a private repository as in A1. (Refer to A1 setup.) 
+To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment4.git).
 
 #### Overview
 In this assignment, you will implement a transport layer of the network stack running in a simulated environment (i.e., **No Kathara**). 
@@ -28,7 +28,7 @@ Please carefully read the comments in the code marked `BASIC DATA STRUCTURES` an
 #### Tasks
 In this part, you will exercise checksum, ACK, and timer-based retransmission, which are the key components of reliable transmission. 
 Your task is to complete the `calc_checksum` function and the `SndTransport` and `RcvTransport` methods (They are all marked as `TODO` in the comments). 
-These will together implement a stop-and-wait protocol in the transport layer. 
+These will together implement a **stop-and-wait protocol** ([wiki](https://en.wikipedia.org/wiki/Stop-and-wait_ARQ), [textbook](https://book.systemsapproach.org/direct/reliable.html#stop-and-wait)) in the transport layer. 
 The sender should wait for an ACK packet after sending a packet, and there can be only one outstanding packet at any time. 
 
 #### Specification
@@ -54,7 +54,7 @@ Executing the simulator (`run_sim.py`), you can test your transport code on the 
 We recommend starting from the part 1 code for this part of the assignment. In the assignment directory, copy your part 1 code by typing `$ cp transport/part1.py transport/part2.py` and write your part 2 code to `transport/part2.py`.
 
 #### Tasks
-In this part, you will implement a **reliable sliding window protocol** that overcomes the utilization problem in the stop-and-wait protocol. It is also a foundation for flow and congestion control. Your task is to modify the methods of `SndTransport` and `RcvTransport` in your part 1 code to implement the protocol in the transport layer. The sender can have up to **8** outstanding packets (i.e., **the window size is 8**).  
+In this part, you will implement a **reliable sliding window protocol** ([wiki](https://en.wikipedia.org/wiki/Go-Back-N_ARQ), [textbook](https://book.systemsapproach.org/direct/reliable.html#sliding-window)) that overcomes the utilization problem in the stop-and-wait protocol. It is also a foundation for flow and congestion control. Your task is to modify the methods of `SndTransport` and `RcvTransport` in your part 1 code to implement the protocol in the transport layer. The sender can have up to **8** outstanding packets (i.e., **the window size is 8**).  
 
 #### Specifications
 * `SndTransport._init_`: Initialize the necessary states for the sender. It will need more states than Part 1.
