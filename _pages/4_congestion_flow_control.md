@@ -45,7 +45,7 @@ Please ignore `RcvTransport.timer_interrupt` if you're not going to extend this 
 We'd recommend setting the tracing level to 4 (by setting `-v 4` as a command-line argument) and putting `print` in your code while you're debugging.
 
 #### Test your implementation
-Executing the simulator (`run_sim.py'), you can test your transport code on the simulator. There are multiple command-line arguments to adjust the network simulation environment. Please type `python run_sim.py -h` for the explanation. You should choose a very large value (e.g., 100000.0) for the average time between messages (`-d` option) from the sender's layer 5 so that your sender is never called while it still has an outstanding, unacknowledged message trying to send to the receiver. Here are some sample test cases:
+Executing the simulator (`run_sim.py`), you can test your transport code on the simulator. There are multiple command-line arguments to adjust the network simulation environment. Please type `python run_sim.py -h` for the explanation. You should choose a very large value (e.g., 100000.0) for the average time between messages (`-d` option) from the sender's layer 5 so that your sender is never called while it still has an outstanding, unacknowledged message trying to send to the receiver. Here are some sample test cases:
 * `$ python3 run_sim.py -d 100000.0 -z 2 -s [random_seed] -n 10`
 * `$ python3 run_sim.py -d 100000.0 -z 2 -c 0.1 -l 0.1 -s [random_seed] -n 100`
 * `$ python3 run_sim.py -d 100000.0 -z 2 -c 0.3 -l 0.3 -s [random_seed] -n 100`
