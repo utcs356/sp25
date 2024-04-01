@@ -69,9 +69,9 @@ We'd recommend setting the tracing level to 4 (by setting `-v 4` as a command-li
 
 #### Test your implementation
 To test your part2 implementation, you **MUST** change `from transport.part1 import SndTransport, RcvTransport, Msg, Pkt` to `from transport.part2 import SndTransport, RcvTransport, Msg, Pkt` in the provided `run_sim.py`. Now, you don't have to choose a very large value (e.g., 100000.0) for the average time between messages from the sender's layer 5, since there could be multiple in-flight packets with the sliding window protocol. Here are some sample test cases:
-* `$ python3 run_sim.py -d 50.0 -z 2 -s [random_seed] -n 10`
-* `$ python3 run_sim.py -d 50.0 -z 2 -c 0.1 -l 0.1 -s [random_seed] -n 100`
-* `$ python3 run_sim.py -d 50.0 -z 2 -c 0.3 -l 0.3 -s [random_seed] -n 100`
+* `$ python3 run_sim.py -d 50.0 -z 32 -s [random_seed] -n 10`
+* `$ python3 run_sim.py -d 50.0 -z 32 -c 0.1 -l 0.1 -s [random_seed] -n 100`
+* `$ python3 run_sim.py -d 50.0 -z 3 2 -c 0.3 -l 0.3 -s [random_seed] -n 100`
 
 ### Submission
 Please submit your code (modified assignment4 repository) including `part1.py` and `part2.py` to the Canvas Assignments page in either `tar.gz` or `zip` format.  
