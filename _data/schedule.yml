@@ -261,7 +261,7 @@
 - date: Th 04/04
   lecturer:
   title: >
-    <strong>Security</strong>
+    <strong>DNS</strong>
   recitation: 
   slides: 
   notes: 
@@ -272,7 +272,7 @@
 - date: T 04/09
   lecturer:
   title: >
-    <strong>Application</strong>
+    <strong>HTTP and P2P</strong>
   recitation: 
   slides: 
   notes: 
@@ -283,7 +283,7 @@
 - date: Th 04/11
   lecturer:
   title: >
-    <strong>Application</strong>
+    <strong>CDNs</strong>
   recitation: 
   slides: 
   notes: 
@@ -296,7 +296,7 @@
 - date: T 04/16
   lecturer:
   title: >
-    <strong>Data center networks</strong>
+    <strong>Security</strong>
   recitation: 
   slides: 
   notes: 
