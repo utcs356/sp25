@@ -13,7 +13,11 @@ To get the skeleton code, create a **private** repository by clicking `Use this 
 In this assignment, you will implement a transport layer of the network stack running in a simulated environment (i.e., **No Kathara**). 
 Your transport layer must ensure *reliable transmission of packets* even when packet corruptions and losses occur. 
 In the simulated environment, there is only one sender and receiver pair, and unlike TCP, the connection between them is unidirectional. 
-The network simulator is included in the provided code (`run_sim.py`), and you must **NOT** modify it. 
+The network simulator is included in the provided code (`run_sim.py`), and you must **NOT** modify it.
+Below are the assumptions in the simulated network environment:
+* All packets including ACK packets have a 20-bytes payload. This means the receiver should set a dummy 20-bytes payload in all ACK packets.
+* The network simulator guarantees in-order delivery. In other words, the receiver will receive packets in the order that they were sent.
+
 Below is the overview figure for this assignment.    
 ![a4_overview]({{site.baseurl}}/assets/img/assignments/assignment4/A4_overview.png)   
 
