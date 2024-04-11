@@ -1,8 +1,7 @@
 - date: T 01/16
   lecturer: 
   title: >
-    <strong>Course overview & Intro to computer networks</strong>
-  slides: https://drive.google.com/file/d/1-6rQfvLFvTjhLC14eMuDkZ8sRHe439_X/view?usp=drive_link
+    <strong>Course overview & Intro to computer networks</strong> slides: https://drive.google.com/file/d/1-6rQfvLFvTjhLC14eMuDkZ8sRHe439_X/view?usp=drive_link
   video: 
   notes:
   readings:
@@ -283,7 +282,7 @@
 - date: Th 04/11
   lecturer:
   title: >
-    <strong>CDNs and P2P</strong>
+    <strong>CDN</strong>
   recitation: 
   slides: https://drive.google.com/file/d/1K2hlilymN8wT59SxJyU8quXM4GTLRSmo/view?usp=drive_link
   notes: 
@@ -296,7 +295,7 @@
 - date: T 04/16
   lecturer:
   title: >
-    <strong>Security</strong>
+    <strong>P2P and Security (1)</strong>
   recitation: 
   slides: 
   notes: 
@@ -307,7 +306,7 @@
 - date: Th 04/18
   lecturer:
   title: >
-    <strong>Programmable networks</strong>
+    <strong>Security (2) and Programmable networks (1)</strong>
   recitation: 
   slides: 
   notes: 
@@ -318,7 +317,7 @@
 - date: T 04/23
   lecturer:
   title: >
-    <strong>Cellular networks</strong>
+    <strong>Programmable networks (2) and Wrap up</strong>
   recitation: 
   slides: 
   notes: 
