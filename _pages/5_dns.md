@@ -96,7 +96,7 @@ The `-n` flag is necessary since the servers ignore a reverse query (PTR).
 `$ ping -n aquila.cs.utexas.edu`    
 
 ### Submission
-Please submit your code (modified assignment4 repository) to the Canvas Assignments page in either `tar.gz` or `zip` format.  
+Please submit your code (modified assignment5 repository) to the Canvas Assignments page in either `tar.gz` or `zip` format.  
 The naming format for the file is `assign5_groupX.[tar.gz/zip]`.
 
 ### Appendix: TDNS Library 
