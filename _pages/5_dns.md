@@ -18,7 +18,7 @@ You will run this experiment on top of Kathara. The Kathara topology is depicted
 ### Part 1: Writing DNS servers
 Your task is to complete `ut-dns.c` and `cs-dns.c` in the `[a5_directory]/labs/dns/shared/src` directory. `ut-dns.c` and `cs-dns.c` are the nameservers for `utexas.edu` and `cs.utexas.edu`, respectively. The implementation of the two servers should be almost the same except for the DNS records they store. We recommend you implement `ut-dns.c` first, copy and paste it to `cs-dns.c`, and change it a bit. Note that they are **NOT** recursive nor iterative DNS servers, so their responses are only based on their own DNS records.
 
-The overview for this part of the assignment is depicted below. 
+The overview for this part of the assignment is depicted below.    
 ![a5_p1]({{site.baseurl}}/assets/img/assignments/assignment5/A5_P1.png)   
 
 #### Specification
@@ -52,7 +52,7 @@ For testing `cs-dns.c`,
 
 ### Part 2: An Iterative Local DNS Server
 Your task is to complete `local-dns.c` in the `[a5_directory]/labs/dns/shared/src` directory. `local-dns.c` is a default nameserver for the on-campus network. Note that it is an iterative DNS server, so its response should be always an answer or error. If it receives a DNS record that indicates delegation (referral), it should resolve a query iteratively.
-The below figure is an example of an iterative query resolution that is possible in our setup.
+The below figure is an example of an iterative query resolution that is possible in our setup.     
 ![a5_p2]({{site.baseurl}}/assets/img/assignments/assignment5/A5_P2.png)    
 
 #### Specification
