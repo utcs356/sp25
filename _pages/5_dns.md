@@ -12,21 +12,22 @@ To get the skeleton code, create a **private** repository by clicking `Use this 
 #### Overview
 In this assignment, you will implement DNS servers that enable a client to access nodes with domains instead of raw IP addresses. Your task is to complete the implementation of DNS nameservers for the `utexas.edu` zone and `cs.utexas.edu` zone (Part 1) and a local DNS server that can handle the query iteratively (Part 2). We provide you with a DNS library that does tedious jobs such as message parsing on behalf of you. Refer to the Appendix for more details on the library. For simplicity, you can assume there are no incoming queries other than `A, AAAA, NS` queries.
 
-The overview for this assignment is depicted below.    
-![a5_overview]({{site.baseurl}}/assets/img/assignments/assignment5/A5_overview.png)   
 You will run this experiment on top of Kathara. The Kathara topology is depicted below. The Kathara lab is located in the `[a5_directory]/labs/dns`.    
 ![a5_topology]({{site.baseurl}}/assets/img/assignments/assignment5/A5_topology.png)   
 
 ### Part 1: Writing DNS servers
 Your task is to complete `ut-dns.c` and `cs-dns.c` in the `[a5_directory]/labs/dns/shared/src` directory. `ut-dns.c` and `cs-dns.c` are the nameservers for `utexas.edu` and `cs.utexas.edu`, respectively. The implementation of the two servers should be almost the same except for the DNS records they store. We recommend you implement `ut-dns.c` first, copy and paste it to `cs-dns.c`, and change it a bit. Note that they are **NOT** recursive nor iterative DNS servers, so their responses are only based on their own DNS records.
 
+The overview for this part of the assignment is depicted below. 
+![a5_p1]({{site.baseurl}}/assets/img/assignments/assignment5/A5_P1.png)   
+
 #### Specification
 You can find the step-by-step specifications in the starter codes as well.
 * The servers should receive a message on top of UDP. Note that a UDP server doesn't have to `listen()` and `accept()` since it is connectionless, unlike TCP (what we did in A1). Also, the UDP server should use `sendto()`/`recvfrom()` to set/get a client's address along with sending/receiving a message.
-* Initialize a server-wide context (e.g., DNS records) using TDNSInit(). The context will be used for future DNS-related operations such as searching for a DNS entry.
-* Create a zone using `TDNSCreateZone` and add entries to the server `TDNSAddRecord`. You should be able to infer the contents of entries from the comments in the source code and the topology figure.
+* Initialize a server-wide context (e.g., DNS records) using TDNSInit(). The context will be used for future DNS-related operations such as searching for a DNS record.
+* Create a zone using `TDNSCreateZone` and add records to the server `TDNSAddRecord`. You should be able to infer the contents of records from the comments in the source code and the topology figure.
 * Receive a message continuously and parse it using `TDNSParseMsg()`.
-* If the received message is a query for A, AAAA, or NS, find the corresponding entry using `TDNSFind()` and return the response. Ignore all the other messages.
+* If the received message is a query for A, AAAA, or NS, find the corresponding record using `TDNSFind()` and return the response. Ignore all the other messages.
 
 #### Test your implementation
 1. Compile your code with `$ make` in the lab's shared directory (`[a5_directory]/labs/dns/shared`). The compiled binary would be in the `[a5_directory]/labs/dns/shared/bin` directory.
@@ -43,25 +44,27 @@ For testing `cs-dns.c`,
 `$ dig @40.0.0.20 A www.utexas.edu`      
 `$ dig @40.0.0.20 A thisshouldfail.utexas.edu`     
 `$ dig @40.0.0.20 A cs.utexas.edu`     
-`$ dig @40.0.0.20 A utns.cs.utexas.edu`     
+`$ dig @40.0.0.20 A aquila.cs.utexas.edu`     
 * For testing `cs-dns.c`, run below on `h1`.   
 `$ dig @50.0.0.30 A cs.utexas.edu`     
-`$ dig @50.0.0.30 A utns.cs.utexas.edu`     
+`$ dig @50.0.0.30 A aquila.cs.utexas.edu`     
 `$ dig @40.0.0.20 A thisshouldfail.cs.utexas.edu`     
 
 ### Part 2: An Iterative Local DNS Server
-Your task is to complete `local-dns.c` in the `[a5_directory]/labs/dns/shared/src` directory. `local-dns.c` is a default nameserver for the on-campus network. Note that it is an iterative DNS server, so its response should be always an answer or error. If it receives a DNS record that indicates delegation (referral), it should resolve a query iteratively. 
+Your task is to complete `local-dns.c` in the `[a5_directory]/labs/dns/shared/src` directory. `local-dns.c` is a default nameserver for the on-campus network. Note that it is an iterative DNS server, so its response should be always an answer or error. If it receives a DNS record that indicates delegation (referral), it should resolve a query iteratively.
+The below figure is an example of an iterative query resolution that is possible in our setup.
+![a5_p2]({{site.baseurl}}/assets/img/assignments/assignment5/A5_P2.png)    
 
 #### Specification
 You can find the step-by-step specifications in the source code as well.
 * The servers should receive a message on top of UDP.
-* Initialize a server-wide context (e.g., DNS records) using TDNSInit(). The context will be used for future DNS-related operations such as searching for a DNS entry.
-* Create a zone using `TDNSCreateZone` and add entries to the server `TDNSAddRecord`. You should be able to infer the contents of entries from the comments in the source code and the topology figure.
+* Initialize a server-wide context (e.g., DNS records) using TDNSInit(). The context will be used for future DNS-related operations such as searching for a DNS record.
+* Create a zone using `TDNSCreateZone` and add records to the server `TDNSAddRecord`. You should be able to infer the contents of records from the comments in the source code and the topology figure.
 * Receive a message continuously and parse it using `TDNSParseMsg()`.
-* If the received message is a query for A, AAAA, or NS, find the corresponding entry using `TDNSFind()`. Ignore all the other messages.
-    1. If the entry is found and the entry indicates delegation, send an iterative query to the corresponding nameserver. Note that the server should store a per-query context using `putAddrQID()` and `putNSQID()` for future response handling.
-    2. If the entry is found and the entry doesn't indicate delegation, send a response back to the client.
-    3. If the entry is not found, send a response back to the client. (The library would set the error flag.)
+* If the received message is a query for A, AAAA, or NS, find the corresponding record using `TDNSFind()`. Ignore all the other messages.
+    1. If the record is found and the record indicates delegation, send an iterative query to the corresponding nameserver. Note that the server should store a per-query context using `putAddrQID()` and `putNSQID()` for future response handling.
+    2. If the record is found and the record doesn't indicate delegation, send a response back to the client.
+    3. If the record is not found, send a response back to the client. (The library would set the error flag.)
 * If the received message is a response
     1. and it is an authoritative response (i.e., final response), add the NS information to the response and send it to the original client. Delete a per-query context using `delAddrQID()` and `putNSQID()`. You can retrieve the NS and client address information for the response using `getNSbyQID()` and `getAddrbyQID()`. You can add the NS information to the response using `TDNSPutNStoMessage()`.  
     2. and it is a non-authoritative response (i.e., it indicates delegation), send an iterative query to the corresponding nameserver. You can extract the query from the response using `TDNSGetIterQuery()`. The server should update a per-query context using `putNSQID()`.
@@ -84,13 +87,13 @@ You can find the step-by-step specifications in the source code as well.
 `$ dig A www.utexas.edu`     
 `$ dig A abc.utexas.edu`     
 `$ dig A cs.utexas.edu`      
-`$ dig A utns.cs.utexas.edu`    
+`$ dig A aquila.cs.utexas.edu`    
 `$ dig A abc.utexas.edu`   
 
 4. Try to use domain names with `$ ping`.    
 The `-n` flag is necessary since the servers ignore a reverse query (PTR).   
 `$ ping -n www.utexas.edu`    
-`$ ping -n utns.cs.utexas.edu`    
+`$ ping -n aquila.cs.utexas.edu`    
 
 ### Submission
 Please submit your code (modified assignment4 repository) to the Canvas Assignments page in either `tar.gz` or `zip` format.  
@@ -114,9 +117,9 @@ enum TDNSType
 
 
 /* Server-wide context */
-/* Maintains DNS entries in a hierarchical manner */
+/* Maintains DNS records in a hierarchical manner */
 /* and per-query contexts for handling iterative queries */
-/* In the assignment, the server can contain only two kinds of entries. */
+/* In the assignment, the server can contain only two kinds of records. */
 /* One contains an IP address, and the other points to another nameserver */
 struct TDNSServerContext;
 
@@ -155,15 +158,15 @@ struct TDNSServerContext *TDNSInit(void);
 /* e.g., TDNSCreateZone(ctx, "google.com") */
 void TDNSCreateZone (struct TDNSServerContext *ctx, const char *zoneurl);
 
-/* Adds either an NS entry or A entry for the subdomain in the zone */
-/* A entry example*/
-/* e.g., TDNSAddEntry(ctx, "google.com", "www", "123.123.123.123", NULL) */
-/* NS entry example */
+/* Adds either an NS record or A record for the subdomain in the zone */
+/* A record example*/
+/* e.g., TDNSAddRecord(ctx, "google.com", "www", "123.123.123.123", NULL) */
+/* NS record example */
 /* Below will also implicitly create a maps.google.com zone */
-/* e.g., TDNSAddEntry(ctx, "google.com", "maps", NULL, "ns.maps.google.com")*/
+/* e.g., TDNSAddRecord(ctx, "google.com", "maps", NULL, "ns.maps.google.com")*/
 /* Then you can add an IP for ns.maps.google.com like below */
-/* e.g., TDNSAddEntry(ctx, "maps.google.com", "ns", "111.111.111.111", NULL)*/
-void TDNSAddEntry (struct TDNSServerContext *ctx, const char *zoneurl, const char *subdomain, const char *IPv4, const char* NS);
+/* e.g., TDNSAddRecord(ctx, "maps.google.com", "ns", "111.111.111.111", NULL)*/
+void TDNSAddRecord (struct TDNSServerContext *ctx, const char *zoneurl, const char *subdomain, const char *IPv4, const char* NS);
 
 /* Parses a DNS message and stores the result in `parsed` */
 /* Returns 0 if the message is a query, 1 if it's a response */ */
@@ -172,10 +175,10 @@ void TDNSAddEntry (struct TDNSServerContext *ctx, const char *zoneurl, const cha
 /* the IP address and domain name for the referred nameserver */
 uint8_t TDNSParseMsg (const char *message, uint64_t size, struct TDNSParseResult *parsed);
 
-/* Finds a DNS entry for the query represented by `parsed` and stores the result in `result`*/
-/* Returns 0 if it fails to find a corresponding entry */
-/* Returns 1 if it finds a corresponding entry */
-/* If the entry indicates delegation, result->delegate_ip will store */
+/* Finds a DNS record for the query represented by `parsed` and stores the result in `result`*/
+/* Returns 0 if it fails to find a corresponding record */
+/* Returns 1 if it finds a corresponding record */
+/* If the record indicates delegation, result->delegate_ip will store */
 /* the IP address to which it delegates the query */
 uint8_t TDNSFind (struct TDNSServerContext* context, struct TDNSParseResult *parsed, struct TDNSFindResult *result);
 
@@ -202,8 +205,6 @@ void putNSQID(struct TDNSServerContext* context, uint16_t qid, const char *nsIP,
 void getNSbyQID(struct TDNSServerContext* context, uint16_t qid, const char **nsIP, const char **nsDomain);
 void delNSQID(struct TDNSServerContext* context, uint16_t qid);
 
-/* unused */
-void TDNSAddPTREntry (struct TDNSServerContext *ctx, const char *zone, const char *IP, const char *domain);
 ```
 
 
