@@ -1,7 +1,8 @@
 - date: T 01/16
   lecturer: 
   title: >
-    <strong>Course overview & Intro to computer networks</strong> slides: https://drive.google.com/file/d/1-6rQfvLFvTjhLC14eMuDkZ8sRHe439_X/view?usp=drive_link
+    <strong>Course overview & Intro to computer networks</strong> 
+  slides: https://drive.google.com/file/d/1-6rQfvLFvTjhLC14eMuDkZ8sRHe439_X/view?usp=drive_link
   video: 
   notes:
   readings:
@@ -331,7 +332,7 @@
     <strong>Quiz 3</strong>
   logistics:
 
-- date: F 04/26
+- date: M 04/29
   lecturer:
   quiz: >
     <strong></strong>
