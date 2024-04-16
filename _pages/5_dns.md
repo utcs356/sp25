@@ -31,7 +31,7 @@ You can find the step-by-step specifications in the starter codes as well.
 
 #### Test your implementation
 1. Compile your code with `$ make` in the lab's shared directory (`[a5_directory]/labs/dns/shared`). The compiled binary would be in the `[a5_directory]/labs/dns/shared/bin` directory.
-2. Run a server on the corresponding Kathara node.   
+2. Run a server on the corresponding Kathara node. Make sure to start an experiment with `$ kathara lstart`.   
 For testing `ut-dns.c`,     
 `$ kathara connect ut_dns`   
 `$ ./shared/bin/ut-dns`    
@@ -72,6 +72,8 @@ You can find the step-by-step specifications in the source code as well.
 ### Test your implementation
 1. Compile your code with `$ make` in the lab's shared directory (`[a5_directory]/labs/dns/shared`). The compiled binary would be in the `[a5_directory]/labs/dns/shared/bin` directory.
 2. Run the DNS servers on the corresponding Kathara nodes. 
+* Run a Kathara experiment.  
+`$ kathara lstart`   
 * Run the UT nameserver.  
 `$ kathara connect ut_dns`   
 `$ ./shared/bin/ut-dns`    
@@ -80,17 +82,18 @@ You can find the step-by-step specifications in the source code as well.
 `$ ./shared/bin/cs-dns`  
 * Run the local DNS server.    
 `$ kathara connect local_dns`    
-`$ ./shared/bin/local-dns`     
-3. Send A queries and check the response with `$ dig`.       
+`$ ./shared/bin/local-dns`    
+3. Configure the local DNS server on `h1`.    
 `$ kathara connect h1`         
+`$ echo "nameserver 20.0.0.10" >> /etc/resolv.conf`   
+4. Send A queries and check the response with `$ dig` on `h1`.       
 `$ dig A ns.utexas.edu`       
 `$ dig A www.utexas.edu`     
 `$ dig A abc.utexas.edu`     
 `$ dig A cs.utexas.edu`      
 `$ dig A aquila.cs.utexas.edu`    
 `$ dig A abc.utexas.edu`   
-
-4. Try to use domain names with `$ ping`.    
+5. Try to use domain names with `$ ping`.    
 The `-n` flag is necessary since the servers ignore a reverse query (PTR).   
 `$ ping -n www.utexas.edu`    
 `$ ping -n aquila.cs.utexas.edu`    
