@@ -26,6 +26,7 @@ The course is structured around lectures by the instructor with open discussion.
 * Naming and addressing
 * Internet routing
 * Transport layer protocols
+* Network resource management
 * Applications (HTTP, DNS, etc.)
 * Content distribution networks
 * Peer-to-peer networks 
