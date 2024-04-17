@@ -26,11 +26,10 @@ The course is structured around lectures by the instructor with open discussion.
 * Naming and addressing
 * Internet routing
 * Transport layer protocols
-* Network security
 * Applications (HTTP, DNS, etc.)
-* Wireless and cellular networks
-* Data center networks
-* Programmable networks
+* Content distribution networks
+* Peer-to-peer networks 
+* Network security
 
 
 ### Prerequisites
