@@ -296,7 +296,7 @@
 - date: T 04/16
   lecturer:
   title: >
-    <strong>P2P and Security (1)</strong>
+    <strong>Peer-to-peer (P2P) networks</strong>
   recitation: 
   slides: https://drive.google.com/file/d/1KJr_oSt0D5oNo-T7iCy-q-nLZ0oz2cKu/view?usp=drive_link
   notes: 
@@ -307,7 +307,7 @@
 - date: Th 04/18
   lecturer:
   title: >
-    <strong>Security (2) and Programmable networks (1)</strong>
+    <strong>P2P (cont'd) and Network security (1)</strong>
   recitation: 
   slides: 
   notes: 
@@ -318,7 +318,7 @@
 - date: T 04/23
   lecturer:
   title: >
-    <strong>Programmable networks (2) and Wrap up</strong>
+    <strong>Network security (2)</strong>
   recitation: 
   slides: 
   notes: 
