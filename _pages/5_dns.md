@@ -33,7 +33,7 @@ You can find the step-by-step specifications in the starter codes as well.
 1. Compile your code with `$ make` in the lab's shared directory (`[a5_directory]/labs/dns/shared`). The compiled binary would be in the `[a5_directory]/labs/dns/shared/bin` directory.
 2. Run a server on the corresponding Kathara node. Make sure to start an experiment with `$ kathara lstart`.   
 For testing `ut-dns.c`,     
-`$ kathara connect ut_dns`   
+`$ kathara connect ut_dns`      
 `$ ./shared/bin/ut-dns`    
 For testing `cs-dns.c`,    
 `$ kathara connect cs_dns`   
@@ -48,7 +48,7 @@ For testing `cs-dns.c`,
 * For testing `cs-dns.c`, run below on `h1`.   
 `$ dig @50.0.0.30 A cs.utexas.edu`     
 `$ dig @50.0.0.30 A aquila.cs.utexas.edu`     
-`$ dig @40.0.0.20 A thisshouldfail.cs.utexas.edu`     
+`$ dig @50.0.0.30 A thisshouldfail.cs.utexas.edu`     
 
 ### Part 2: An Iterative Local DNS Server
 Your task is to complete `local-dns.c` in the `[a5_directory]/labs/dns/shared/src` directory. `local-dns.c` is a default nameserver for the on-campus network. Note that it is an iterative DNS server, so its response should be always an answer or error. If it receives a DNS record that indicates delegation (referral), it should resolve a query iteratively.
@@ -127,15 +127,18 @@ enum TDNSType
 struct TDNSServerContext;
 
 
-/* Result for TDNSParseMsg */
+/* Result for TDNSParseMsg and TDNSFind (only for delegation) */
 struct TDNSParseResult {
   struct dnsheader *dh; /* parsed dnsheader, you need this in Part 2 */
   uint16_t qtype; /* query type, the value should be one of enum TDNSType values */
   const char *qname; /* query name (i.e. domain name for A type query) */
   uint16_t qclass; /* query class */
 
-  /* Below are for handling a referral response (delegation). */ 
-  /* These should be NULL if it's not a referral response */
+  /* Below are for handling delegation. */
+  /* These should be NULL if there's no delegation */
+  /* These are updated in two cases */
+  /* 1. If the parsed message is a referral response (TDNSParseMsg()) */
+  /* 2. If the found DNS record indicates delegation (TDNSFind()) */
   const char *nsIP;  /* an IP address to the nameserver */
   const char *nsDomain; /* an IP address to the nameserver */
 };
@@ -145,8 +148,8 @@ struct TDNSFindResult {
   char serialized[MAX_RESPONSE]; /* a DNS response string based on the search result */
   ssize_t len; /* the response string's length */
   
-  /* Below is for delegation */
-  const char *delegate_ip; /* IP to the nameserver to which a server delegates a query */
+  /* Unused, ignore this. */
+  const char *delegate_ip;
 };
 
 /*************************/
@@ -181,7 +184,7 @@ uint8_t TDNSParseMsg (const char *message, uint64_t size, struct TDNSParseResult
 /* Finds a DNS record for the query represented by `parsed` and stores the result in `result`*/
 /* Returns 0 if it fails to find a corresponding record */
 /* Returns 1 if it finds a corresponding record */
-/* If the record indicates delegation, result->delegate_ip (or parsed->nsIP) will store */
+/* If the record indicates delegation, parsed->nsIP will store */
 /* the IP address to which it delegates the query */
 /* parsed->nsDomain will store the domain name to which it delegates the query. */
 uint8_t TDNSFind (struct TDNSServerContext* context, struct TDNSParseResult *parsed, struct TDNSFindResult *result);
