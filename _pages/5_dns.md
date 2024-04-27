@@ -66,7 +66,7 @@ You can find the step-by-step specifications in the source code as well.
     2. If the record is found and the record doesn't indicate delegation, send a response back to the client.
     3. If the record is not found, send a response back to the client. (The library would set the error flag.)
 * If the received message is a response
-    1. and it is an authoritative response (i.e., final response), add the NS information to the response and send it to the original client. Delete a per-query context using `delAddrQID()` and `putNSQID()`. You can retrieve the NS and client address information for the response using `getNSbyQID()` and `getAddrbyQID()`. You can add the NS information to the response using `TDNSPutNStoMessage()`.  
+    1. and it is an authoritative response (i.e., final response), add the NS information to the response and send it to the original client. Delete a per-query context using `delAddrQID()` and `delNSQID()`. You can retrieve the NS and client address information for the response using `getNSbyQID()` and `getAddrbyQID()`. You can add the NS information to the response using `TDNSPutNStoMessage()`.  
     2. and it is a non-authoritative response (i.e., it indicates delegation), send an iterative query to the corresponding nameserver. You can extract the query from the response using `TDNSGetIterQuery()`. The server should update a per-query context using `putNSQID()`.
 
 ### Test your implementation
