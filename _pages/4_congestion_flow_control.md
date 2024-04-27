@@ -4,6 +4,9 @@ permalink: /assignments/assignment4
 title: "Assignment 4: Reliable Transport Protocol"
 ---
 
+* (The list will be replaced with the table of contents.)
+{:toc}
+
 ### Part 0: Setup and Overview
 #### Setup
 In this assignment, we recommend you use `cs356-base` or `cs356-p4` profile on CloudLab for implementing and testing your code.
