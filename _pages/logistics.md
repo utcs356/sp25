@@ -11,41 +11,16 @@ title: Logistics
 
 ### Communication
 
-[Ed discussion](https://edstem.org/us/courses/61972/) is intended for all announcements, general questions about the course, clarifications about assignments, student questions to each other, discussions about the material, and so on.
-
-***
-
-### Course Organization
-
-**Paper reading response**
-<br/>
-The reading list is posted on the [schedule](/schedule) page. You are required to
-post reading a response to [Ed
-discussion](https://edstem.org/us/courses/61972/) by 6PM the day
-before the class. The response include a short summary of each paper, and your
-opinion of the paper.
-
-**In-class paper discussion**
-<br/>
-You will lead the paper discussion in classes. Presentation slides are optional.
-Your goal is to keep the discussion moving along by providing necessary context
-and background of the paper.
-
-**Research project**
-<br/>
-The course project is an open-ended research project, done in groups of two or
-three. A list of potential project ideas is [here](https://docs.google.com/document/d/1Xg-3SyGgReQNZsVCMINAjBHkuqiwNQ7Vx6vSeaeMNEc/edit?usp=sharing).
-You are required to submit a proposal and a final report. There will be a
-in-class final presentation.
+[Ed discussion](https://edstem.org/us/courses/50367) is intended for all announcements, general questions about the course, clarifications about assignments, student questions to each other, discussions about the material, and so on.
 
 ***
 
 ### Grading
-* Paper reading response (20%)
-* In-class paper discussion leadership (20%)
-* Research project with a final presentation and report (50%)
-* In-class participation (10%)
-* Grades will be uploaded to [Canvas](https://utexas.instructure.com/courses/1402239).
+
+* Quizzes (30%): There will be three in-class quizzes.
+* Programming assignments (60%): There will be five programming assignments.
+* Class participation (10%): Students are expected to attend class, actively ask questions and participate in discussions.
+* Grades will be uploaded to [Canvas](https://utexas.instructure.com/courses/1384497).
 
 #### Letter grade assignments
 * 100-93%: A
@@ -60,6 +35,37 @@ in-class final presentation.
 * 66.99-63%: D
 * 62.99-60.01%: D-
 * 60-0%: F
+
+***
+
+### Programming Assignments
+
+The course will be quite hands-on. We will have five programming assignments. In
+general, the programming assignments will be done in groups of one or two. Each project
+will be due 2-3 weeks after it is assigned. 
+
+Prior experience has shown that
+students who begin projects shortly after they are assigned are more likely to
+succeed. Projects submitted after the day and time they are due will be
+penalized 10% of the total points of the assignment per day unless you have
+made prior arrangements with me due to extenuating circumstances.
+
+You should pick your own group members for your projects, but you may use the
+Ed discussion to find group members. You can just switch group members between projects, but please check with the instructor and TA
+first (send us a private message via Ed). Completing a project individually requires the instructor's prior approval.
+
+All code and results you submit must be the original work of your group.
+Cheating and plagiarism will not be tolerated and will be dealt with in
+accordance with the [University of Texas policies and
+procedures](https://deanofstudents.utexas.edu/conduct/index.php).
+
+***  
+
+### Quizzes
+
+There will be three in-class quizzes. The quizzes will be closed-book and notes.
+
+Each quiz will count equally toward the overall quiz grade.
 
 ***
 

@@ -2,15 +2,15 @@
 # Site settings
 # -----------------------------------------------------------------------------
 author: 
-name: "CS 395T: Advanced Topics in Computer Networks"
-title: Advanced Topics in Computer Networks
+name: "CS 356: Computer Networks"
+title: Computer Networks
 email: 
 description: >
-  CS 395T - Advanced Topics in Computer Networks - The University of Texas at Austin - Fall 2024
+  CS 356 - Computer Networks - The University of Texas at Austin - Spring 2024
 footer_text: >
   Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
 
-url: https://utadvnetworks.github.io  # the base hostname & protocol for your site
+url: https://utcs356.github.io  # the base hostname & protocol for your site
 baseurl: "/" # the subpath of your site, e.g. /blog/
 
 # -----------------------------------------------------------------------------

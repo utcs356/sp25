@@ -1,53 +1,47 @@
 ---
 layout: about
 permalink: /
-title: Welcome to Adv. Topics in Computer Networks, Fall 2024 Edition!
-description: CS 395T Advanced Topics in Computer Networks - University of Texas at Austin
+title: Welcome to CS 356, Spring 2024 Edition!
+description: CS 356 Computer Networks - University of Texas at Austin
 logo: 
 news: true
 ---
 
 ### Course Overview
 
-This is a graduate-level course on computer networking. In this course
-we will explore both classic and recent topics in computer networking. The
-objectives of this course are:
+This is an introductory course in computer networks that is suitable for undergraduate and beginning graduate students. The course will explore computer networks and network protocols, both from a conceptual and implementation standpoint. The main focus of the course will be on foundational ideas, architecture, protocols, and software used in networks that make up the Internet. The course aims to achieve the following goals:
 
-* To understand the history of computer networking, state-of-the-art network protocols at various layers, network architectures, and networked systems. 
-* To critically review research papers in computer networking and networked systems.
-* To explore research problems and investigate new ideas through a semester-long research project.
+* To learn what computer networks are and how they work today
+* To understand why they are designed the way they are and how they are likely to evolve
+* To learn how to write networked applications and services and program software routers through programming assignments
 
-The course is structured around lectures by the instructor and paper
-readings/presentations by the students with open discussion. Students will form
-a project group (two or three students) and conduct a research project on
-computer networks or networked systems.
+The course is structured around lectures by the instructor with open discussion. Students will form groups of one or two people for programming assignments.
 
 
-### Reference books
-* [Computer Networks: Systems Approach](https://book.systemsapproach.org/){:target="\_blank"} (available online) by Larry Peterson and Bruce Davie
-* [Software-Defined Networks: A Systems Approach](https://sdn.systemsapproach.org/index.html){:target="\_blank"} (available online) by Larry Peterson, Carmelo Cascone, Brian O’Connor, Thomas Vachuska, and Bruce Davie
+### Textbook
+* Required: [Computer Networks: Systems Approach](https://book.systemsapproach.org/){:target="\_blank"} (available online) by Larry Peterson and Bruce Davie
 
 ### Topics
-* Network architectures
-* Inter-domain routing
-* Congestion control
-* Data centers
-* Software-defined networking 
-* Programmable data plane
-* Emerging interconnects (e.g., CXL) 
-* ML for networking
-* Application-layer networking (e.g., Service mesh)
-* Cellular network architecture
+* Physical and data link layer protocols
+* Naming and addressing
+* Internet routing
+* Transport layer protocols
+* Network resource management
+* Applications (HTTP, DNS, etc.)
+* Content distribution networks
+* Peer-to-peer networks 
+* Network security
+
 
 ### Prerequisites
-* CS 356 (Computer Networks) or equivalent
-* C and Python programming experience
+- CS 439 (Principles of Computer Systems) or equivalent
+- C and Python programming experience
 
 ***
 
-- **Unique number:** 50875
-- **Time:** Tuesday & Thursday 3:30 PM - 5:00 PM
-- **Location:** GDC 1.406
-- **Discussion:** [Ed discussion](https://edstem.org/us/courses/61972){:target="\_blank"}
+- **Unique number:** 51085
+- **Time:** Tuesday & Thursday 9:30 AM - 10:45 AM
+- **Location:** GDC 1.304 
+- **Discussion:** [Ed discussion](https://edstem.org/us/courses/50367){:target="\_blank"}
 
 ***
