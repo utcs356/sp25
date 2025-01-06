@@ -1,8 +1,8 @@
-- date: T 01/16
+- date: T 01/14
   lecturer: 
   title: >
-    <strong>Course overview & Intro to computer networks</strong> 
-  slides: https://drive.google.com/file/d/1-6rQfvLFvTjhLC14eMuDkZ8sRHe439_X/view?usp=drive_link
+    <strong>Course overview & Introduction</strong> 
+  slides:
   video: 
   notes:
   readings:
@@ -10,35 +10,35 @@
   logistics:
     - Assignment 0 is out
 
-- date: Th 01/18
+- date: Th 01/16
   lecturer: 
   title: >
     <strong>Design requirements</strong>
-  slides: https://drive.google.com/file/d/1-K_bSeYhUbiSYROW_2v_3SE_w-0DqRgB/view?usp=drive_link
+  slides: 
   video: 
   notes:
   readings:
   - P&D 1.2.3 - 1.2.5
   logistics:
 
-- date: T 01/23
+- date: T 01/21
   lecturer:
   title: >
     <strong>Architecture</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1FkVQeiHj4sr5Vzdmk_97fvpSua87b_DA/view?usp=drive_link
+  slides:
   notes: 
   video: 
   readings:
   - P&D 1.3 
   logistics:
 
-- date: Th 01/25
+- date: Th 01/23
   lecturer:
   title: >
-    <strong>Performance metrics & Sockets </strong>
+    <strong>Performance metrics & Socket APIs</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1Fq7x02fZ9qw7xnjSuLp1QXXB-ueR9WKu/view?usp=drive_link 
+  slides: 
   notes: 
   video: 
   readings:
@@ -47,60 +47,60 @@
   - Assignment 0 is due <br/>
   - Assignment 1 is out
 
-- date: T 01/30
+- date: T 01/28
   lecturer:
   title: >
     <strong>Link layer: Encoding & Framing</strong>
   recitation: 
-  slides:  https://drive.google.com/file/d/1G6V-d8kw_3KYD9zlKWILsi8NSNDK-I2F/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
   - P&D 2.1 - 2.3
   logistics:
 
-- date: Th 02/01
+- date: Th 01/30
   lecturer:
   title: >
     <strong>Error Detection & Reliability</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1GKgwSDPG5YgQrYEgoVGluImXbE2VV8KU/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
   - P&D 2.4 - 2.5
   logistics:
 
-- date: T 02/06
+- date: T 02/04
   lecturer:
   title: >
     <strong>Ethernet</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1GhE8FlKR23gqb7sbvfgS-A629J3JVb4m/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
   - P&D 2.6
   logistics:
 
-- date: Th 02/08
+- date: Th 02/06
   lecturer:
   title: >
     <strong>Wireless Links</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1GvEtqco3EXRkTxbCZn33SnWPPFPQUsEx/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
   - P&D 2.7
   logistics:
 
-- date: T 02/13
+- date: T 02/11
   lecturer:
   title: >
     <strong>P4 programming</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1GxoCLCfH7m1oe-KBi-xgYEziEgwVIUyV/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
@@ -109,65 +109,65 @@
   - Assignment 1 is due
   - Assignment 2 is out
 
-- date: Th 02/15
+- date: Th 02/13
   quiz: >
     <strong>Quiz 1</strong>
   logistics:
 
-- date: T 02/20
+- date: T 02/18
   lecturer:
   title: >
     <strong>Switching</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1H4HF9jL_YARi1_UPbCYNQHw3jUUif1Yc/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
   - P&D 3.1 and 3.2
   logistics:
 
-- date: Th 02/22
+- date: Th 02/20
   lecturer:
   title: >
     <strong>Internet protocol (IP)</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1HB_ul0Kr5eWLYgBJrPbPt1NQcNLORhNi/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
   - P&D 3.3.1 -- 3.3.4
   logistics:
 
-- date: T 02/27
+- date: T 02/25
   lecturer:
   title: >
-    <strong>Subnetting & ARP/DHCP/ICMP</strong>
+    <strong>Subnets & ARP/DHCP/ICMP</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1HOVn3wzSwf5qEj_FjTNEp7MUfWk9vhCt/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
   - P&D 3.3.5 -- 3.3.8
   logistics:
 
-- date: Th 02/29
+- date: Th 02/27
   lecturer:
   title: >
     <strong>Intra-domain routing</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1HlIPawQRvH5nQhUJUu9VXPdKL0TVYFhh/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
   - P&D 3.4
   logistics:
 
-- date: T 03/05
+- date: T 03/04
   lecturer:
   title: >
     <strong>Inter-domain routing</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1IV4mc5SlaM65BqEs8W6RWo96YYwonQUl/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
@@ -175,12 +175,12 @@
   logistics:
   - Assignment 2 is due
 
-- date: Th 03/07
+- date: Th 03/06
   lecturer:
   title: >
-    <strong>UDP and TCP basics</strong>
+    <strong>Transport layer basics</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1IYk9TXiSNLIsPmP9pejchD5yfPnicDn6/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
@@ -188,55 +188,55 @@
   logistics:
   - Assignment 3 is out
 
-- date: T 03/12
+- date: T 03/11
   lecturer:
   quiz: >
     <strong>Spring break - No Classes</strong>
   logistics:
 
-- date: Th 03/14
+- date: Th 03/13
   lecturer:
   quiz: >
     <strong>Spring break - No Classes</strong>
   logistics:
 
 
-- date: T 03/19
+- date: T 03/18
   lecturer:
   title: >
     <strong>TCP sliding window</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1IiEA70Hd_FFXg3UdZCdIZUT8lsvZ-RqL/view?usp=drive_link 
+  slides: 
   notes: 
   video: 
   readings:
   - P&D 5.2
   logistics:
 
-- date: Th 03/21
+- date: Th 03/20
   lecturer:
   quiz: >
     <strong>Quiz 2</strong>
   logistics:
 
-- date: T 03/26
+- date: T 03/25
   lecturer:
   title: >
     <strong>TCP sliding window (cont'd) and Resource allocation</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1J5gsd8fntYBg82PtA50c-3JZv9aFqkFq/view?usp=drive_link 
+  slides: 
   notes: 
   video: 
   readings:
   - P&D 6.2
   logistics:
 
-- date: Th 03/28
+- date: Th 03/27
   lecturer:
   title: >
     <strong>Queuing disciplines and Congestion control (1)</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1J6GUujejPAfsCVhW9e8GpidI7qQ508RN/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
@@ -245,12 +245,12 @@
   - Assignment 3 is due
   - Assignment 4 is out
 
-- date: T 04/02
+- date: T 04/01
   lecturer:
   title: >
     <strong>Congestion control (2)</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1Jj0WqoUtZt-ud7nRtuEN9NsK9PcH6fzH/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings:
@@ -258,34 +258,34 @@
   logistics:
 
 
-- date: Th 04/04
+- date: Th 04/03
   lecturer:
   title: >
     <strong>Domain name system (DNS)</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1Joko-wfeGvGDoD2CcnQ0RT_21TuXwMGK/view?usp=drive_link
+  slides:
   notes: 
   video: 
   readings: P&D 9.3.1
   logistics:
 
-- date: T 04/09
+- date: T 04/08
   lecturer:
   title: >
     <strong>Web and Email</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1JtWzOO6FNsymqVbkXWpTh7BmrAMcYHZp/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings: P&D 9.1
   logistics:
 
-- date: Th 04/11
+- date: Th 04/10
   lecturer:
   title: >
     <strong>Content distribution network (CDN)</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1K2hlilymN8wT59SxJyU8quXM4GTLRSmo/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings: P&D 9.4.3
@@ -293,46 +293,46 @@
   - Assignment 4 is due
   - Assignment 5 is out
 
-- date: T 04/16
+- date: T 04/15
   lecturer:
   title: >
     <strong>Peer-to-peer (P2P) networks</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1KJr_oSt0D5oNo-T7iCy-q-nLZ0oz2cKu/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings: P&D 9.4.2
   logistics:
 
-- date: Th 04/18
+- date: Th 04/17
   lecturer:
   title: >
     <strong>P2P (cont'd) and Network security (1)</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1KetWs6Nrnm6S_acq_LruHh6hL87cwC6H/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings: P&D 8.1--8.2
   logistics:
 
-- date: T 04/23
+- date: T 04/22
   lecturer:
   title: >
     <strong>Network security (2)</strong>
   recitation: 
-  slides: https://drive.google.com/file/d/1KrzsV30GCQwOZ7pV74KiG2rBSFDITCf-/view?usp=drive_link
+  slides: 
   notes: 
   video: 
   readings: P&D 8.3--8.5
   logistics:
 
-- date: Th 04/25
+- date: Th 04/24
   lecturer:
   quiz: >
     <strong>Quiz 3</strong>
   logistics:
 
-- date: M 04/29
+- date: M 04/28
   lecturer:
   quiz: >
     <strong></strong>
