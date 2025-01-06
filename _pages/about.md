@@ -9,19 +9,25 @@ news: true
 
 ### Course Overview
 
-This is an introductory course in computer networks that is suitable for undergraduate and beginning graduate students. The course will explore computer networks and network protocols, both from a conceptual and implementation standpoint. The main focus of the course will be on foundational ideas, architecture, protocols, and software used in networks that make up the Internet. The course aims to achieve the following goals:
+Welcome to CS 356, Computer Networks! This course offers an engaging introduction to the world of networks, suitable for undergraduate and beginning graduate students. We will delve into the core principles and practical aspects of computer networking, from the protocols powering the Internet to building your own networked applications.
 
-* To learn what computer networks are and how they work today
-* To understand why they are designed the way they are and how they are likely to evolve
-* To learn how to write networked applications and services and program software routers through programming assignments
+In this course, you will:
+* Learn how computer networks function and enable global communication.
+* Understand the design choices behind modern networks and anticipate future trends.
+* Build your own networked applications and software routers through hands-on programming assignments.
 
-The course is structured around lectures by the instructor with open discussion. Students will form groups of one or two people for programming assignments.
-
+Classes will combine interactive lectures, lively discussions, and collaborative programming projects. Whether you are passionate about systems, curious about how the Internet works, or aiming to develop scalable networked software, this course will equip you with essential skills and insights.
 
 ### Textbook
-* Required: [Computer Networks: Systems Approach](https://book.systemsapproach.org/){:target="\_blank"} (available online) by Larry Peterson and Bruce Davie
+No required textbook, but the following resources are highly recommended for further reading:
+* [Computer Networks: Systems Approach](https://book.systemsapproach.org/){:target="\_blank"} (available online) by Larry Peterson and Bruce Davie (P&D)
+* [Computer Networking: A Top-Down Approach](https://gaia.cs.umass.edu/kurose_ross/index.php){:target="\_blank"} by Jim Kurose and Keith Ross (K&R)
 
-### Topics
+Relevant chapters will be highlighted in the course schedule.
+
+### Topics covered
+Throughout the semester, we’ll cover key topics such as:
+
 * Physical and data link layer protocols
 * Naming and addressing
 * Internet routing
@@ -31,7 +37,6 @@ The course is structured around lectures by the instructor with open discussion.
 * Content distribution networks
 * Peer-to-peer networks 
 * Network security
-
 
 ### Prerequisites
 - CS 439 (Principles of Computer Systems) or equivalent
