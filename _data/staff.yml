@@ -7,9 +7,24 @@ Instructors:
       location:  GDC 6.824
 
 TAs:
+    - name: Donghyun Kim
+      email: donghyun@utexas.edu
+      url:
+      office-hours: TBD
+      location:  GDC 6.100 (Atrium Bridge)
+      image: staff/donghyun.jpg
+
     - name: Jeongyoon Moon
       email: jeongyoonm@utexas.edu
       url:
-      office-hours: Wed 4pm - 5pm
+      office-hours: TBD
       location:  GDC 6.100 (Atrium Bridge)
       image: staff/jeongyoon.jpg
+
+CAs:
+    - name: Eric Xu
+      email: exu@utexas.edu
+      url:
+      office-hours: TBD
+      location:  GDC 6.100 (Atrium Bridge)
+      image: staff/generic.jpeg
