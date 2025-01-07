@@ -1,35 +1,5 @@
-- release_date: 01/16/2024
-  due_date: 01/25/2024
+- release_date: 01/14/2025
+  due_date: 01/23/2025
   number: 0
   title: >
     Cloudlab and Kathara
-
-- release_date: 01/25/2024
-  due_date: 02/13/2024
-  number: 1
-  title: >
-    Socket Programming and Measurement
-
-- release_date: 02/13/2024
-  due_date: 03/05/2024
-  number: 2
-  title: >
-    Software Switch and Router with P4 
-
-- release_date: 03/07/2024
-  due_date: 03/28/2024
-  number: 3
-  title: >
-    Supporting ARP, ICMP, RIP in the Router
-
-- release_date: 03/28/2024
-  due_date: 04/11/2024
-  number: 4
-  title: >
-    Reliable Transport Protocol
-
-- release_date: 04/11/2024
-  due_date: 04/29/2024
-  number: 5
-  title: >
-    Hierarchical DNS
