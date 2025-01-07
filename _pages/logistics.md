@@ -11,7 +11,7 @@ title: Logistics
 
 ### Communication
 
-[Ed discussion](https://edstem.org/us/courses/50367) is intended for all announcements, general questions about the course, clarifications about assignments, student questions to each other, discussions about the material, and so on.
+[Ed](https://edstem.org/us/courses/71813) is intended for all announcements, general questions about the course, clarifications about assignments, student questions to each other, discussions about the material, and so on.
 
 ***
 
@@ -20,20 +20,20 @@ title: Logistics
 * Quizzes (30%): There will be three in-class quizzes.
 * Programming assignments (60%): There will be five programming assignments.
 * Class participation (10%): Students are expected to attend class, actively ask questions and participate in discussions.
-* Grades will be uploaded to [Canvas](https://utexas.instructure.com/courses/1384497).
+* Grades will be uploaded to [Canvas](https://utexas.instructure.com/courses/1414169).
 
 #### Letter grade assignments
-* 100-93%: A
-* 92.99-90%: A-
+* 100-94%: A
+* 93.99-90%: A-
 * 89.99-87%: B+
-* 86.99-83%: B
-* 82.99-80%: B-
+* 86.99-84%: B
+* 83.99-80%: B-
 * 79.99-77%: C+
-* 76.99-73%: C
-* 72.99-70%: C-
+* 76.99-74%: C
+* 73.99-70%: C-
 * 69.99-67%: D+
-* 66.99-63%: D
-* 62.99-60.01%: D-
+* 66.99-64%: D
+* 63.99-61%: D-
 * 60-0%: F
 
 ***
