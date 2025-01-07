@@ -13,16 +13,36 @@ title: Logistics
 
 [Ed](https://edstem.org/us/courses/71813) is intended for all announcements, general questions about the course, clarifications about assignments, student questions to each other, discussions about the material, and so on.
 
+
+***
+
+### Office hours
+
+The instructor and TA/UGCA will hold regular office hours to support your learning. We are happy to assist with questions about course material, projects, or any related concerns. To ensure office hours are productive and fair for everyone, please follow these guidelines:
+
+* **Come Prepared**: Before attending office hours, make a genuine effort to solve the problem on your own. If your question is about a project, ensure you have thoroughly read the project description and attempted an implementation. Please note that the instructor and TA/UGCA will not write code for you during office hours but will help guide you toward a solution.
+
+* **Respect the Queue**: Office hours will operate on a queue system. Each student will have a maximum of 10 minutes per turn. If you need additional help, you are welcome to rejoin the queue after your turn.
+
+These policies are in place to maximize the effectiveness of office hours and ensure that all students have an opportunity to receive support.
+
 ***
 
 ### Grading
 
-* Quizzes (30%): There will be three in-class quizzes.
-* Programming assignments (60%): There will be five programming assignments.
-* Class participation (10%): Students are expected to attend class, actively ask questions and participate in discussions.
+* **Quizzes (30%)**:  Three in-class quizzes will be conducted throughout the semester.
+* **Programming assignments (60%)**: Five programming assignments will reinforce key course concepts.
+* **Class participation (10%)**: Active participation includes attending class, asking questions, engaging in discussions, and answering pop-up quizzes.
 * Grades will be uploaded to [Canvas](https://utexas.instructure.com/courses/1414169).
 
+**Important Notes**:
+* There will be no extra credit opportunities at the end of the semester.
+* Grades will not be adjusted based on individual circumstances.
+
+Please ensure you understand the grading scheme and plan your work accordingly to meet course expectations.
+
 #### Letter grade assignments
+
 * 100-94%: A
 * 93.99-90%: A-
 * 89.99-87%: B+
@@ -40,70 +60,58 @@ title: Logistics
 
 ### Programming Assignments
 
-The course will be quite hands-on. We will have five programming assignments. In
-general, the programming assignments will be done in groups of one or two. Each project
-will be due 2-3 weeks after it is assigned. 
+This course will be highly hands-on, with five programming assignments designed to reinforce key concepts. Below are the key policies regarding these assignments:
+* **Group Work**: Programming assignments are generally completed in groups of **one or two students**. You are responsible for selecting your group members, and the Ed Discussion platform can be used to find partners if needed.
+  * You may switch group members between assignments, but **please consult the instructor in advance** by sending a private message via Ed.
+  * Working individually on a project requires **prior approval** from the instructor.
+* **Deadlines and Late Submissions**: Each assignment will be due approximately **2–3 weeks** after it is assigned.
+  * Starting early significantly improves your chances of success.
+  * Assignments submitted after the deadline will incur a **10% penalty** per day unless prior arrangements are made with the instructor due to **extenuating circumstances**.
+* **Academic Integrity**: All submitted **code and results must be the original work of your group**. Cheating and plagiarism will **not be tolerated** and will be handled according to the [University of Texas policies and procedures](https://deanofstudents.utexas.edu/conduct/index.php).
 
-Prior experience has shown that
-students who begin projects shortly after they are assigned are more likely to
-succeed. Projects submitted after the day and time they are due will be
-penalized 10% of the total points of the assignment per day unless you have
-made prior arrangements with me due to extenuating circumstances.
+Adhering to these guidelines ensures a fair and productive learning environment for everyone.
 
-You should pick your own group members for your projects, but you may use the
-Ed discussion to find group members. You can just switch group members between projects, but please check with the instructor and TA
-first (send us a private message via Ed). Completing a project individually requires the instructor's prior approval.
-
-All code and results you submit must be the original work of your group.
-Cheating and plagiarism will not be tolerated and will be dealt with in
-accordance with the [University of Texas policies and
-procedures](https://deanofstudents.utexas.edu/conduct/index.php).
 
 ***  
 
 ### Quizzes
 
-There will be three in-class quizzes. The quizzes will be closed-book and notes.
+There will be three in-class quizzes conducted on Canvas, so please bring your laptop to class on quiz days.
 
-Each quiz will count equally toward the overall quiz grade.
+* **Format**: Quizzes will be closed-book and closed-notes. They will consist of multiple-choice and short-answer questions.
+* **Content**: Each quiz will cover material discussed in the lectures leading up to the quiz.
+* **Grading**: All quizzes will contribute equally to your overall quiz grade.
+
+If you anticipate a conflict with a quiz date, please notify the instructor **at least two weeks in advance**.
+**Makeup quizzes** will only be offered in cases of valid, documented excuses (e.g., medical emergencies, family emergencies). Please provide appropriate documentation to the instructor as soon as possible.
+
+Make sure to stay up-to-date with the lecture material and come prepared for each quiz.
 
 ***
 
 ### Course Policies
 
-**Academic integrity** <br/>
-All material you submit in this course (reading responses, project reports, and
-presentation materials) must be your own. If you use someone else's material,
-you must cite them properly and clarify which parts are your own
-work. If you are ever in doubt about whether something you intend to submit
-violates this policy, please get in touch with the instructor before doing so.
 
-**Excused absences and late submissions** <br/>
-If, for any reason, you need to miss class or the response deadline, be sure to get in touch with me as soon as possible and at least one week in advance (unless it is an
-emergency). We will find a way to ensure your class participation and
-reading response grade won't be affected.
+**Academic Integrity**
 
-**Services for students with disabilities** <br/>
-The university is committed to creating an accessible and inclusive learning
-environment consistent with university policy and federal and state law. Please
-let me know if you experience any barriers to learning so I can work with you to
-ensure you have equal opportunity to participate fully in this course. If you
-are a student with a disability or think you may have a disability and need
-accommodations, please get in touch with Disability and Access (D&A). Please refer to D&A’s
-website for contact and more information:
-[http://diversity.utexas.edu/disability/](http://diversity.utexas.edu/disability/).
-If you are already registered with D&A, please deliver your Accommodation
-Please let the instructor know as early as possible in the semester so we can discuss your
-approved accommodations and needs in this course.
+All submitted course materials (reading responses, project reports, and presentation materials) must be your original work. When using someone else's material, proper citation and clarification regarding which parts are your own work are required. If you have any doubts about whether something you intend to submit violates this policy, please consult the instructor beforehand.
 
-**Sharing of course materials is prohibited** <br/>
-No materials used in this class that are produced by the instructor or by
-students may be shared online or with anyone outside of the class without my written permission. 
-Unauthorized sharing of materials may
-facilitate cheating.  The University is aware of the sites used for sharing
-materials, and any materials found online that are associated with you or any
-suspected unauthorized sharing of materials will be reported to Student Conduct
-and Academic Integrity in the Office of the Dean of Students. These reports can
-result in the initiation of the student conduct process and include charge(s) for
-academic misconduct, potentially resulting in sanctions, including a grade
-impact.
+**Excused Absences and Late Submissions**
+
+If you need to miss a class or a response deadline, you should contact me as soon as possible, preferably at least one week in advance (except for emergencies). We will collaborate to ensure your class participation and reading response grades are not affected.
+
+**Services for Students with Disabilities**
+
+The university is committed to providing an accessible and inclusive learning environment that aligns with university policy and federal and state law. Please inform me if you encounter any learning barriers so we can work together to guarantee you have equal opportunities to fully participate in this course.
+
+If you have a disability or suspect you might have one and need accommodations, please contact Disability and Access (D&A). Visit their website for contact information and more details: [http://diversity.utexas.edu/disability/](http://diversity.utexas.edu/disability/)
+
+If you are already registered with D&A, please provide your Accommodation Letter as early in the semester as possible so we can discuss your approved accommodations and needs in this course.
+
+**Sharing of Course Materials**
+
+Sharing course materials produced by the instructor or students online or with anyone outside of the class is prohibited without written permission from me. Unauthorized sharing of materials can facilitate cheating. The university monitors websites used for sharing materials, and any materials found online that are associated with you or any suspected unauthorized sharing of materials will be reported to Student Conduct and Academic Integrity in the Office of the Dean of Students. These reports can initiate the student conduct process, including charges for academic misconduct, which could potentially result in sanctions, including a grade impact.
+
+**Changes to the Syllabus**
+
+I reserve the right to modify this syllabus during the semester. Any changes will be announced in class and reflected on the course website.
