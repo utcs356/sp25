@@ -4,7 +4,7 @@ permalink: /assignments/assignment0
 title: "Assignment 0: Cloudlab and Kathara"
 ---
 
-#### **Released:** 01/16/2024 <br/> **Due:**	01/25/2024
+#### **Released:** 01/14/2025 <br/> **Due:**	01/23/2025
 {: .no_toc}
 
 * (The list will be replaced with the table of contents.)
@@ -75,7 +75,7 @@ An experiment in CloudLab means the instantiation of a profile. You can think of
 ![start_exp_step4]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step4.png)
 5. Click `Next` to move to the next panel (`Finalize`). You don't need to parameterize an experiment unless explicitly mentioned.
 ![start_exp_step5]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step5.png)
-6. Here, you should name your experiment with `CSLogin1-CSLogin2` (`CSLogin1` is the cs username of Member 1), select `utcs356` as `Project`, and your assignment group as `Group` (You will be invited. If you're not yet invited, `Group` might not appear. You're ok to proceed without selecting `Group` for this assignment). You need to specify from which cluster you want to start your experiment. Please select the Wisconsin cluster. If it fails, then try another cluster **except for the Utah cluster**. Click `Next` to move to the next panel (`Schedule`).
+6. Here, you should name your experiment with `CSLogin1-CSLogin2` (`CSLogin1` is the cs username of Member 1), select `utcs356` as `Project`, and your assignment group as `Group` (You will be invited. If you're not yet invited, `Group` might not appear. You're ok to proceed without selecting `Group` for this assignment). You need to specify from which cluster you want to start your experiment. Please select the **Wisconsin** cluster. If it fails, then try another cluster **except for the Utah cluster**. Click `Next` to move to the next panel (`Schedule`).
 ![start_exp_step6]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step6.png)
 7. Enter the desired experiment duration and the time/date when you want to start the experiment. If you want to start your experiment as soon as possible, skip the `Start on date/time` field. Once your experiment is ready you will receive a notification email.
 ![start_exp_step7]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step7.png)
