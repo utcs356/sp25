@@ -64,6 +64,8 @@ announcements_limit: 5
 
 # Build settings
 markdown: kramdown
+kramdown: 
+  parse_block_html: true
 highlighter: rouge
 
 # Includes & excludes
