@@ -10,15 +10,15 @@ TAs:
     - name: Donghyun Kim
       email: donghyun@utexas.edu
       url:
-      office-hours: TBD
-      location:  GDC 6.100 (Atrium Bridge)
+      office-hours: Monday 4pm - 5pm 
+      location:  GDC 1.302 (Desk 1)
       image: staff/donghyun.jpg
 
     - name: Jeongyoon Moon
       email: jeongyoonm@utexas.edu
       url:
-      office-hours: TBD
-      location:  GDC 6.100 (Atrium Bridge)
+      office-hours:  Tuesday 2pm - 3pm
+      location:  GDC 1.302 (Desk 5)
       image: staff/jeongyoon.jpg
 
 CAs:
@@ -26,5 +26,5 @@ CAs:
       email: exu@utexas.edu
       url:
       office-hours: TBD
-      location:  GDC 6.100 (Atrium Bridge)
+      location:  TBD
       image: staff/eric.jpg
