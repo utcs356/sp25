@@ -82,7 +82,6 @@ An experiment in CloudLab means the instantiation of a profile. You can think of
 8. You can navigate to your CloudLab user dashboard to see your list of active experiments. You will move to a webpage describing project details by clicking on the experiment name. 
 ![start_exp_step8_1]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_1.png)
 Click the `List View` on that page, which opens a table where you can obtain the SSH login command (`ssh <cloudlab_id>@<cloudlab_host>`) to log in to your machine.
-
 **Ensure that the status of your experiment is "Ready" before attempting to access it via SSH.** It may take approximately 10 minutes for the experiment to reach the ready state.
 ![start_exp_step8_2]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_2.png)
 
