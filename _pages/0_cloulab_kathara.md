@@ -40,7 +40,7 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 			* If you want to save your keys other than the default location, enter a file path (e.g., `~/foo/mykey`) to save your private key when the prompt asks for it. 
 			* If you want additional security, type a passphrase when the prompt asks for it.
 		4. The private key will be saved into the default location, `~/.ssh/id_rsa`. `~/.ssh/id_rsa` is your private key and `~/.ssh/id_rsa.pub` is your public key (upload this during the account registration).
-			* If you have entered a non-default file path, 
+      * If you specified a custom file path, your private and public keys will be located at the path you provided (e.g., `~/foo/mykey` for the private key and `~/foo/mykey.pub` for the public key).
 
 		</details> 
 		<details>
@@ -63,7 +63,7 @@ Most importantly, it introduces our policies on using CloudLab that will be enfo
 Once you complete the above steps, the instructor or TA will approve your request to join the project so that you can start an experiment.
 
 ### Start an Experiment
-An experiment in CloudLab means the instantiation of a profile. You can think of a profile as a pre-configured VM image that includes OS and necessary setup. An experiment lasts only for the reserved hours, and all the changes you made on top of the profile will be discarded. Make sure that you use a private git repository to save your code.
+An experiment in CloudLab means the instantiation of a profile. You can think of a profile as a pre-configured VM image that includes OS and necessary setup. **An experiment lasts only for the reserved hours, and all the changes you made on top of the profile will be discarded.** Make sure that you use a private git repository to save your code.
 
 1. To start a new experiment, go to your CloudLab dashboard and click the `Experiments` tab in the upper left corner. Then select `Start Experiment`, moving to the profile selection panel.
 ![start_exp_step1]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step1.png)
@@ -82,27 +82,32 @@ An experiment in CloudLab means the instantiation of a profile. You can think of
 8. You can navigate to your CloudLab user dashboard to see your list of active experiments. You will move to a webpage describing project details by clicking on the experiment name. 
 ![start_exp_step8_1]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_1.png)
 Click the `List View` on that page, which opens a table where you can obtain the SSH login command (`ssh <cloudlab_id>@<cloudlab_host>`) to log in to your machine.
+Ensure that the status of your experiment is "Ready" before attempting to access it via SSH. It may take approximately 10 minutes for the experiment to reach the ready state.
 ![start_exp_step8_2]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_2.png)
 
 9. Try to login to the machine by executing the provided SSH command in your terminal. This step will only work if you have uploaded your SSH public key to your CloudLab account. Add your public key if you did not add it during the registration ([here](https://www.cloudlab.us/ssh-keys.php)). 
 	* `$ ssh <cloudlab_id>@<cloudlab_host>`
+  * If you specified a custom file path while creating your SSH key pair, try: `$ ssh -i <private_key_path> <cloudlab_id>@<cloudlab_host>`.
 	* You may want to setup remote development on VSCode. Make sure the above ssh command works before VSCode setup.  
 	<details>
 	<summary markdown="span">VSCode setup</summary>
-	1. Install the [Remote-SSH extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
-	2. In VS Code, select Remote-SSH: Connect to Host... from the Command Palette (F1) and use the same `<cloudlab_id>@<cloudlab_host>` as in the above ssh command.
+	1. Install the [Remote-SSH extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh).
+	2. In VS Code, select `Remote-SSH: Connect to Host...` from the Command Palette (F1) and use the same `<cloudlab_id>@<cloudlab_host>` as in the above ssh command.
 	3. If VS Code cannot automatically detect the type of server you are connecting to, you will be asked to select the type manually. Select `Linux`.
-	4. You can then open any folder or workspace on the remote machine using File > Open... or File > Open Workspace... just as you would locally!
+	4. You can then open any folder or workspace on the remote machine using `File > Open...` or `File > Open Workspace...` just as you would locally!
 	
 	Refer to the [link](https://code.visualstudio.com/docs/remote/ssh#_connect-to-a-remote-host) for more detailed instructions.
 	</details>
 	
-**If you find yourself stuck on any of the above steps, don’t hesitate to post a question to Ed!**
+**If you find yourself stuck on any of the above steps, don’t hesitate to post your questions to Ed!**
 
 ### Tasks
 #### Part 1: Check for the Available Resources
-Check for the number of CPU physical cores and logical cores (threads) available (use `$ lshw -class cpu` or `$ lscpu`) and memory available (use `$ free -h`) on the node you reserved.  
-**Report** the available resources in your report. 
+Check the number of physical CPU cores, logical cores (threads), and available memory on the node you reserved using the following commands:  
+  * CPU information: `$ lshw -class cpu` or `$ lscpu`  
+  * Memory information: `$ free -h`  
+Include the resource details from these commands in your report.
+
 #### Part 2: Create a virtual network with Kathará
 Throughout the assignments, we will use [Kathará](https://www.kathara.org/), an open-source container-based network emulation system. With the network emulation tools like Kathará, we can test (network) applications without multiple servers and network devices. In Kathara, you can create a virtual network consisting of multiple virtual network devices by launching a Kathara lab. A Kathara lab directory in which you launch the lab defines a virtual network to be created. 
 
@@ -123,9 +128,10 @@ $ git clone https://github.com/utcs356/assignment1.git
 $ cd assignment1/labs/two_hosts_direct  
 $ kathara lstart  
 ```
+If you encounter any warnings or errors related to `xterm` when executing the above commands, please disregard them.
 
 {:start="3"}
-3. Connect to the virtual network devices generated by Kathara.
+3. Connect to the virtual network devices generated by Kathara
 
 There are two virtual network devices in this Kathara lab, `h1` and `h2`. Create two separate terminals with `tmux`. `tmux` allows you to create multiple terminals without multiple SSH connections. Expand the below for its usage.
 
@@ -146,7 +152,7 @@ In each terminal, connect to each device with `$ kathara connect <device_name>` 
 4. Check the virtual network devices
 
 Run `$ ifconfig` ([man ifconfig](https://man7.org/linux/man-pages/man8/ifconfig.8.html)) to identify the network interfaces and their IP addresses on each device (terminal). 
-**Report** the IP address of the network interface attached to each device in your report. Please include a screenshot includes both devices' outputs of `ifconfig` on a `tmux` window. 
+**Report** the IP address of the network interface attached to each device in your report. Please include a screenshot showing the outputs of `ifconfig` from both devices displayed within a single `tmux` window.
 
 {:start="5"}
 5. Clean up the Kathara lab
@@ -156,12 +162,12 @@ Don't forget to run `$ kathara lclean` in the lab directory when you're done wit
 **NOTE:** You should follow these steps to run a Kathará lab throughout the assignments.
 
 #### Deliverable
-Your report should be a pdf file named `assign0_groupX.pdf`, where `X` is your group number. Your report must include your group’s number, members, and their EIDs. Please submit one report per group.
+Your report should be a pdf file named `assign0_groupX.pdf`, where `X` is your group number. Please include your group’s number, members, and EIDs in your report. Please submit one report per group.
 
 
 ### Policies on Using CloudLab Resources
 * Please read and follow Cloudlab's [Acceptable Use Policy](https://www.cloudlab.us/aup.php).
 * CloudLab gives users 16 hours to start with, and users can extend it longer. You can manage your time efficiently and only hold onto those nodes when working on the assignment. 
 * You should use a private git repository to manage your code and terminate the nodes when you are not using them. If you do need to extend the nodes, do not extend them by more than one day. We will terminate any cluster running for more than 48 hours.
-* As a member of the `utcs356` project, you have permission to create new experiments in the default group in addition to the group you are invited to. Stick to your own group and use naming formats as mentioned. For more information related to this, please refer to https://deanofstudents.utexas.edu/conduct/academicintegrity.php
+* As a member of the `utcs356` project, you have permission to create new experiments in the default group in addition to the group you are invited to. Stick to your own group and use naming formats as mentioned. For more information related to this, please refer to [this](https://deanofstudents.utexas.edu/conduct/academicintegrity.php).
 * Each cluster has different hardware. For more information on CloudLab's hardware, please refer to [this](http://docs.cloudlab.us/hardware.html).
