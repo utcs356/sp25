@@ -82,12 +82,13 @@ An experiment in CloudLab means the instantiation of a profile. You can think of
 8. You can navigate to your CloudLab user dashboard to see your list of active experiments. You will move to a webpage describing project details by clicking on the experiment name. 
 ![start_exp_step8_1]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_1.png)
 Click the `List View` on that page, which opens a table where you can obtain the SSH login command (`ssh <cloudlab_id>@<cloudlab_host>`) to log in to your machine.
-Ensure that the status of your experiment is "Ready" before attempting to access it via SSH. It may take approximately 10 minutes for the experiment to reach the ready state.
+
+**Ensure that the status of your experiment is "Ready" before attempting to access it via SSH.** It may take approximately 10 minutes for the experiment to reach the ready state.
 ![start_exp_step8_2]({{site.baseurl}}/assets/img/assignments/assignment0/start_exp_step8_2.png)
 
 9. Try to login to the machine by executing the provided SSH command in your terminal. This step will only work if you have uploaded your SSH public key to your CloudLab account. Add your public key if you did not add it during the registration ([here](https://www.cloudlab.us/ssh-keys.php)). 
 	* `$ ssh <cloudlab_id>@<cloudlab_host>`
-  * If you specified a custom file path while creating your SSH key pair, try: `$ ssh -i <private_key_path> <cloudlab_id>@<cloudlab_host>`.
+	* If you specified a custom file path while creating your SSH key pair, try: `$ ssh -i <private_key_path> <cloudlab_id>@<cloudlab_host>`.
 	* You may want to setup remote development on VSCode. Make sure the above ssh command works before VSCode setup.  
 	<details>
 	<summary markdown="span">VSCode setup</summary>
@@ -104,9 +105,10 @@ Ensure that the status of your experiment is "Ready" before attempting to access
 ### Tasks
 #### Part 1: Check for the Available Resources
 Check the number of physical CPU cores, logical cores (threads), and available memory on the node you reserved using the following commands:  
-  * CPU information: `$ lshw -class cpu` or `$ lscpu`  
-  * Memory information: `$ free -h`  
-Include the resource details from these commands in your report.
+  * CPU information: `$ lshw -class cpu` or `$ lscpu`
+  * Memory information: `$ free -h`
+
+**Include the resource details from these commands in your report.**
 
 #### Part 2: Create a virtual network with Kathará
 Throughout the assignments, we will use [Kathará](https://www.kathara.org/), an open-source container-based network emulation system. With the network emulation tools like Kathará, we can test (network) applications without multiple servers and network devices. In Kathara, you can create a virtual network consisting of multiple virtual network devices by launching a Kathara lab. A Kathara lab directory in which you launch the lab defines a virtual network to be created. 
@@ -162,7 +164,7 @@ Don't forget to run `$ kathara lclean` in the lab directory when you're done wit
 **NOTE:** You should follow these steps to run a Kathará lab throughout the assignments.
 
 #### Deliverable
-Your report should be a pdf file named `assign0_groupX.pdf`, where `X` is your group number. Please include your group’s number, members, and EIDs in your report. Please submit one report per group.
+For each group, submit a report in a pdf file named `assign0_groupX.pdf`, where `X` is your group number. Make sure to include your group number, names, and EIDs in the report.
 
 
 ### Policies on Using CloudLab Resources
