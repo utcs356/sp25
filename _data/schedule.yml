@@ -328,6 +328,7 @@
   video: 
   readings: P&D 8.3--8.5
   logistics:
+  - Assignment 5 is due
 
 - date: Th 04/24
   lecturer:
@@ -335,9 +336,3 @@
     <strong>Quiz 3</strong>
   logistics:
 
-- date: M 04/28
-  lecturer:
-  quiz: >
-    <strong></strong>
-  logistics:
-  - Assignment 5 is due
