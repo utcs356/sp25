@@ -28,12 +28,13 @@
   title: >
     <strong>Socket API</strong>
   recitation: 
-  slides:
+  slides: https://drive.google.com/file/d/1EUwLstk0ZFrouMEJiqoHskqCAS-i2BcD/view?usp=drive_link
   notes: 
   video: 
   readings:
   - P&D 1.4
   - K&R 2.7
+  - <a href="https://github.com/utcs356/socket-example">Example code</a>
   logistics:
 
 - date: Th 01/23
