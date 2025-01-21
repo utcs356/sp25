@@ -47,6 +47,7 @@ Throughout the semester, we’ll cover key topics such as:
 - **Unique number:** 51085
 - **Time:** Tuesday & Thursday 9:30 AM - 10:45 AM
 - **Location:** RLP 0.102
-- **Discussion:** [Ed discussion](https://edstem.org/us/courses/50367){:target="\_blank"}
+- **Discussion:** [Ed](https://edstem.org/us/courses/50367){:target="\_blank"} and [Perusall](https://utexas.instructure.com/courses/1414169/external_tools/118418?display=borderless){:target=:\_blank"}
+- **Recordings:** [Lectures Online](https://utexas.instructure.com/courses/1414169/external_tools/143779?display=borderless){:target="\_blank"}
 
 ***
