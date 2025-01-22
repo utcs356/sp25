@@ -9,92 +9,80 @@ title: "Assignment 1: Socket Programming and Measurement"
 * (The list will be replaced with the table of contents.)
 {:toc}
 
-### Part 0: Setup and Overview
-#### Setup
-1. **Get the skeleton code for A1 and setup your private repository.**   
-Make a copy of the [git repository](https://github.com/utcs356/assignment1.git) that contains Kathara labs and the skeleton code needed for this assignment. Keep your repository private.  
-    * Simple way
-        1. Clone the git repository   
-        * If you are using an SSH key for GitHub authentication:   
-        `$ git clone git@github.com:utcs356/assignment1.git`
-        or
-        * If you are using a token or VS Code authentication:   
-        `$ git clone https://github.com/utcs356/assignment1.git`
-        2. Make your own directory and copy and paste the contents.   
-        `$ mkdir [your_directory]`
-        `$ cp -r assignment1/* [your_directory]`
-        3. Initialize the git repository and setup a private repository.   
-        `$ cd [your_directory]`
-        `$ git init`
-        `$ git add *`
-        `$ git commit -m "Initial commit"`
-        Then create a new private repository on GitHub. You should be able to get the repository URL.   
-        4. Link the remote repository and your local git directory.
-            `$ git remote add origin REMOTE-URL`
-            `$ git push -u origin main` (assuming the default branch is `main`)
-            You may have to setup your github account information.
-    </br>
-    * A way to deal with future assignment1 template changes conveniently   
-        1. Clone the repository with --bare option   
-            * If you are using an SSH key for GitHub authentication:    
-            `$ git clone --bare git@github.com:utcs356/assignment1.git`
-            or
-            * If you are using a token or VS Code authentication:   
-            `$ git clone --bare https://github.com/utcs356/assignment1.git`
-        2. Create a new private repository on GitHub and name it assignment1 
-        3. Mirror-push your bare clone to your private repository.    
-            `$ cd assignment1.git`
-            * If you are using an SSH key for GitHub authentication:   
-            `$ git push --mirror git@github.com:[your_username]/assignment1.git`
-            or
-            * If you are using a token or VS Code authentication:    
-            `$ git push --mirror https://github.com/[your_username]/assignment1.git`
-        4. Remove the bare clone    
-        `$ cd ..`    
-        `$ rm -rf assignment1.git`
-        5. Now you have a private fork of the repository.
-
-
-
-2. **Setup authentication on a CloudLab node**  
-When you want to make changes to your private repository on a CloudLab node, you have to authenticate every time you instantiate an experiment. This is because your authentication information is cleaned up upon the end of the experiment. There are three ways to authenticate your account on the reserved node.
-    * With SSH key and SSH agent forwarding, (recommended) 
-        1. Prepare a key pair that is registered for your GitHub account. Refer to this [link](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
-            * Check if the key is added properly with `$ ssh -T git@github.com`
-        2. Launch a local `ssh-agent` and add your key for GitHub authentication to `ssh-agent`. Then SSH to the CloudLab node with the SSH agent forwarding option.
-            * For macOS and Linux:   
-                `$ ssh-agent`   
-                `$ ssh-add <path_to_your_private_key>`   
-                `$ [ssh command] -A`   
-            * For Windows:
-                1. On MobaXterm, move to the `Settings>Configuration>SSH` tab.
-                2. Select the `Use internal SSH agent MobAgent` checkbox and `Forward SSH Agents` checkbox, and unselect `Use external Pageant`.
-                3. Add your GitHub key by clicking `+` button. Then click `OK`
-                4. SSH to the CloudLab node as you did in A0.
-             * Check if the ssh-agent forwarding works properly with `$ ssh -T git@github.com` in the CloudLab node. 
-        3. You should be able to clone your private repository with the SSH URL.  
-
-    * With VS Code: (recommended if you use VS Code)  
-        * Once you install the `GitHub Pull Requests and Issues` extension on VS Code, you can authenticate the remote server through VS Code and a web browser. You also can clone the repository on VS Code to the remote server. 
-        * Refer to [link1](https://vscode.github.com/) and [link2](https://code.visualstudio.com/docs/sourcecontrol/github).
-    * With personal access tokens:
-        * You can generate a personal access token for the account/repositories to access your repositories over HTTPS with the token. 
-        * Refer to [this link](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) for details.
+### Part 0: Overview and Setup
+#### Overview
+Your task is to complete [`src/iperfer.c`](https://github.com/utcs356/assignment1/blob/main/src/iperfer.c) to meet the specifications in Part 1 and perform measurements using your program in Part 2.
 
 **Note**: You should instantiate your experiment in the same way in A0.
 * Make sure to use profile `cs356-base`
 * Make sure to specify your group during instantiation. 
 If you cannot see the `Group` options yet, please contact TA through Ed or email.
-* You should SSH to the node using XTerm for Part 1 and Part 2 experiments.
 
-**Note**: Don't forget to execute below for every experiment instantiation.   
+**Note**: Don't forget to execute below for every CloudLab experiment instantiation.   
 * After ssh to the reserved node, type the commands below.  
     `$ sudo usermod -aG docker $USER`  
-    `$ touch ~/.Xauthority`   
 * Then **restart the SSH session** to make sure the changes are applied. 
 
-#### Overview
-Your task is to complete `src/iperfer.c` to meet the specifications in Part 1 and perform measurements using your program in Part 2.
+#### Setup
+You **SHOULD** save changes you make to your private GitHub repo. Otherwise, you will lose the changes when your CloudLab experiement ends.
+1. **Get the skeleton code for A1 and setup your private repository.**   
+To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment1.git). Don't forget to select `Private` while creating the repository.
+
+2. **Setup GitHub authentication on a CloudLab node**  
+When you want to make changes to your private repository on a CloudLab node, you have to authenticate every time you instantiate an experiment. This is because your authentication information is cleaned up upon the end of the experiment. There are three ways to authenticate your account on the reserved node.
+
+    <details>
+    <summary markdown="span"> With SSH key and SSH agent forwarding (recommended) </summary>
+    
+    1. Prepare a key pair that is registered for your GitHub account. 
+        * Refer to [this](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) to add a new ssh key to your GitHub account.
+        * Check if the key is added properly with `$ ssh -T git@github.com` on your local machine.
+    2. Setup a local `ssh-agent` and SSH to the CloudLab node with the SSH agent forwarding option (`-A`).
+        <details>
+        <summary markdown="span"> For macOS and Linux: </summary> 
+
+        1. Launch a local SSH agent.
+        `$ ssh-agent`  
+        2. Add your private key to the agent.
+        `$ ssh-add <path_to_your_private_key>`   
+        3. SSH to the CloudLab node with the `-A` option.
+        `$ [ssh command] -A`
+        * To automate step a and b, append the below to your shell startup file (e.g., `.bashrc`, `.zshrc`). After this, you do not have to repeat step a and b every time.
+            ```
+            eval "$(ssh-agent -s)"
+            ssh-add <path_to_your_private_key>
+            ```
+        </details> 
+
+        <details> 
+        <summary markdown="span"> For Windows: </summary>
+
+        * Open a terminal as an administrator and follow the steps below.
+        1. Launch a local SSH agent and automate the launch.
+        `> Get-Service ssh-agent | Set-Service -StartupType Automatic`
+        `> Start-Service ssh-agent`
+        2. Add your private key to the agent.
+        `> ssh-add <path_to_your_private_key>`   
+        3. SSH to the CloudLab node with the `-A` option.
+        `> [ssh command] -A`
+        </details>
+    3. You should be able to clone your private repository with the SSH URL on the Cloudlab node.
+        * Check if the ssh-agent forwarding works properly with `$ ssh -T git@github.com` on the CloudLab node.
+    </details>
+
+    <details> 
+    <summary markdown="span"> With VS Code </summary>
+
+    * Once you install the `GitHub Pull Requests and Issues` [extension](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github) on VS Code, you can authenticate the remote server through VS Code and a web browser. You also can clone the repository on VS Code to the remote server. 
+    * Refer to [this](https://code.visualstudio.com/docs/sourcecontrol/github) for more details.
+    </details>
+
+    <details> 
+    <summary markdown="span"> With personal access tokens </summary>
+
+    * You can generate a personal access token for the account/repositories to access your repositories over HTTPS with the token. 
+    * Refer to [this](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) for more details.
+    </details>
 
 ### Part 1: Write iperfer.c
 Your task is to complete the source code for `iperfer`. `iperfer` is a program to measure the throughput between two hosts. It should be executed on one host in the server mode and then executed on the other in the client mode. Argument parsing is already implemented in the skeleton code. Refer to the below specifications for implementation details: 
@@ -123,11 +111,14 @@ Your task is to complete the source code for `iperfer`. `iperfer` is a program t
         * After the connection is established, received data in chunks of 1000bytes
         * When the connection is closed, the program should print out the elapsed time, the total number of bytes received (in kilobytes), and the rate at which the program received data (in Mbps) (1kilobyte=1000bytes, 1megabit = 1,000,000 bits = 125,000 bytes)
 
-**Report** your iperfer client results when running it for 10 seconds in the given `two_hosts_direct` topology. Two hosts, h1 and h2, are directly connected to each other in this topology. In the terminal for each host, your binary is located in `/shared` directory. This is a mirror of your local file located in `labs/two_hosts_direct/shared` directory. 
+**Report** your iperfer client results when running it for 10 seconds in the given `two_hosts_direct` topology. 
+* Two hosts, h1 and h2, are directly connected to each other in this topology.
+* You can start a Kathara lab and connect to a virtual network device as in [A0](https://utcs356.github.io/sp25/assignments/assignment0#part-2-create-a-virtual-network-with-kathar%C3%A1).
+* In the terminal for each host, your binary is located in `/shared` directory. This is a mirror of files located in `labs/two_hosts_direct/shared` directory on the CloudLab node. 
 
 #### Notes
 * **Compile**: `Makefile` is included in the directory, so you can compile your code with `$ make` and remove the compiled binary with `$ make clean`. The compiled binary will be located in the `bin` and `labs/<lab_name>/shared` directories.
-* **Test within a single host**: You may want to test your program prior to Kathara experiments. In this case, execute the client mode with `127.0.0.1` as the `<server_host_ip_addr>` after executing server mode on the same node. `127.0.0.1` is the reserved IP address for the local host (loopback).
+* **Test within a single host**: We recommend you test your program prior to Kathara experiments. In this case, execute the client mode with `127.0.0.1` as the `<server_host_ip_addr>` after executing server mode on the same node. `127.0.0.1` is the reserved IP address for the local host (loopback).
 
 ### Part 2: Measurement on a Virtual Network
 In this part of the assignment, you will use the tool you wrote (`iperfer`) and `ping` to measure a given virtual network's end-to-end bandwidth and latency, respectively. We will use `six_hosts_two_routers` topology. The virtual network topology is formed as follows:
@@ -137,7 +128,8 @@ In this part of the assignment, you will use the tool you wrote (`iperfer`) and 
 
 **NOTE**: To measure the average RTT (or latency), use `$ ping -c [number_of_pings] [remote_ip_address]`.     
 For example, if you want to ping to `h4` 10 times, the command is `$ ping -c 10 30.1.1.7`.    
-**NOTE**: To measure the bandwidth (or throughput) between two hosts (say `h1` and `h4`), execute `iperfer` as a client mode on one host then execute `iperfer` as a server mode on the other host.
+**NOTE**: To measure the bandwidth (or throughput) between two hosts (say `h1` and `h4`), execute `iperfer` as a client mode on one host then execute `iperfer` as a server mode on the other host.   
+**NOTE**: When you change Kathara startup files (e.g., `r1.startup`), you must stop the running Kathara lab with `$ kathara lclean` before every change.
 
 #### **Q1**: Basic measurements 
 * Measure and report average RTT and throughput between two adjacent routers, `r1` and `r2`. 
@@ -155,19 +147,19 @@ For example, if you want to ping to `h4` 10 times, the command is `$ ping -c 10 
 * What's the trend between measured throughput and the number of host pairs?
 
 #### **Q4**: Impact of link capacity on end-to-end throughput and latency.
-* Decrease link rate between `r1` and `r2` to 10Mbps. This can be done by uncommenting line #5 in the `labs/six_hosts_two_routers/r1.startup` file. You have to clean up the previous Kathara lab before every change. Relaunch it after the change.   
-* Measure and report path latency and throughput between two hosts, `h1` and `h4`.   
-**Edit**: For this experiment, please use `h1` as a client and `h4` as a server as the provided Kathara lab configuration only limits the one-way bandwidth.   
+* Decrease link rate between `r1` and `r2` to 1Mbps. This can be done by uncommenting line #5 in the `labs/six_hosts_two_routers/r1.startup` and `labs/six_hosts_two_routers/r2.startup` files. You have to clean up the previous Kathara lab before every change. Relaunch it after the changes.   
+* Measure and report path latency (average RTT) and throughput between two hosts, `h1` and `h4`.   
+<!-- **Edit**: For this experiment, please use `h1` as a client and `h4` as a server as the provided Kathara lab configuration only limits the one-way bandwidth.   
 **Edit**: Alternatively, you can add the below to `r2.startup` in addition to uncommenting line #5 to change the bi-directional link bandwidth. Make sure commenting it out after this experiment.   
-`tc qdisc add dev eth1 root tbf rate 10mbit buffer 10mb latency 10ms`  
+`tc qdisc add dev eth1 root tbf rate 10mbit buffer 10mb latency 10ms`   -->
 * How does it change compared to Q1? 
 
 #### **Q5**: Impact of link latency on end-to-end throughput and latency.
-* Comment the line #5 that you uncommented for the previous question.
-* For each case below, measure and report path latency and throughput between two hosts, `h1` and `h4`.
-    * Change the link delay between `r1` and `r2` to 10ms by uncommenting line #6. 
-    * Change the link delay between `r1` and `r2` to 100ms by uncommenting line #7. Comment out line #6.
-    * Change the link delay between `r1` and `r2` to 1s by uncommenting line #8. Comment out line #7.
+* Comment the lines that you uncommented for the previous question.
+* For each case below, measure and report path latency (average RTT) and throughput between two hosts, `h1` and `h4`.
+    * Change the link delay between `r1` and `r2` to 10ms by uncommenting line #6 of the `r1.startup` file. 
+    * Change the link delay between `r1` and `r2` to 100ms by uncommenting line #7 of the `r1.startup` file. Comment out its line #6.
+    * Change the link delay between `r1` and `r2` to 1s by uncommenting line #8 of the `r1.startup` file. Comment out its line #7.
 * What's the trend between the measured throughput and latency?
 
 ### Submission
