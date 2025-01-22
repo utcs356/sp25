@@ -24,7 +24,7 @@ If you cannot see the `Group` options yet, please contact TA through Ed or email
 * Then **restart the SSH session** to make sure the changes are applied. 
 
 #### Setup
-You **SHOULD** save changes you make to your private GitHub repo. Otherwise, you will lose the changes when your CloudLab experiement ends.
+You **SHOULD** save changes you make to your private GitHub repo. Otherwise, you will lose the changes when your CloudLab experiment ends.
 1. **Get the skeleton code for A1 and setup your private repository.**   
 To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment1.git). Don't forget to select `Private` while creating the repository.
 
@@ -155,7 +155,7 @@ For example, if you want to ping to `h4` 10 times, the command is `$ ping -c 10 
 * How does it change compared to Q1? 
 
 #### **Q5**: Impact of link latency on end-to-end throughput and latency.
-* Comment the lines that you uncommented for the previous question.
+* Comment out the lines that you uncommented for the previous question.
 * For each case below, measure and report path latency (average RTT) and throughput between two hosts, `h1` and `h4`.
     * Change the link delay between `r1` and `r2` to 10ms by uncommenting line #6 of the `r1.startup` file. 
     * Change the link delay between `r1` and `r2` to 100ms by uncommenting line #7 of the `r1.startup` file. Comment out its line #6.
@@ -168,7 +168,7 @@ You must submit:
     * `$ tar -zcvf assignment1 assign1_groupX.tar.gz`
     * Replace `X` with your group number.
 * A pdf file contains the Part 1 results and the measurement results for Part 2.
-    * The PDF file must contain the names and eids of all group members.
+    * The PDF file must contain the names and EIDs of all group members.
 
 ### Grading
 * `iperfer.c` implementation
