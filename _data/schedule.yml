@@ -58,11 +58,12 @@
   title: >
     <strong>Switched LAN</strong>
   recitation: 
-  slides: 
+  slides: https://drive.google.com/file/d/16SLd50yDh-G_VPSWV0WgE0ixB6PUowAw/view?usp=drive_link
   notes: 
   video: 
   readings:
   - P&D 2.4 - 2.5
+  - K&R 6.2.3 and 6.4
   logistics:
 
 - date: Th 01/30
