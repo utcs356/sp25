@@ -137,13 +137,13 @@ For example, if you want to ping to `h4` 10 times, the command is `$ ping -c 10 
 
 #### **Q2**: Impact of multiplexing on latency.  
 * Measure and report average RTT between two hosts, `h1` and `h4`, while measuring bandwidth between `h2` and `h5`.
-* How does it compare to the measured latency in Q1?
+* How does it compare to the measured latency in Q1 (RTT between `h1` and `h4`)?
 
 #### **Q3**: Impact of multiplexing on throughput
 * Report the throughput between a pair of hosts varying the number of host pairs that conduct measurements. 
     * The host pairs are (`h1`,`h4`), (`h2`,`h5`), (`h3`,`h6`). 
     * e.g., First, measure throughput between (`h1`,`h4`). Then measure throughput between (`h1`, `h4`) and throughput between (`h2`,`h5`) simultaneously. Finally, do the measurements on (`h1`,`h4`), (`h2`,`h5`), and (`h3`,`h6`) simultaneously.
-* How does it compare to the measured throughput in Q1?
+* How do the three measurements varying the number of concurrent host pairs compare to the measured throughput in Q1 (between `h1` and `h4`)?
 * What's the trend between measured throughput and the number of host pairs?
 
 #### **Q4**: Impact of link capacity on end-to-end throughput and latency.
