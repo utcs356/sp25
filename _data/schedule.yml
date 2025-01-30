@@ -69,13 +69,14 @@
 - date: Th 01/30
   lecturer:
   title: >
-    <strong>Wireless Links</strong>
+    <strong>Wireless LAN</strong>
   recitation: 
-  slides: 
+  slides: https://drive.google.com/file/d/16Y5PTuj4UlUgnfzxuJg2e6Wl0fPrnkoo/view?usp=drive_link
   notes: 
   video: 
   readings:
   - P&D 2.7
+  - K&R 7.3
   logistics:
 
 - date: T 02/04
