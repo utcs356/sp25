@@ -82,9 +82,9 @@
 - date: T 02/04
   lecturer:
   title: >
-    <strong>P4 programming</strong>
+    <strong>Programming switches</strong>
   recitation: 
-  slides: 
+  slides: https://drive.google.com/file/d/16yRdnd97bhgVGXNHuGJxlB4GVyeIpCaS/view?usp=drive_link
   notes: 
   video: 
   readings:
@@ -118,7 +118,6 @@
   notes: 
   video: 
   readings:
-  - P&D 3.3.1 -- 3.3.4
   logistics:
 
 - date: T 02/18
@@ -130,7 +129,6 @@
   notes: 
   video: 
   readings:
-  - P&D 3.3.5 -- 3.3.8
   logistics:
 
 - date: Th 02/20
@@ -142,7 +140,6 @@
   notes: 
   video: 
   readings:
-  - P&D 3.4
   logistics:
 
 - date: T 02/25
@@ -154,8 +151,9 @@
   notes: 
   video: 
   readings:
-  - P&D 4.1
   logistics:
+  - Assignment 2 is due
+  - Assignment 3 is out
 
 - date: Th 02/27
   lecturer:
@@ -166,10 +164,7 @@
   notes: 
   video: 
   readings:
-  - P&D 4.1
   logistics:
-  - Assignment 2 is due
-  - Assignment 3 is out
 
 - date: T 03/04
   lecturer:
@@ -180,7 +175,6 @@
   notes: 
   video: 
   readings:
-  - P&D 5.1 -- 5.2.3
   logistics:
 
 - date: Th 03/06
@@ -192,7 +186,6 @@
   notes: 
   video: 
   readings:
-  - P&D 5.1 -- 5.2.3
   logistics:
 
 - date: T 03/11
@@ -204,8 +197,9 @@
   notes: 
   video: 
   readings:
-  - P&D 5.2
   logistics:
+  - Assignment 3 is due
+  - Assignment 4 is out
 
 - date: Th 03/13
   lecturer:
@@ -235,21 +229,17 @@
   notes: 
   video: 
   readings:
-  - P&D 6.2
   logistics:
-  - Assignment 3 is due
-  - Assignment 4 is out
 
 - date: Th 03/27
   lecturer:
   title: >
-    <strong>Queuing disciplines and Congestion control (1)</strong>
+    <strong>Queuing disciplines and Congestion control</strong>
   recitation: 
   slides: 
   notes: 
   video: 
   readings:
-  - P&D 6.3
   logistics:
 
 - date: T 04/01
@@ -261,7 +251,6 @@
   notes: 
   video: 
   readings:
-  - P&D 6.3 -- 6.4
   logistics:
 
 - date: Th 04/03
@@ -272,8 +261,10 @@
   slides:
   notes: 
   video: 
-  readings: P&D 9.3.1
+  readings: 
   logistics:
+  - Assignment 4 is due
+  - Assignment 5 is out
 
 - date: T 04/08
   lecturer:
@@ -283,10 +274,8 @@
   slides: 
   notes: 
   video: 
-  readings: P&D 9.1
+  readings:
   logistics:
-  - Assignment 4 is due
-  - Assignment 5 is out
 
 - date: Th 04/10
   lecturer:
@@ -296,7 +285,7 @@
   slides: 
   notes: 
   video: 
-  readings: P&D 9.4.3
+  readings:
   logistics:
 
 - date: T 04/15
@@ -307,18 +296,18 @@
   slides: 
   notes: 
   video: 
-  readings: P&D 9.4.2
+  readings: 
   logistics:
 
 - date: Th 04/17
   lecturer:
   title: >
-    <strong>Network security (1)</strong>
+    <strong>Network security</strong>
   recitation: 
   slides: 
   notes: 
   video: 
-  readings: P&D 8.1--8.2
+  readings: 
   logistics:
 
 - date: T 04/22
