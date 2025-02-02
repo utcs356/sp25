@@ -15,8 +15,8 @@ title: "Assignment 2: Software Switch and Router with P4"
 Your task is to implement a basic switch and router using P4 for the data plane and Python for the control plane.
 
 #### Setup
-**Clone the skeleton code for A2 and setup your private repository.**
-* To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment2.git).
+**Clone the skeleton code to your private repository.**
+* To obtain the skeleton code, create a **private** repository by selecting `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment2.git) page.
 * Don't forget to select `Private` while creating the repository.
 
 **Note**: You should instantiate your experiment in the same way in A0 and A1.
@@ -29,7 +29,7 @@ If you cannot see the `Group` options yet, please contact TA through Ed or email
     `$ sudo usermod -aG docker $USER`
 * Then **restart the SSH session** to make sure the changes are applied.
 
-**Note**: You should save changes you make to your private GitHub repo. Otherwise, you will lose the changes when your CloudLab experiment ends.
+**Note**: **You should save changes you make to your private GitHub repo.** Otherwise, you will lose the changes when your CloudLab experiment ends.
 
 ### Part 1: Switching with P4
 #### Overview
