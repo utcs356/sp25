@@ -246,8 +246,10 @@ The naming format for the file is `assign2_groupX.[tar.gz/zip]`.
     * IP prefix for longest prefix matching: a tuple with IP prefix in string and prefix length in integer. (e.g., `(10.0.0.0, 24)` which means the table key is in the range `10.0.0.[1-255]`)
     * MAC address: String in the `xx:xx:xx:xx:xx:xx` format (e.g., `00:00:0a:00:00:01`)
     * Port number: Integer
+
     To set a timeout, you should change the attribute, `idle_timeout_ns`, of the table entry as below in integer and the unit of nanoseconds.
-    `table_entry.idle_timeout_ns = int(1 * 1e9) # timeout is 1 second`
+    > `table_entry.idle_timeout_ns = int(1 * 1e9) # timeout is 1 second`
+
     For more details, you can refer to the file, `assignment2/labs/star_four_hosts/shared/utils/p4runtime_lib/helper.py`.
 
 2. Send a table entry to the switch.
