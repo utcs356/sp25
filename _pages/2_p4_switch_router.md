@@ -10,29 +10,26 @@ title: "Assignment 2: Software Switch and Router with P4"
 * (The list will be replaced with the table of contents.)
 {:toc}
 
-### Part 0: Setup
-Unlike the previous assignments, we will use the `cs356-p4` profile instead of `cs356-base` in this assignment.
-It includes a Kathara image with P4 utilities to run your P4 code on a virtual device. 
-To get a skeleton code, clone the [git repository](https://github.com/utcs356/assignment2.git) and make your own private repository as in A1. (refer to A1 setup)
-The task is implementing a basic switch and router with P4 (data plane) and Python (control plane).
+### Part 0: Overview and Setup
+#### Overview
+Your task is to implement a basic switch and router with P4(data plane) and Python(control plane).
 
-#### Tip: Using `tmux` to access Kathara nodes  
-After you launch the Kathara lab with `$ kathara lstart`, you can connect to each Kathara node from any terminal you want by using `$ kathara connect <host_name>`. For example, if you want to open a terminal for `s1` in the `star_four_hosts` Kathara lab, execute `$ kathara connect s1`. **Note that the command only works in the Kathara lab directory.**
+#### Setup
+**Get the skeleton code for A2 and setup your private repository.**   
+* To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment2.git). 
+* Don't forget to select `Private` while creating the repository.
 
-However, opening multiple SSH terminals to connect to different Kathara nodes is cumbersome, and there's a tool called `tmux` to rescue it. With `tmux`, you can create multiple windows (full-sized terminals) and divide them into panes (splitted terminals) on a single SSH connection. Start a new tmux session on a SSH terminal, by typing `$ tmux`. To execute the tmux command such as creating and splitting a window, you should first type the trigger key (`Ctrl+b` by default) to change the cursor from a terminal to the `tmux` command bar. You can split the window vertically with `Ctrl+b %` and horizontally with `Ctrl+b "`. You can move cursors from a pane to adjacent panes by using `Ctrl+b <arrow_key>`. Make panes/windows as many as you want, then connect to the Kathara node on each pane/window by using `$ kathara connect <host_name>`.
+**Note**: You should instantiate your experiment in the same way in A0 and A1.
+* Make sure to use profile `cs356-base`
+* Make sure to specify your group during instantiation. 
+If you cannot see the `Group` options yet, please contact TA through Ed or email.
 
-Refer to [here](https://tmuxcheatsheet.com/) for more details on how to use `tmux`.
+**Note**: Don't forget to execute below for every CloudLab experiment instantiation.   
+* After ssh to the reserved node, type the commands below.  
+    `$ sudo usermod -aG docker $USER`  
+* Then **restart the SSH session** to make sure the changes are applied. 
 
-#### Notes
-* Experiment instantiation
-    * Make sure to use profile `cs356-p4`, not `cs356-base`.
-    * Make sure to specify your group during instantiation. If you cannot see the Group options yet, please contact TA through Ed or email.
-    * You should SSH to the node using XTerm for Part 1 and Part 2 tests.
-* For every experiment instantiation, you should
-    * `$ sudo usermod -aG docker $USER`   
-    `$ touch ~/.Xauthority`  
-    Then, restart the SSH session to make sure the changes are applied.
-    * Clone your private repository and push the changes you made.
+**Note**: You should save changes you make to your private GitHub repo. Otherwise, you will lose the changes when your CloudLab experiment ends.
 
 ### Part 1: Switching with P4
 #### Overview 
@@ -45,22 +42,35 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
 * The parser is already implemented, and your job is to define an ethernet header format, `header ethernet_t`.
 
 2. Implement forwarding.
-* P4 task: Complete the definition of `table dmac_forward`
-    * Check whether the destination MAC address has a MAC-to_port_mapping
-    * Upon hit, forward the packet to the retrieved port using `action forward_to_port()`.
-    * Upon miss, broadcast the packet using `action broadcast()`.
+    * P4 task: Complete the definition of `table dmac_forward`.
+        <details>
+        <summary markdown="span"> Task specification</summary>
+
+        * Check whether the destination MAC address has a MAC-to_port_mapping
+        * Upon hit, forward the packet to the retrieved port using `action forward_to_port()`.
+        * Upon miss, broadcast the packet using `action broadcast()`. 
+        </details>
 
 3. Implement MAC learning. MAC-to-port mapping should expire after 15 seconds from the last packet arrival from the interface.
-* P4 task: Complete the definition of `table smac_table`.
-    * Check whether the source MAC address of the packet has a MAC-to-port mapping.
-    * Upon hit, do nothing.
-    * Upon miss, send the MAC-to-port mapping to the controller.
-        * Define `struct mac_learn_digest_t`.  
-        * Complete the `action learn()`.
+    
+    * P4 task: Complete the definition of `table smac_table`.
+        <details>
+        <summary markdown="span">Task specification</summary>
 
-    * Controller task: Install table entries for the tables when a digest message arrives. Set the timeout for the entries. **Table entry insertion API is provided, and please refer to the Appendix for the details.**
+        * Check whether the source MAC address of the packet has a MAC-to-port mapping.
+        * Upon hit, do nothing.
+        * Upon miss, send the MAC-to-port mapping to the controller.
+            * Define `struct mac_learn_digest_t`.  
+            * Complete the `action learn()`.
+        </details>
+    * Controller task: Install table entries for the tables when a digest message arrives. Set a 15-second timeout for each entry.
+        <details>
+        <summary markdown="span"> Task specification </summary>
+
+        * **Table entry insertion API is provided, and please refer to the Appendix for the details.**
         * `smac_table`: Install a table entry with the MAC address as a key. `NoAction()` as an action.
         * `dmac_forward`: Install a table entry with the MAC address as a key, `forward_to_port()` as an action, and `egress_port` as an action parameter.
+        </details>
 
 #### Test your implementation.
 1.  Compile the P4 code and launch the P4 and controller program on the switch (`s1`).  
@@ -73,7 +83,6 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
 * Once you implement forwarding, the packet should arrive at each host in the local network except the sender for every ping.
 * Once you implement MAC learning, the packet should arrive at each host in the local network except the sender until the table insertion is done. Then, the packet must arrive only at the destination host until the table entry expires. In other words, if the broadcasting behavior disappears after some time, you have implemented MAC learning properly.
 * To check if the packet arrives at a host, use `tcpdump -i <interface>` to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more details, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html). Use `tcpdump -i any` to sniff packets from all interfaces.
-* If you started the assignment before Feb 28 and the controller crashes with the error message that the table entry already exists, please apply this [patch](https://edstem.org/us/courses/50367/discussion/4455289) to your repository.
 
 ### Part 2: Router with P4
 #### Overview 
@@ -86,6 +95,9 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
 * Complete the `state parse_ethernet` in `MyParser()`. Check the ethernet frame type, and go to the parse_ipv4 state if the frame type is IPv4. Otherwise, accept the packet.
 2. Implement a routing table
     * P4 task: Define tables and actions.
+        <details>
+        <summary markdown="span">Task specification</summary>
+
         * Complete the definition of `table ipv4_route`. 
             * Perform the longest prefix matching on dstIP.
             * Upon hit, record the next hop IP address (provided by the controller) in the `metadata meta`'s `next_hop` field using `action forward_to_next_hop`.
@@ -99,18 +111,40 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
             * Upon hit, change the egress port. (provided by the controller). Update the source MAC address to the egress port's MAC address. (provided by the controller). Do this by completing and using `action forward_to_port`.
             * Upon miss, drop the packet.
         * Apply the tables in the `apply` block.    
+        </details>
         
-    * Controller task: Install table entries.    
-    Parsing of routing information is provided in the skeleton code. Your task is to install the table entries for each table defined in the P4 code. **Table entry insertion API is provided, and please refer to the Appendix for the details.**
+    * Controller task: Install the table entries for each table defined in the P4 code.    
+        <details>
+        <summary markdown="span">Task specification</summary>
+        
+        * Parsing of routing information is provided in the skeleton code.
+        *  **Table entry insertion API is provided, and please refer to the Appendix for the details.**
         * `ipv4_route`: Install table entries with the destination IP address as a key, `forward_to_next_hop` as an action, and `next_hop_ip` as an action parameter.
         * `arp_table`: Install table entries with the `next_hop` in the metadata as a key, `change_mac` as an action, and `next_hop_mac` as an action parameter.
         * `dmac_forward`: Install table entries with the MAC address as a key, `forward_to_port()` as an action, and `egress_port` and `egress_mac` as action parameters.
 
+        </details>
+
 3. Checksum and TTL
-    * Decrement the TTL field of the IPv4 header by 1. Complete the definition of `action decrement_ttl()` and call the action in the `apply` block in `MyIngress()`.
-    * Complete `MyVerifyChecksum()` and `MyUpdateChecksum()`. Use `extern verify_checksum()` and `extern update_checksum`. They are defined in this [link](https://github.com/p4lang/p4c/blob/main/p4include/v1model.p4#L483). Below are the definitions.
-        * `extern void verify_checksum<T, O>(in bool condition, in T data, in O checksum, HashAlgorithm algo);`
-        * `extern void update_checksum<T, O>(in bool condition, in T data, inout O checksum, HashAlgorithm algo);`
+    * P4 task: Decrement the TTL field of the IPv4 header by 1.
+        <details>
+        <summary markdown="span">Task specification</summary>
+
+        * Complete the definition of `action decrement_ttl()`
+        * Call the action in the `apply` block in `MyIngress()`.
+        </details>
+
+    * P4 task: Verify and update the checksum field of the IPv4 header
+        <details>
+        <summary markdown="span">Task specification</summary>
+
+        * Complete `MyVerifyChecksum()` and `MyUpdateChecksum()` using `extern verify_checksum()` and `extern update_checksum`.
+        * They are defined in this [link](https://github.com/p4lang/p4c/blob/main/p4include/v1model.p4#L483). Expand the below for a brief usage.
+            <details>
+            <summary markdown="span">extern usage</summary>
+
+            `extern void verify_checksum<T, O>(in bool condition, in T data, in O checksum, HashAlgorithm algo)`
+            `extern void update_checksum<T, O>(in bool condition, in T data, inout O checksum, HashAlgorithm algo)`            
             * If the `condition` is false, the operation is not applied. (They don't indicate a checksum error and change the checksum value.)
             * `data` is a tuple of values whose checksum is computed. The types of the values should be bit<W>, int<W>, or varbit<W>.
             * `checksum` is the checksum of `data` that will be verified or updated.
@@ -168,6 +202,7 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
                     }
                 }
                 ```
+            </details>
 
 #### Test your implementation.
 1. Compile the P4 code and launch the P4 and controller program on the routers (`r[1-3]`).  
