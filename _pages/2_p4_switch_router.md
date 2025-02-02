@@ -4,7 +4,7 @@ permalink: /assignments/assignment2
 title: "Assignment 2: Software Switch and Router with P4"
 ---
 
-#### **Released:** 02/14/2024 <br/> **Due:**	03/05/2024
+#### **Released:** 02/04/2025 <br/> **Due:**	02/25/2025
 {: .no_toc}
 
 * (The list will be replaced with the table of contents.)
@@ -12,10 +12,10 @@ title: "Assignment 2: Software Switch and Router with P4"
 
 ### Part 0: Overview and Setup
 #### Overview
-Your task is to implement a basic switch and router with P4(data plane) and Python(control plane).
+Your task is to implement a basic switch and router using P4 for the data plane and Python for the control plane.
 
 #### Setup
-**Get the skeleton code for A2 and setup your private repository.**
+**Clone the skeleton code for A2 and setup your private repository.**
 * To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment2.git).
 * Don't forget to select `Private` while creating the repository.
 
@@ -72,7 +72,7 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
         * `dmac_forward`: Install a table entry with the MAC address as a key, `forward_to_port()` as an action, and `egress_port` as an action parameter.
         </details>
 
-#### Test your implementation.
+#### Test your implementation
 1.  Compile the P4 code and launch the P4 and controller program on the switch (`s1`).
 * All the necessary commands are provided as script files in the Kathara lab's `shared` directory.
 * After starting the Kathara lab, compile the P4 code with `$ bash compile_p4.sh` on `s1`. For example:
@@ -209,7 +209,7 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
                 ```
             </details>
 
-#### Test your implementation.
+#### Test your implementation
 1. Compile the P4 code and launch the P4 and controller program on the routers (`r[1-3]`).
 * All the necessary commands are provided as script files in the Kathara lab's `shared` directory.
 * After starting the Kathara lab, compile the P4 code with `$ bash compile_p4.sh` on one of any `r[1-3]` routers. For example:
