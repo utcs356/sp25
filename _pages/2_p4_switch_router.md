@@ -99,6 +99,7 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
 #### Overview
 In this part of the assignment, you will implement a static software router with P4. Since it's static, it routes a packet based on a given routing information. Kathara lab for this part is located in `assignment2/labs/three_routers_three_hosts`. The skeleton codes are located in the `assignment2/labs/three_routers_three_hosts/shared`. The virtual network topology is illustrated below.
 ![P2_topology]({{site.baseurl}}/assets/img/assignments/assignment2/P2_topology.png)
+
 Your task is to complete `l3_static_routing.p4` and `controller.py` to make the routers `r[1-3]` work so that hosts in different local networks can talk to each other.
 #### Specification
 1. Parse the ethernet and IPv4 header.
