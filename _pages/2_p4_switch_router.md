@@ -39,14 +39,20 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
 
 #### Specification
 1. Parse the ethernet header.
-* The parser is already implemented, and your job is to define an ethernet header format, `header ethernet_t`.
+    * P4 task: Complete the definition of `header ethernet_t`.
+        <details>
+        <summary markdown="span">Task specificaiton</summary>
+        
+        * The parser is already implemented, and your job is to define an ethernet header format, `header ethernet_t`.
+        * You don't have to include a 64-bit preamble to the header format definition as it's part of physical layer.
+        </details>
 
 2. Implement forwarding.
     * P4 task: Complete the definition of `table dmac_forward`.
         <details>
         <summary markdown="span"> Task specification</summary>
 
-        * Check whether the destination MAC address has a MAC-to_port_mapping
+        * Check whether the destination MAC address has a MAC-to-port mapping
         * Upon hit, forward the packet to the retrieved port using `action forward_to_port()`.
         * Upon miss, broadcast the packet using `action broadcast()`.
         </details>
@@ -58,10 +64,10 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
         <summary markdown="span">Task specification</summary>
 
         * Check whether the source MAC address of the packet has a MAC-to-port mapping.
-        * Upon hit, do nothing.
-        * Upon miss, send the MAC-to-port mapping to the controller.
-            * Define `struct mac_learn_digest_t`.
-            * Complete the `action learn()`.
+        * Upon hit, do nothing (`NoAction()`).
+        * Upon miss, send the MAC-to-port mapping to the controller (`learn()`).
+            * Define a MAC learning digest message format, `struct mac_learn_digest_t`. It should contain the 48-bit source MAC address and 9-bit ingress port of the packet.
+            * Complete the `action learn()` by initializing the MAC learning digest message.
         </details>
     * Controller task: Install table entries for the tables when a digest message arrives. Set a 15-second timeout for each entry.
         <details>
@@ -81,7 +87,7 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
     kathara connect s1
     cd /shared && bash compile_p4.sh
     ```
-* Then launch the compiled P4 program with `$ bash run_switch.sh` and the controller with `$ bash run_controller.sh`. Both scripts are located in the `shared` directory.
+* Then launch the compiled P4 program with `$ bash run_switch.sh` and the controller with `$ bash run_controller.sh` on `s1`. Both scripts are located in the `shared` directory.
 
 2. Test the functionality.
 * You may use `ping` to check whether your switch works as expected on a host (`h[1-4]`).
@@ -248,7 +254,7 @@ The naming format for the file is `assign2_groupX.[tar.gz/zip]`.
     * Port number: Integer
 
     To set a timeout, you should change the attribute, `idle_timeout_ns`, of the table entry as below in integer and the unit of nanoseconds.
-    > `table_entry.idle_timeout_ns = int(1 * 1e9) # timeout is 1 second`
+    `table_entry.idle_timeout_ns = int(1 * 1e9) # timeout is 1 second`
 
     For more details, you can refer to the file, `assignment2/labs/star_four_hosts/shared/utils/p4runtime_lib/helper.py`.
 
