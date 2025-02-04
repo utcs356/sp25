@@ -73,7 +73,7 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
         <details>
         <summary markdown="span"> Task specification </summary>
 
-        * **Table entry insertion API is provided, and please refer to the Appendix for the details.**
+        * **Table entry insertion API is provided. Please refer to the Appendix for details.**
         * `smac_table`: Install a table entry with the MAC address as a key. `NoAction()` as an action.
         * `dmac_forward`: Install a table entry with the MAC address as a key, `forward_to_port()` as an action, and `egress_port` as an action parameter.
         </details>
@@ -130,7 +130,7 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
         <summary markdown="span">Task specification</summary>
 
         * Parsing of routing information is provided in the skeleton code.
-        *  **Table entry insertion API is provided, and please refer to the Appendix for the details.**
+        *  **Table entry insertion API is provided. Please refer to the Appendix for details.**
         * `ipv4_route`: Install table entries with the destination IP address as a key, `forward_to_next_hop` as an action, and `next_hop_ip` as an action parameter.
         * `arp_table`: Install table entries with the `next_hop` in the metadata as a key, `change_mac` as an action, and `next_hop_mac` as an action parameter.
         * `dmac_forward`: Install table entries with the MAC address as a key, `forward_to_port()` as an action, and `egress_port` and `egress_mac` as action parameters.
@@ -257,14 +257,14 @@ The naming format for the file is `assign2_groupX.[tar.gz/zip]`.
     To set a timeout, you should change the attribute, `idle_timeout_ns`, of the table entry as below in integer and the unit of nanoseconds.
     `table_entry.idle_timeout_ns = int(1 * 1e9) # timeout is 1 second`
 
-    For more details, you can refer to the file, `assignment2/labs/star_four_hosts/shared/utils/p4runtime_lib/helper.py`.
+    For more details, refer to the file, `assignment2/labs/star_four_hosts/shared/utils/p4runtime_lib/helper.py`.
 
 2. Send a table entry to the switch.
     The `Bmv2SwitchConnection` object, `s1`, is provided and initialized. The object is the abstraction of a connection between the switch and the controller.
     To add a table entry you built in the above step, you can simply call the `WriteTableEntry` method of the `Bmv2SwitchConnectoin` object with `table_entry` as a parameter. (e.g., `s1.WriteTableEntry(table_entry)`)
 
 #### Usage example
-Say there's a `l2_simple_switch.p4` and it defines a table in the ingress control block as below.
+Say there's a `l2_simple_switch.p4`, and it defines a table in the ingress control block as below.
 ```p4
 ...
 control MyIngress() {
