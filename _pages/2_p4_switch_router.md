@@ -4,7 +4,7 @@ permalink: /assignments/assignment2
 title: "Assignment 2: Software Switch and Router with P4"
 ---
 
-#### **Released:** 02/04/2025 <br/> **Due:**	02/25/2025
+#### **Released:** 02/04/2025 <br/> **Due:**	02/27/2025
 {: .no_toc}
 
 * (The list will be replaced with the table of contents.)
