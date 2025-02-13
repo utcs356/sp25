@@ -118,7 +118,9 @@
   slides: https://drive.google.com/file/d/186rMwgyrOVbVmRz8YbteNYUUcZgSUm5Y/view?usp=drive_link 
   notes: 
   video: 
-  readings:
+  readings: 
+  - P&D 3.3
+  - K&R 4.3
   logistics:
 
 - date: T 02/18
