@@ -88,7 +88,8 @@
   notes: 
   video: 
   readings:
-  - <a href="https://staging.p4.org/p4-spec/docs/P4-16-v1.2.4.html">P4 language spec</a>
+  - <a href="https://p4.org/p4-spec/docs/P4-16-v1.2.4.pdf">P4 language spec</a>
+  - P&D 3.5
   logistics:
   - Assignment 1 is due
   - Assignment 2 is out
