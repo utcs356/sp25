@@ -3,7 +3,7 @@ layout: page
 permalink: /assignments/assignment3
 title: 	"Assignment 3: Supporting ARP, ICMP, RIP in the Router"
 ---
-#### **Released:** 03/07/2024 <br/> **Due:**	03/28/2024
+#### **Released:** 02/25/2025 <br/> **Due:**	03/11/2025
 {: .no_toc}
 * (The list will be replaced with the table of contents.)
 {:toc}
