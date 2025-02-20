@@ -113,7 +113,7 @@
 - date: Th 02/13
   lecturer:
   title: >
-    <strong>Network lyaer: Internet protocol</strong>
+    <strong>Network layer: Internet protocol</strong>
   recitation: 
   slides: https://drive.google.com/file/d/186rMwgyrOVbVmRz8YbteNYUUcZgSUm5Y/view?usp=drive_link 
   notes: 
@@ -139,7 +139,7 @@
 - date: Th 02/20
   lecturer:
   title: >
-    <strong>Intra-domain routing</strong>
+    <strong>Intra-domain routing (cont'd)</strong>
   recitation: 
   slides: https://drive.google.com/file/d/18GV-PFZ_FY2-McY1leg5BHU8_ML4czEm/view?usp=drive_link 
   notes: 
@@ -152,7 +152,7 @@
 - date: T 02/25
   lecturer:
   title: >
-    <strong>Inter-domain routing</strong>
+    <strong>Inter-domain routing & Border Gateway Protocol (BGP)</strong>
   recitation: 
   slides: 
   notes: 
@@ -165,7 +165,7 @@
 - date: Th 02/27
   lecturer:
   title: >
-    <strong>Border Gateway Protocol (BGP) </strong>
+    <strong>BGP (Cont'd)</strong>
   recitation: 
   slides: 
   notes: 
@@ -252,7 +252,7 @@
 - date: T 04/01
   lecturer:
   title: >
-    <strong>More on Congestion control</strong>
+    <strong>Congestion control (Cont'd)</strong>
   recitation: 
   slides: 
   notes: 
