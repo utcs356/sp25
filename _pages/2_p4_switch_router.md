@@ -80,20 +80,20 @@ Your task is to complete `l2_basic_forwarding.p4` and `controller.py` to make th
 
 #### Test your implementation
 1.  Compile the P4 code and launch the P4 and controller program on the switch (`s1`).
-    * All the necessary commands are provided as script files in the Kathara lab's `shared` directory.
-    * After starting the Kathara lab, compile the P4 code with `$ bash compile_p4.sh` on `s1`. For example:
-        ```bash
-        # under `star_four_hosts/` directory
-        kathara connect s1
-        cd /shared && bash compile_p4.sh
-        ```
-    * Then launch the compiled P4 program with `$ bash run_switch.sh` and the controller with `$ bash run_controller.sh` on `s1`. Both scripts are located in the `shared` directory.
+* All the necessary commands are provided as script files in the Kathara lab's `shared` directory.
+* After starting the Kathara lab, compile the P4 code with `$ bash compile_p4.sh` on `s1`. For example:
+    ```bash
+    # under `star_four_hosts/` directory
+    kathara connect s1
+    cd /shared && bash compile_p4.sh
+    ```
+* Then launch the compiled P4 program with `$ bash run_switch.sh` and the controller with `$ bash run_controller.sh` on `s1`. Both scripts are located in the `shared` directory.
 
 2. Test the functionality.
-    * You may use `ping` to check whether your switch works as expected on a host (`h[1-4]`).
-    * Once you implement forwarding, the packet should arrive at each host in the local network except the sender for every ping.
-    * Once you implement MAC learning, the packet should arrive at each host in the local network except the sender until the table insertion is done. Then, the packet must arrive only at the destination host until the table entry expires. In other words, if the broadcasting behavior disappears after some time, you have implemented MAC learning properly.
-    * To check if the packet arrives at a host, use `tcpdump -i <interface>` (e.g., `tcpdump -i eth0`) to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more details, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html). Use `tcpdump -i any` to sniff packets from all interfaces.
+* You may use `ping` to check whether your switch works as expected on a host (`h[1-4]`).
+* Once you implement forwarding, the packet should arrive at each host in the local network except the sender for every ping.
+* Once you implement MAC learning, the packet should arrive at each host in the local network except the sender until the table insertion is done. Then, the packet must arrive only at the destination host until the table entry expires. In other words, if the broadcasting behavior disappears after some time, you have implemented MAC learning properly.
+* To check if the packet arrives at a host, use `tcpdump -i <interface>` (e.g., `tcpdump -i eth0`) to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more details, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html). Use `tcpdump -i any` to sniff packets from all interfaces.
 
 ### Part 2: Router with P4
 #### Overview
@@ -225,7 +225,6 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
     kathara connect r1
     cd /shared && bash compile_p4.sh
     ```
-
 * Then, on each router, launch the compiled P4 program with `$ bash run_router.sh` and the controller with `$ bash r[1-3]_run_controller.sh`.
 
 2. Test the functionality.
