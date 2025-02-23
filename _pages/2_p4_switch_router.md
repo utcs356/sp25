@@ -227,6 +227,7 @@ Your task is to complete `l3_static_routing.p4` and `controller.py` to make the 
     ```
 
 * Then, on each router, launch the compiled P4 program with `$ bash run_router.sh` and the controller with `$ bash r[1-3]_run_controller.sh`.
+
 2. Test the functionality.
 * You may use `ping` to check whether your router works as expected on a host (`h[1-3]`).
 * To check if the packet arrives at a host, use `$ tcpdump -i <interface>` (e.g., `tcpdump -i eth0`) to sniff the packet on the host's interface. The interface name can be retrieved by using `ifconfig`. For more details, refer to [man tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html). Use `tcpdump -i any` to sniff packets from all interfaces.
