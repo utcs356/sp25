@@ -207,14 +207,14 @@
   video:
   readings:
   logistics:
-  - Assignment 3 is due
-  - Assignment 4 is out
 
 - date: Th 03/13
   lecturer:
   quiz: >
     <strong>Quiz 2 (UTC 4.102)</strong>
   logistics:
+  - Assignment 3 is due
+  - Assignment 4 is out
 
 
 - date: T 03/18
@@ -272,8 +272,6 @@
   video:
   readings:
   logistics:
-  - Assignment 4 is due
-  - Assignment 5 is out
 
 - date: T 04/08
   lecturer:
@@ -285,6 +283,8 @@
   video:
   readings:
   logistics:
+  - Assignment 4 is due
+  - Assignment 5 is out
 
 - date: Th 04/10
   lecturer:
@@ -329,10 +329,10 @@
   video:
   readings:
   logistics:
-  - Assignment 5 is due
 
 - date: Th 04/24
   lecturer:
   quiz: >
     <strong>Quiz 3 (UTC 4.102)</strong>
   logistics:
+  - Assignment 5 is due
