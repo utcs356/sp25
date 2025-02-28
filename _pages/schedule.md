@@ -32,7 +32,16 @@ title: Schedule
         <td colspan="4" align="center">{{ lecture.title }}<p align="right">{{ lecture.logistics }}</p></td>
     {% elsif lecture.quiz != blank %}
         {% assign skip_classes = skip_classes | plus: 1 %}
-        <td colspan="4" align="center">{{ lecture.quiz }}<p align="right">{{ lecture.logistics }}</p></td>
+        <td colspan="2" align="center">{{ lecture.quiz }}</td>
+        <td>
+            {% if lecture.logistics %}
+            <ul>
+                {% for item in lecture.logistics %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </td>
     {% else %}
     <td>
         {% if lecture.title %}
