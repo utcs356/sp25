@@ -182,10 +182,12 @@
   title: >
     <strong>Transport layer overview</strong>
   recitation:
-  slides:
+  slides: https://drive.google.com/file/d/18s80hn-2Vmb1z2GqY14BBg_5mOU_q-4Z/view?usp=drive_link
   notes:
   video:
   readings:
+  - P&D 2.5 and 5.1
+  - K&R 3.1-3.4
   logistics:
 
 - date: Th 03/06
