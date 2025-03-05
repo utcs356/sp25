@@ -195,10 +195,12 @@
   title: >
     <strong>TCP Basics</strong>
   recitation:
-  slides:
+  slides: https://drive.google.com/file/d/1G3qCg1K-yRtH9xKgOg9K5e5dGRwTb1RD/view?usp=drive_link
   notes:
   video:
   readings:
+  - P&D 5.2
+  - K&R 3.5
   logistics:
 
 - date: T 03/11
