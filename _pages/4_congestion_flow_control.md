@@ -16,13 +16,13 @@ Also, to enable efficient communication, you will implement sliding window, flow
 
 ### Environment Setup
 
-* CloudLab image
-* Get Skeleton Code
-* How to setup basic environments
-* Skeleton Code explanation
-
 In this assignment, we recommend you use `cs356-base` profile on CloudLab for implementing and testing your code.
 To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment4.git).
+
+Install dependencies by running the following command (We recommend you to use CloudLab machines for development):
+```bash
+> bash setup/setup.sh
+```
 
 ### Implementation
 
@@ -120,29 +120,41 @@ In `backend.c`, you will have to implement the following functions to support sl
 * `handle_pkt()`
 * `updated_received_buf()`
 
-```
-NOTE: For the ease of grading, we use static timeout in this assignment. UTCS TCP protocol can be implemented in more efficient manners by estimating RTT (e.g., Karn/Partridge algorithm).
-```
 
 #### Part3: Congestion Control
 
+In this part, you will implement congestion control following TCP Reno algorithm.
+You can control congestion window and slow start threshold through `sock->cong_win` and `sock->slow_start_thresh`.
 
+When implementing congestion control, the size of your sending window should now be the minimum of the congestion window and the advertised window. You should additionally make sure that the total amount of data buffered for the application (unread data, both ordered and unordered bytes) is less than `MAX_NETWORK_BUFFER`.
 
-The size of your sending window should now be the minimum of cwnd and the advertised window. You should additionally make sure that the total amount of data buffered for the application (unread data, both ordered and unordered bytes) is less than MAX_NETWORK_BUFFER (see details below).
+Now we describe how TCP Reno works:
 
 ![TCP Reno Congestion Control State Diagram]({{site.baseurl}}/assets/img/assignments/assignment4/tcp_reno.png)
-The above figure shows the full TCP Reno congestion control state diagram, for your reference.
+The above figure shows the full TCP Reno congestion control state diagram
+(Extracted from `Computer Networking: A Top-Down Approach (7th Edition)` by Kurose and Ross).
 
+* During the `slow start` state, the congestion window increases by `MSS` (Additive Increase) for each new ACK. Transit to the `congestion avoidance` state when the congestion window is larger than the slow start threshold.
+* In `congestion avoidance` state, the congestion window is adjusted as follows for each new ACK:
+  * `new congestion window` = `current congestion window` + `MSS` * (`MSS` / `current congestion window`)
 
-Implement retransmission on duplicate ACKs (fast recovery): Another reason that loss recovery is slow is that the starter code relies on timeouts to detect packet loss. One way to recover more quickly is to retransmit whenever you see three duplicate ACKs. Implement retransmission on the receipt of three duplicate ACKs. Note that three duplicate ACKs means four ACKs acknowledging the same sequence number.
+* `Fast recovery` state enables to recover more quickly is to retransmit whenever you see three duplicate ACKs.
+  * Implement retransmission on the receipt of three duplicate ACKs (i.e., state transitions from `slow start` to `fast recovery`).
+  * When duplicated ACKs continue after three duplicate ACKs, transmit new segments while increasing the congestion window size by `MSS`.
+  * When new ACKs are received, transit to the `congestion avoidance` state.
+* Sender returns to slow start on timeout. The slow start threshold is halved and the congestion window size is reset to 1*`MSS`.
 
+```
+NOTE: For the ease of grading, we use static timeout in this assignment.
+UTCS TCP protocol can be implemented in more efficient manners by estimating RTT (e.g., Karn/Partridge algorithm).
+```
 
-the number of outstanding (unACKed) bytes will be min(“receiver advertised window,” “congestion window”). As described below, you must demonstrate using graphs from real connections that your TCP Reno implementation uses Additive Increase under normal operation, and Multiplicative Decrease (when appropriate) under loss.
+In `backend.c`, you will implement or modify the following functions to implement the congestion control algorithm. We describe TODO items in the skeleton code:
 
-* Implement TCP-Reno's congestion control algorithm
-* In slow start, the congestion window increases exponentially
-* In congestion avoidance mode, the congestion window correctly responds to loss
-* Sender returns to slow start on timeout
+* `handle_ack()`
+* `handle_pkt()`
+* `recv_pkts()`
+* `send_pkts_data()`
 
 #### Testing your implementation
 
