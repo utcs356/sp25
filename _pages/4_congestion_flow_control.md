@@ -104,11 +104,18 @@ Now, server and client are ready to send and receive data after completing three
 
 1. Sliding window:
     * At the sending side, three pointers are maintained into the send buffer (`sock->send_win`): `last_ack`, `last_sent`, and `last_write`. The following invariants hold for the three pointers:
+
+        ```
         * `last_ack` <= `last_sent`
         * `last_sent` <= `last_write`
+        ```
+
     * A similar set of pointers (sequence numbers) are maintained on the receiving side (`sock->recv_win`): `last_read`, `next_expect`, and `last_recv`. The following relationships hold for the three pointers:
-        * `last_read` < `next_expect`
-        * `next_expect` <= `last_recv` + 1
+
+        ```
+        last_read < next_expect
+        next_expect <= last_recv + 1
+        ```
 
 2. Flow control: Use the receiver’s advertised window as the maximum window size when sending packets.
     * UTCS TCP header includes the `advertised_window` field.
@@ -137,17 +144,12 @@ The above figure shows the full TCP Reno congestion control state diagram
 * During the `slow start` state, the congestion window increases by `MSS` (Additive Increase) for each new ACK. Transit to the `congestion avoidance` state when the congestion window is larger than the slow start threshold.
 * In `congestion avoidance` state, the congestion window is adjusted as follows for each new ACK:
   * `new congestion window` = `current congestion window` + `MSS` * (`MSS` / `current congestion window`)
-
 * `Fast recovery` state enables to recover more quickly is to retransmit whenever you see three duplicate ACKs.
   * Implement retransmission on the receipt of three duplicate ACKs (i.e., state transitions from `slow start` to `fast recovery`).
   * When duplicated ACKs continue after three duplicate ACKs, transmit new segments while increasing the congestion window size by `MSS`.
   * When new ACKs are received, transit to the `congestion avoidance` state.
-* Sender returns to slow start on timeout. The slow start threshold is halved and the congestion window size is reset to 1*`MSS`.
-
-```
-NOTE: For the ease of grading, we use static timeout in this assignment.
-UTCS TCP protocol can be implemented in more efficient manners by estimating RTT (e.g., Karn/Partridge algorithm).
-```
+* Sender returns to slow start on timeout. The slow start threshold is halved and the congestion window size is reset to `MSS`.
+  * For the ease of grading, we use static timeout in this assignment instead of using more efficient methods such as Karn/Partridge algorithm.
 
 In `backend.c`, you will implement or modify the following functions to implement the congestion control algorithm. We describe TODO items in the skeleton code:
 
@@ -158,9 +160,46 @@ In `backend.c`, you will implement or modify the following functions to implemen
 
 #### Testing your implementation
 
-* Simple server and client (text, file)
-* Python test
-* Change network environments by configuring Kathara parameters
+We describe tools for developing and testing the implementation.
+
+**Simple server and client**
+We provide an example implementation of server and client that use UTCS-TCP sockets.
+Please check `server.c` and `client.c` for more details.
+To execute the programs, run the following commands. In this example, we assume you are running server and client in local environments.
+Feel free to change the address and port in environment variables to what you prefer.
+
+```bash
+# Compile your UTCS TCP implementation along with server and client programs
+make
+```
+
+```bash
+# A terminal for server
+UTCS_TCP_ADDR=127.0.0.1 UTCS_TCP_PORT=8000 ./server
+```
+
+```bash
+# Another terminal for client
+UTCS_TCP_ADDR=127.0.0.1 UTCS_TCP_PORT=8000 ./client
+```
+
+We expect server and client to finish communications successfully after a few seconds.
+You can check the correctness of data transmission using the following command:
+(We expect no outputs to appear. The command will print out messages when the files are different.)
+
+```bash
+diff tests/random.input tests/random.output
+```
+
+To test with different sizes, feel free to create random files with the following command and replace `tests/random.input`:
+
+```bash
+# Creates a file with 10 blocks each with 1MB => a 10MB file
+dd if=/dev/urandom of=tests/random.input bs=1M count=10
+```
+
+**Change network environments by configuring Kathara parameters**
+
 
 ### Experiments
 
