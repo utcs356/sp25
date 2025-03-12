@@ -26,30 +26,30 @@ Install dependencies by running the following command (We recommend you to use C
 
 ### Implementation
 
-The goal of this assigment is to support reliable communications by implementing `UTCS TCP`.
-In the skeleton codes, we provide `UTCS TCP` socket and APIs (in `utcs_tcp.h`):
+The goal of this assigment is to support reliable communications by implementing `UT TCP`.
+In the skeleton codes, we provide `UT TCP` socket and APIs (in `ut_tcp.h`):
 
-* `utcs_socket`: creates a new socket for `UTCS TCP`. The socket includes all information about address, send/receive buffers, sliding window, congestion control, and so on.
+* `ut_socket`: creates a new socket for `UT TCP`. The socket includes all information about address, send/receive buffers, sliding window, congestion control, and so on.
   * When a new socket is created, a thread will bind to the socket, which is in charge of sending and receiving data through the `begin_backend` function.
-* `utcs_close`: closes the socket.
-* `utcs_read`: reads data from the received buffer in the socket.
-* `utcs_write`: writes data to the send buffer in the socket.
+* `ut_close`: closes the socket.
+* `ut_read`: reads data from the received buffer in the socket.
+* `ut_write`: writes data to the send buffer in the socket.
 
 Examples of how the socket are created and APIs are used can be found in `server.c` and `client.c`.
 A simplified version would look as follows:
 
 ```c
-utcs_socket_t socket;
-utcs_socket(&socket, TCP_LISTENER, portno, serverip); // Creates a socket.
-utcs_write(sock, "Who's there?", 12); // Sends data with the size of 12 bytes.
-int n = utcs_read(sock, buf, 12, NO_FLAG); // Reads data from the received buffer.
+ut_socket_t socket;
+ut_socket(&socket, TCP_LISTENER, portno, serverip); // Creates a socket.
+ut_write(sock, "Who's there?", 12); // Sends data with the size of 12 bytes.
+int n = ut_read(sock, buf, 12, NO_FLAG); // Reads data from the received buffer.
 printf("Received: %.*s\n", n, buf);
-utcs_close(&socket) // Closes the socket.
+ut_close(&socket) // Closes the socket.
 ```
 
 Your tasks are to enable reliable communications by implementing functions in `backend.c`.
 Read the following descriptions and implement `TODOs` specified in the skeleton.
-Feel free to change skeleton codes other than codeblocks in `TODOs` if you make sure not to change function signatures of `UTCS TCP` socket and APIs.
+Feel free to change skeleton codes other than codeblocks in `TODOs` if you make sure not to change function signatures of `UT TCP` socket and APIs.
 
 #### Part1: Connection establishment and termination
 
@@ -77,7 +77,7 @@ We first describe the handshake workflow:
 
 **Connection teardown**
 
-When a socket is done transmitting data, the socket calls `utcs_close()` to terminate communications. We describe the expected behaviors during termination from one side as follows.
+When a socket is done transmitting data, the socket calls `ut_close()` to terminate communications. We describe the expected behaviors during termination from one side as follows.
 Your task is to handle when receiving `FIN` packets and sending corresponding `ACK` packets.
 The termination process can be triggered by either server or client, whoever is ready to send `FIN` packets:
 
@@ -95,7 +95,7 @@ NOTE: We do not consider when both server and client terminate at the same time.
 In this part, you will have to implement the following functions in `backend.c` to eatablish connections:
 
 * `send_pkts_handshake()`
-* `handle_pkt()` (To handle `FIN` packets)
+* `handle_pkt()` (Handle `FIN` packets in the function)
 * `handle_pkt_handshake()`
 
 #### Part2: Sliding Window and Flow Control
@@ -105,7 +105,7 @@ Now, server and client are ready to send and receive data after completing three
 * At the sending side, three pointers are maintained into the send buffer (`sock->send_win`): `last_ack`, `last_sent`, and `last_write`. The following invariants hold for the three pointers:
   * `last_ack`: The last byte acked by the receiver. When you receive new ACK numbers higher than `last_ack`, then the sender can update `last_ack` based on the receive ACK (i.e., `last_ack` = new ACK - 1).
   * `last_sent`: The last byte sent by the socket. You will have to update `last_sent` when you 1) send new packets or 2) start data retransmissions from `last_ack`.
-  * `last_write`: The last byte written by client or server using `utcs_write` APIs.
+  * `last_write`: The last byte written by client or server using `ut_write` APIs.
     ```
                   [send_win]
         ┌────────────────┬─────────────┐
@@ -114,14 +114,14 @@ Now, server and client are ready to send and receive data after completing three
         ^                ^             ^
     last_ack         last_sent     last_write
 
-    * `last_ack` <= `last_sent`
-    * `last_sent` <= `last_write`
+    * last_ack <= last_sent
+    * last_sent <= last_write
     ```
 
 * A similar set of pointers (sequence numbers) are maintained on the receiving side (`sock->recv_win`): `last_read`, `next_expect`, and `last_recv`. The following relationships hold for the three pointers:
-  * `last_read`: The last byte read by client or server using `utcs_read` APIs.
+  * `last_read`: The last byte read by client or server using `ut_read` APIs.
   * `next_expect`: The next expected sequence number.
-  * `last_recv`: The last byte received. The receive buffer may miss some bytes in between `next_expect` and `last_recv` if a packet's sequence number is larger than `next_expect`. This can happen when packets do not arrive in order.
+  * `last_recv`: The last byte received. The receive buffer may have not received some bytes in between `next_expect` and `last_recv` if a packet's sequence number is larger than `next_expect`. This can happen when packets do not arrive in order.
     ```
                   [recv_win]
         ┌────────────────┬────░░░░░────┐
@@ -135,7 +135,7 @@ Now, server and client are ready to send and receive data after completing three
     ```
 
 * Use the receiver’s advertised window as the maximum window size when sending packets.
-  * UTCS TCP header includes the `advertised_window` field when sending packets.
+  * UT TCP header includes the `advertised_window` field when sending packets.
     * The advertised window is calculated by `MAX_NETWORK_BUFFER - (last_recv - last_read)`.
   * The receiver updates the advertised window (`sock->send_adv_win`) as it receives data.
 
@@ -167,9 +167,9 @@ The above figure shows the full TCP Reno congestion control state diagram
   * When duplicated ACKs continue after three duplicate ACKs, transmit new segments while increasing the congestion window size by `MSS`.
   * When new ACKs are received, transit to the `congestion avoidance` state.
 * Sender returns to slow start on timeout. The slow start threshold is halved and the congestion window size is reset to `MSS`.
-  * For the ease of grading, we use static timeout in this assignment instead of using more efficient methods such as Karn/Partridge algorithm.
+  * For the ease of grading, we use static timeout in this assignment instead of using adaptive timeout methods such as Karn/Partridge algorithm.
 
-In `backend.c`, you will implement or modify the following functions to implement the congestion control algorithm. We describe TODO items in the skeleton code:
+In `backend.c`, you will implement or modify the following functions to implement the congestion control algorithm. We describe TODO items in the skeleton code. To show how the above state diagram can be implemented, we provide an example implementation of handling duplicated ACKs during the `fast recovery` state in the `handle_ack()` function:
 
 * `handle_ack()`
 * `handle_pkt()`
@@ -182,24 +182,24 @@ We describe tools for developing and testing the implementation.
 
 **Simple server and client**
 
-We provide an example implementation of server and client that use UTCS-TCP sockets.
+We provide an example implementation of server and client that use UT-TCP sockets.
 Please check `server.c` and `client.c` for more details.
 To execute the programs, run the following commands. In this example, we assume you are running server and client in local environments.
 Feel free to change the address and port in environment variables to what you prefer.
 
 ```bash
-# Compile your UTCS TCP implementation along with server and client programs
+# Compile your UT TCP implementation along with server and client programs
 make
 ```
 
 ```bash
 # A terminal for server
-UTCS_TCP_ADDR=127.0.0.1 UTCS_TCP_PORT=8000 ./server
+UT_TCP_ADDR=127.0.0.1 UT_TCP_PORT=8000 ./server
 ```
 
 ```bash
 # Another terminal for client
-UTCS_TCP_ADDR=127.0.0.1 UTCS_TCP_PORT=8000 ./client
+UT_TCP_ADDR=127.0.0.1 UT_TCP_PORT=8000 ./client
 ```
 
 We expect server and client to finish communications successfully after a few seconds.
@@ -217,9 +217,13 @@ To test with different sizes, feel free to create random files with the followin
 dd if=/dev/urandom of=tests/random.input bs=1M count=10
 ```
 
+**Pytest**
+We provide testing tools to manipulate packets to validate how server or client behaves.
+
+
 **Kathara experiments**
 
-You can test UTCS TCP under various network environments (e.g., inject losses).
+You can test UT TCP under various network environments (e.g., inject losses).
 For instance, you can force packet drops using the following example.
 To isolate environment, we recommend to use Kathara labs.
 Under `kathara-labs`, we provide two hosts (`h1`, `h2`) to be deployed using Kathara.
@@ -235,20 +239,18 @@ kathara lstart
 # H1 (Server)
 kathara connect h1
 cd /shared
-# You can add packet losses using the following commands:
-# Feel free to change the loss percentage
+# You can add packet losses using the following commands (Feel free to change the loss percentage):
 # tcset eth0 --loss 1% --overwrite
-UTCS_TCP_ADDR=10.1.1.3 UTCS_TCP_PORT=8000 ./server
+UT_TCP_ADDR=10.1.1.3 UT_TCP_PORT=8000 ./server
 ```
 
 ```bash
 # H2 (Client)
 kathara connect h2
 cd /shared
-# You can add packet losses using the following commands:
-# Feel free to change the loss percentage
+# You can add packet losses using the following commands (Feel free to change the loss percentage):
 # tcset eth0 --loss 1% --overwrite
-UTCS_TCP_ADDR=10.1.1.3 UTCS_TCP_PORT=8000 ./client
+UT_TCP_ADDR=10.1.1.3 UT_TCP_PORT=8000 ./client
 ```
 
 ### Experiments
