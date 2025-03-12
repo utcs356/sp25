@@ -102,24 +102,42 @@ In this part, you will have to implement the following functions in `backend.c` 
 
 Now, server and client are ready to send and receive data after completing three-way handshake. For efficient data transmission, your goal is to implement a sliding window and flow control. Sliding window allows the sender to transmit multiple packets before waiting for an acknowledgment (ACK). We recommend you to read [Chapter 5.2](https://book.systemsapproach.org/e2e/tcp.html#sliding-window-revisited) in the P&D textbook to understand how sliding window and flow control work.
 
-1. Sliding window:
-    * At the sending side, three pointers are maintained into the send buffer (`sock->send_win`): `last_ack`, `last_sent`, and `last_write`. The following invariants hold for the three pointers:
+* At the sending side, three pointers are maintained into the send buffer (`sock->send_win`): `last_ack`, `last_sent`, and `last_write`. The following invariants hold for the three pointers:
+  * `last_ack`: The last byte acked by the receiver. When you receive new ACK numbers higher than `last_ack`, then the sender can update `last_ack` based on the receive ACK (i.e., `last_ack` = new ACK - 1).
+  * `last_sent`: The last byte sent by the socket. You will have to update `last_sent` when you 1) send new packets or 2) start data retransmissions from `last_ack`.
+  * `last_write`: The last byte written by client or server using `utcs_write` APIs.
+    ```
+                  [send_win]
+        ┌────────────────┬─────────────┐
+        │                │             │
+        └────────────────┴─────────────┘
+        ^                ^             ^
+    last_ack         last_sent     last_write
 
-        ```
-        * `last_ack` <= `last_sent`
-        * `last_sent` <= `last_write`
-        ```
+    * `last_ack` <= `last_sent`
+    * `last_sent` <= `last_write`
+    ```
 
-    * A similar set of pointers (sequence numbers) are maintained on the receiving side (`sock->recv_win`): `last_read`, `next_expect`, and `last_recv`. The following relationships hold for the three pointers:
+* A similar set of pointers (sequence numbers) are maintained on the receiving side (`sock->recv_win`): `last_read`, `next_expect`, and `last_recv`. The following relationships hold for the three pointers:
+  * `last_read`: The last byte read by client or server using `utcs_read` APIs.
+  * `next_expect`: The next expected sequence number.
+  * `last_recv`: The last byte received. The receive buffer may miss some bytes in between `next_expect` and `last_recv` if a packet's sequence number is larger than `next_expect`. This can happen when packets do not arrive in order.
+    ```
+                  [recv_win]
+        ┌────────────────┬────░░░░░────┐
+        │                │    ░░░░░    │
+        └────────────────┴────░░░░░────┘
+        ^                ^  <missing>  ^
+    last_read        next_expect   last_recv
 
-        ```
-        last_read < next_expect
-        next_expect <= last_recv + 1
-        ```
+    * last_read < next_expect
+    * next_expect <= last_recv + 1
+    ```
 
-2. Flow control: Use the receiver’s advertised window as the maximum window size when sending packets.
-    * UTCS TCP header includes the `advertised_window` field.
-    * The receiver updates the advertised window (`sock->send_adv_win`) as it receives data.
+* Use the receiver’s advertised window as the maximum window size when sending packets.
+  * UTCS TCP header includes the `advertised_window` field when sending packets.
+    * The advertised window is calculated by `MAX_NETWORK_BUFFER - (last_recv - last_read)`.
+  * The receiver updates the advertised window (`sock->send_adv_win`) as it receives data.
 
 In `backend.c`, you will have to implement the following functions to support sliding window and flow control:
 
@@ -251,7 +269,7 @@ The naming format for the code and report is `assign4_groupX.[tar.gz/zip]` and `
   * Congestion Control
 * Experiments (30%)
 
-### Acknowledgements
+### Acknowledgement
 
 This assignment is modified from CMU Computer Networks course (CMU 15-441/641) assignments.
 No part of the project may be copied and/or distributed without the express permission of the course staff.
