@@ -163,6 +163,7 @@ In `backend.c`, you will implement or modify the following functions to implemen
 We describe tools for developing and testing the implementation.
 
 **Simple server and client**
+
 We provide an example implementation of server and client that use UTCS-TCP sockets.
 Please check `server.c` and `client.c` for more details.
 To execute the programs, run the following commands. In this example, we assume you are running server and client in local environments.
@@ -198,10 +199,15 @@ To test with different sizes, feel free to create random files with the followin
 dd if=/dev/urandom of=tests/random.input bs=1M count=10
 ```
 
-**Change network environments by configuring Kathara parameters**
-
 
 ### Experiments
+
+**Kathara experiments**
+
+You can test UTCS TCP under various network environments by changing Kathara network configurations.
+For instance, you can force packets to timeout by changing Kathara configurations.
+Under `kathara_labs`, we provide two hosts (`h1`, `h2`) to be deployed using Kathara.
+
 
 * Capture packets and report Saw-tooth patterns
 * Expeirment scenario? (Normal, Bandwidth change)
