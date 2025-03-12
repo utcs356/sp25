@@ -199,15 +199,41 @@ To test with different sizes, feel free to create random files with the followin
 dd if=/dev/urandom of=tests/random.input bs=1M count=10
 ```
 
-
-### Experiments
-
 **Kathara experiments**
 
-You can test UTCS TCP under various network environments by changing Kathara network configurations.
-For instance, you can force packets to timeout by changing Kathara configurations.
-Under `kathara_labs`, we provide two hosts (`h1`, `h2`) to be deployed using Kathara.
+You can test UTCS TCP under various network environments (e.g., inject losses).
+For instance, you can force packet drops using the following example.
+To isolate environment, we recommend to use Kathara labs.
+Under `kathara-labs`, we provide two hosts (`h1`, `h2`) to be deployed using Kathara.
+The following is how to test the above server and client examples under losses.
 
+```bash
+# Start Kathara environments
+cd kathara-labs
+kathara lstart
+```
+
+```bash
+# H1 (Server)
+kathara connect h1
+cd /shared
+# You can add packet losses using the following commands:
+# Feel free to change the loss percentage
+# tcset eth0 --loss 1% --overwrite
+UTCS_TCP_ADDR=10.1.1.3 UTCS_TCP_PORT=8000 ./server
+```
+
+```bash
+# H2 (Client)
+kathara connect h2
+cd /shared
+# You can add packet losses using the following commands:
+# Feel free to change the loss percentage
+# tcset eth0 --loss 1% --overwrite
+UTCS_TCP_ADDR=10.1.1.3 UTCS_TCP_PORT=8000 ./client
+```
+
+### Experiments
 
 * Capture packets and report Saw-tooth patterns
 * Expeirment scenario? (Normal, Bandwidth change)
