@@ -183,7 +183,7 @@ In `backend.c`, you will have to implement the following functions to support sl
 
 ---
 
-### **Part 3: Congestion Control**
+### Part 3: Congestion Control
 
 In this part, you will implement **congestion control** using the TCP Reno algorithm.
 You will control the congestion window (`sock->cong_win`) and the slow start threshold (`sock->slow_start_thresh`).
