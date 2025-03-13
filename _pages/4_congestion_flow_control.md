@@ -102,6 +102,8 @@ Either the **server** or **client** can initiate termination by sending a `FIN` 
 **Note:** Simultaneous termination (where both the server and client send `FIN & ACK` in the same packet) is **not** considered in this assignment. You do not need to handle this scenario.
 ```
 
+**Implementation Details**
+
 In this part, you will have to implement the following functions in `backend.c` to eatablish connections:
 
 * `send_pkts_handshake()`
@@ -170,6 +172,9 @@ last_read        next_expect   last_recv
     * The advertised window is calculated as: `advertised_window = MAX_NETWORK_BUFFER - (last_recv - last_read)`
   * The receiver updates the advertised window (`sock->send_adv_win`) as it processes incoming data.
 
+
+**Implementation Details**
+
 In `backend.c`, you will have to implement the following functions to support sliding window and flow control:
 
 * `send_pkts_data()`
@@ -181,50 +186,50 @@ In `backend.c`, you will have to implement the following functions to support sl
 ### **Part 3: Congestion Control**
 
 In this part, you will implement **congestion control** using the TCP Reno algorithm.
-You will control the **congestion window** (`sock->cong_win`) and the **slow start threshold** (`sock->slow_start_thresh`).
+You will control the congestion window (`sock->cong_win`) and the slow start threshold (`sock->slow_start_thresh`).
 
 When implementing congestion control:
 
-* The **sending window size** should be the **minimum** of:
-  * The **congestion window** (`cong_win`).
-  * The **advertised window** (flow control).
-* Ensure that the total buffered data remains **below** `MAX_NETWORK_BUFFER`.
+* The **sending window size** should be the minimum of:
+  * The congestion window (`cong_win`).
+  * The advertised window (flow control).
+* Ensure that the total buffered data remains below `MAX_NETWORK_BUFFER`.
 
 **TCP Reno Congestion Control**
 
 ![TCP Reno Congestion Control State Diagram]({{site.baseurl}}/assets/img/assignments/assignment4/tcp_reno.png)
-The figure above shows the full **TCP Reno** congestion control state diagram.
+The figure above shows the full TCP Reno congestion control state diagram.
 *(Extracted from* **Computer Networking: A Top-Down Approach (7th Edition)** *by Kurose and Ross.)*
 
 **States and Transitions**
 
-* **Slow Start**
-  * The congestion window (`cong_win`) increases by **MSS** for each new ACK (**Additive Increase**).
+* Slow Start
+  * The congestion window (`cong_win`) increases by `MSS` for each new ACK (Additive Increase).
   * Transition to **Congestion Avoidance** when `cong_win > slow_start_thresh`.
 
-* **Congestion Avoidance**
+* Congestion Avoidance
   * The congestion window is adjusted as:
     `new congestion window` = `current congestion window` + `MSS` * (`MSS` / `current congestion window`)
 
-* **Fast Recovery** (Triggered by **three duplicate ACKs**)
-  * On receiving **three duplicate ACKs**, retransmit the lost segment immediately.
+* Fast Recovery (Triggered three duplicate ACKs)
+  * On receiving three duplicate ACKs, retransmit the lost segment immediately.
   * Transition from **Slow Start** → **Fast Recovery**.
   * While duplicate ACKs continue:
     * Transmit new segments.
-    * Increase **cong_win** by `MSS` for each duplicate ACK.
-  * On receiving a **new ACK**, transition to **Congestion Avoidance**.
+    * Increase `cong_win` by `MSS` for each duplicate ACK.
+  * On receiving a new ACK, transition to **Congestion Avoidance**.
 
-* **Timeout Handling**
-  * If a timeout occurs, the sender **returns to Slow Start**.
-  * The **slow start threshold is halved**, and **cong_win is reset to MSS**.
-  * *For grading consistency, this assignment uses a **static timeout** instead of adaptive timeout techniques (e.g., Karn/Partridge algorithm).*
+* Timeout Handling
+  * If a timeout occurs, the sender returns to **Slow Start**.
+  * The slow start threshold is halved, and `cong_win` is reset to `MSS`.
+  * *For grading consistency, this assignment uses a static timeout instead of adaptive timeout techniques (e.g., Karn/Partridge algorithm).*
 
 **Implementation Details**
 
 In `backend.c`, you will implement or modify the following functions to implement congestion control.
 The **TODO items** in the skeleton code will guide you through this process.
 
-To help you implement the **TCP Reno state transitions**, we provide an **example** of handling duplicate ACKs in the `handle_ack()` function.
+To help you implement the TCP Reno state transitions, we provide an example of handling duplicate ACKs in the `handle_ack()` function.
 
 Functions to Modify:
 
@@ -239,10 +244,11 @@ We describe tools for developing and testing the implementation.
 
 **Simple server and client**
 
-We provide an example implementation of server and client that use UT-TCP sockets.
-Please check `server.c` and `client.c` for more details.
-To execute the programs, run the following commands. In this example, we assume you are running server and client in local environments.
-Feel free to change the address and port in environment variables to what you prefer.
+We provide example implementations of the server and client that use UT TCP sockets.
+For more details, please refer to `server.c` and `client.c`.
+
+To execute the programs, run the following commands. In this example, we assume the server and client are running in local environments.
+Feel free to modify the address and port in the environment variables as needed.
 
 ```bash
 # Compile your UT TCP implementation along with server and client programs
@@ -276,9 +282,9 @@ dd if=/dev/urandom of=tests/random.input bs=1M count=10
 
 **Python unit test**
 
-We provide testing tools using python `unittest` to manipulate packets and validate server and client behavior.
+We provide testing tools using Python's `unittest` framework to manipulate packets and validate the behavior of the server and client.
 
-You can find example test cases in tests/test_ack_packets.py and sample server/client implementations in `tests/testing_[client/server].c`. Feel free to modify or add test cases as needed.
+Example test cases can be found in `tests/test_ack_packets.py`, and sample server/client implementations are located in `tests/testing_[client/server].c`. You are welcome to modify or add test cases as needed.
 
 To run the Python tests, use the following command:
 
@@ -289,11 +295,11 @@ make test
 
 **Kathara experiments**
 
-You can test UT TCP under various network environments (e.g., inject losses).
-For instance, you can force packet drops using the following example.
-To isolate environment, we recommend to use Kathara labs.
-Under `kathara-labs`, we provide two hosts (`h1`, `h2`) to be deployed using Kathara.
-The following is how to test the above server and client examples under losses.
+You can test UT TCP in various network environments, such as by injecting packet losses.
+For example, you can simulate packet drops using the following method.
+To create an isolated environment, we recommend using **Kathara labs**.
+In the **`kathara-labs`** directory, we provide two hosts (`h1`, `h2`) that can be deployed using Kathara.
+The following steps demonstrate how to test the provided server and client examples under packet loss.
 
 ```bash
 # Start Kathara environments
