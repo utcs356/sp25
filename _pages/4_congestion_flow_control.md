@@ -39,13 +39,12 @@ We recommend using the `cs356-base` profile on CloudLab for implementation and t
 
 ### Implementation
 
-The objective of this assignment is to implement a transport layer protocol called `UT TCP` that supports reliable and efficient communication.
-As the name suggests, many of the ideas are adopted from the existing TCP implementation, but it is much simpler version. 
-We provide skeleton code that includes a `UT TCP` socket and its corresponding APIs in `ut_tcp.h`:
+The objective of this assignment is to implement a transport-layer protocol called `UT-TCP', which supports reliable and efficient communication. As the name suggests, many concepts are adopted from the existing TCP implementation, but `UT-TCP' is a significantly simplified version.
+We provide skeleton code that includes a `UT-TCP` socket and its corresponding APIs in `ut_tcp.h`:
 
 **Provided APIs**
 
-* `ut_socket()`: Creates a new UT TCP socket, which maintains information such as the address, send/receive buffers, sliding window, and congestion control.
+* `ut_socket()`: Creates a new UT-TCP socket, which maintains information such as the address, send/receive buffers, sliding window, and congestion control.
   * When a socket is created, a dedicated thread binds to it, handling data transmission and reception via the begin_backend function.
 * `ut_close()`: Closes the socket.
 * `ut_read()`: Reads data from the receive buffer.
@@ -67,7 +66,7 @@ ut_close(&socket) // Closes the socket.
 
 Your goal is to enable reliable communication by implementing the required functions in `backend.c`.
 Carefully read the following descriptions and complete the `TODOs` specified in the skeleton code.
-You may modify the skeleton code outside the TODO sections, but do not change the function signatures of the UT TCP socket and its APIs.
+You may modify the skeleton code outside the TODO sections, but do not change the function signatures of the UT-TCP socket and its APIs.
 
 ---
 
@@ -117,7 +116,7 @@ Either the **server** or **client** can initiate termination by sending a `FIN` 
 
 **Implementation Details**
 
-In this part, you will have to implement the following functions in `backend.c` to eatablish connections:
+In this part, you will have to implement the following functions in `backend.c` to establish connections:
 
 * `send_pkts_handshake()`
 * `handle_pkt()` (Handle `FIN` packets in the function)
@@ -182,7 +181,7 @@ last_read        next_expect   last_recv
 **Flow Control and Advertised Window**
 
 * The **receiver’s advertised window** determines the maximum amount of data the sender can transmit.
-  * The UT TCP header includes the `advertised_window` field to communicate this value.
+  * The UT-TCP header includes the `advertised_window` field to communicate this value.
     * The advertised window is calculated as: `advertised_window = MAX_NETWORK_BUFFER - (last_recv - last_read)`
   * The receiver updates the advertised window (`sock->send_adv_win`) as it processes incoming data.
 
@@ -258,14 +257,14 @@ We describe tools for developing and testing the implementation.
 
 **Simple server and client**
 
-We provide example implementations of the server and client that use UT TCP sockets.
+We provide example implementations of the server and client that use UT-TCP sockets.
 For more details, please refer to `server.c` and `client.c`.
 
 To execute the programs, run the following commands. This example assumes the server and client are running in local environments.
 Feel free to modify the address and port in the environment variables as needed.
 
 ```bash
-# Compile your UT TCP implementation along with server and client programs
+# Compile your UT-TCP implementation along with server and client programs
 make clean && make
 ```
 
@@ -311,7 +310,7 @@ make test
 
 **Kathara experiments**
 
-You can test UT TCP in various network environments, such as by injecting packet losses.
+You can test UT-TCP in various network environments, such as by injecting packet losses.
 For example, you can simulate packet drops using the following method.
 To create an isolated environment, we recommend using **Kathara labs**.
 In the **`kathara-labs`** directory, we provide two hosts (`h1`, `h2`) that can be deployed using Kathara.
@@ -352,7 +351,7 @@ diff tests/random.input tests/random.output
 
 ### Report
 
-After implementing UT TCP, you will do a small experiment to see how congestion control affects data transmission.
+After implementing UT-TCP, you will do a small experiment to see how congestion control affects data transmission.
 
 In Kathara environments, please try the following commands to obtain graphs showing the number of packets over time:
 
