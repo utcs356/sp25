@@ -217,9 +217,18 @@ To test with different sizes, feel free to create random files with the followin
 dd if=/dev/urandom of=tests/random.input bs=1M count=10
 ```
 
-**Pytest**
-We provide testing tools to manipulate packets to validate how server or client behaves.
+**Python unit test**
 
+We provide testing tools using python `unittest` to manipulate packets and validate server and client behavior.
+
+You can find example test cases in tests/test_ack_packets.py and sample server/client implementations in `tests/testing_[client/server].c`. Feel free to modify or add test cases as needed.
+
+To run the Python tests, use the following command:
+
+```bash
+make
+make test
+```
 
 **Kathara experiments**
 
