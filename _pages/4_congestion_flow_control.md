@@ -59,11 +59,11 @@ Your goal is to enable reliable communication by implementing the required funct
 Carefully read the following descriptions and complete the `TODOs` specified in the skeleton code.
 You may modify the skeleton code outside the TODO sections, but do not change the function signatures of the UT TCP socket and its APIs.
 
+---
+
 #### Part1: Connection Establishment and Termination
 
 To enable reliable communication between two entities (`INITIATOR` and `LISTENER`), the connection must first be established. You will implement the **TCP three-way handshake** before data transmission begins. Additionally, you will handle **connection teardown** to safely terminate the connection when no more data needs to be transmitted.
-
----
 
 **Three-Way Handshake**
 
@@ -98,7 +98,9 @@ Either the **server** or **client** can initiate termination by sending a `FIN` 
    * It has received an **ACK** for its `FIN` packet.
    * It has received a **FIN** from the other entity.
 
-> **Note:** Simultaneous termination (where both the server and client send `FIN & ACK` in the same packet) is **not** considered in this assignment. You do not need to handle this scenario.
+```
+**Note:** Simultaneous termination (where both the server and client send `FIN & ACK` in the same packet) is **not** considered in this assignment. You do not need to handle this scenario.
+```
 
 In this part, you will have to implement the following functions in `backend.c` to eatablish connections:
 
@@ -106,23 +108,20 @@ In this part, you will have to implement the following functions in `backend.c` 
 * `handle_pkt()` (Handle `FIN` packets in the function)
 * `handle_pkt_handshake()`
 
+---
+
 #### Part2: Sliding Window and Flow Control
 
 After completing the three-way handshake, the **server** and **client** are ready to send and receive data. To achieve efficient data transmission, you will implement **sliding window** and **flow control** mechanisms.
 
 A **sliding window** allows the sender to transmit multiple packets before waiting for an acknowledgment (ACK). We recommend reading [Chapter 5.2](https://book.systemsapproach.org/e2e/tcp.html#sliding-window-revisited) in the P&D textbook for a deeper understanding of these concepts.
 
----
-
-### **Sliding Window at the Sender (`sock->send_win`)**
+**Sliding Window at the Sender (`sock->send_win`)**
 
 On the **sending side**, three pointers are maintained within the send buffer:
 
 * **`last_ack`**: The last byte acknowledged by the receiver.
-  * When a new ACK is received, update `last_ack` as:
-    \[
-    \text{last\_ack} = \text{new ACK} - 1
-    \]
+  * When a new ACK is received, update `last_ack` as: `last_ack = new ACK - 1`
 
 * **`last_sent`**: The last byte sent by the socket.
   * Update `last_sent` when:
@@ -143,9 +142,7 @@ last_ack         last_sent     last_write
 * last_sent <= last_write
 ```
 
----
-
-### **Sliding Window at the Receiver (`sock->recv_win`)**
+**Sliding Window at the Receiver (`sock->recv_win`)**
 
 On the **receiving side**, three sequence number pointers are maintained:
 
@@ -166,16 +163,11 @@ last_read        next_expect   last_recv
 * next_expect <= last_recv + 1
 ```
 
----
-
-### **Flow Control and Advertised Window**
+**Flow Control and Advertised Window**
 
 * The **receiver’s advertised window** determines the maximum amount of data the sender can transmit.
   * The UT TCP header includes the `advertised_window` field to communicate this value.
-    * The advertised window is calculated as:
-      \[
-      \text{advertised\_window} = \text{MAX\_NETWORK\_BUFFER} - (\text{last\_recv} - \text{last\_read})
-      \]
+    * The advertised window is calculated as: `advertised_window = MAX_NETWORK_BUFFER - (last_recv - last_read)`
   * The receiver updates the advertised window (`sock->send_adv_win`) as it processes incoming data.
 
 In `backend.c`, you will have to implement the following functions to support sliding window and flow control:
