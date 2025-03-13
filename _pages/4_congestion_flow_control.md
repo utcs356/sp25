@@ -39,7 +39,7 @@ We recommend using the `cs356-base` profile on CloudLab for implementation and t
 
 ### Implementation
 
-The objective of this assignment is to implement a transport-layer protocol called `UT-TCP', which supports reliable and efficient communication. As the name suggests, many concepts are adopted from the existing TCP implementation, but `UT-TCP' is a significantly simplified version.
+The objective of this assignment is to implement a transport-layer protocol called `UT-TCP`, which supports reliable and efficient communication. As the name suggests, many concepts are adopted from the existing TCP implementation, but `UT-TCP' is a significantly simplified version.
 We provide skeleton code that includes a `UT-TCP` socket and its corresponding APIs in `ut_tcp.h`:
 
 **Provided APIs**
