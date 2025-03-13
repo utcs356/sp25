@@ -18,7 +18,16 @@ We recommend using the `cs356-base` profile on CloudLab for implementation and t
 
 1. Obtain the Skeleton Code
 
-* Create a private repository by clicking "Use this template" > "Create a repository" on the provided [GitHub repository](https://github.com/utcs356/assignment4.git).
+* For this assignment, the assignment repo is in private. Please access our repo using the following method:
+  * Download our ssh private key from `Canvas > Assignments > Assignment4` description
+  * Add the private key to your SSH agent:
+  ```bash
+  ssh-add <PRIVATE KEY PATH>
+  ```
+  * Clone our assignment repo:
+  ```bash
+  git clone git@github.com:utcs356/assignment4.git
+  ```
 
 2. Install Dependencies
 
@@ -152,6 +161,7 @@ On the **receiving side**, three sequence number pointers are maintained:
 * **`next_expect`**: The next expected sequence number.
 * **`last_recv`**: The last byte received.
   * There may be missing bytes between `next_expect` and `last_recv` if packets arrive out of order.
+  * The receive buffer should not grow larger than `MAX_NETWORK_BUFFER`.
 
 ```
               [recv_win]
@@ -252,7 +262,7 @@ Feel free to modify the address and port in the environment variables as needed.
 
 ```bash
 # Compile your UT TCP implementation along with server and client programs
-make
+make clean && make
 ```
 
 ```bash
@@ -276,9 +286,11 @@ diff tests/random.input tests/random.output
 To test with different sizes, feel free to create random files with the following command and replace `tests/random.input`:
 
 ```bash
-# Creates a file with 10 blocks each with 1MB => a 10MB file
-dd if=/dev/urandom of=tests/random.input bs=1M count=10
+# Creates a file with 10 blocks each with 1KB => a 10KB file
+dd if=/dev/urandom of=tests/random.input bs=1K count=10
 ```
+
+For grading, we will limit our test cases to file sizes of up to 50KB.
 
 **Python unit test**
 
@@ -289,7 +301,7 @@ Example test cases can be found in `tests/test_ack_packets.py`, and sample serve
 To run the Python tests, use the following command:
 
 ```bash
-make
+make clean && make
 make test
 ```
 
@@ -312,7 +324,7 @@ kathara lstart
 kathara connect h1
 cd /shared
 # You can add packet losses using the following commands (Feel free to change the loss percentage):
-# tcset eth0 --loss 1% --overwrite
+# tcset eth0 --loss 0.1% --overwrite
 UT_TCP_ADDR=10.1.1.3 UT_TCP_PORT=8000 ./server
 ```
 
@@ -321,14 +333,66 @@ UT_TCP_ADDR=10.1.1.3 UT_TCP_PORT=8000 ./server
 kathara connect h2
 cd /shared
 # You can add packet losses using the following commands (Feel free to change the loss percentage):
-# tcset eth0 --loss 1% --overwrite
+# tcset eth0 --loss 0.1% --overwrite
 UT_TCP_ADDR=10.1.1.3 UT_TCP_PORT=8000 ./client
 ```
 
-### Experiments
+For grading, we will limit our test cases to loss of up to 10%.
 
-* Capture packets and report Saw-tooth patterns
-* Expeirment scenario? (Normal, Bandwidth change)
+Similarly, you can check the correctness of data transmission using the following command:
+(We expect no outputs to appear. The command will print out messages when the files are different.)
+
+```bash
+diff tests/random.input tests/random.output
+```
+
+### Report
+
+After implementing UT TCP, you will do a small experiment to see how congestion control affects data transmission.
+
+In Kathara environments, please try the following commands to obtain graphs showing the number of packets over time:
+
+```bash
+# H1
+kathara connect h1
+cd /shared
+dd if=/dev/urandom of=tests/random.input bs=1K count=256  # Create a random file
+tcset eth0 --delay 50ms --overwrite  # Add packet delays for better visualization
+./utils/capture_packets.sh start capture.pcap
+UT_TCP_ADDR=10.1.1.3 UT_TCP_PORT=8000 UT_TCP_FILE_SIZE=262144 ./server
+./utils/capture_packets.sh stop capture.pcap
+```
+
+```bash
+# H2
+kathara connect h2
+cd /shared
+tcset eth0 --delay 50ms --overwrite  # Add packet delays for better visualization
+UT_TCP_ADDR=10.1.1.3 UT_TCP_PORT=8000 UT_TCP_FILE_SIZE=262144 ./client
+.
+```
+
+After capturing packets, you can run the following command to visualize the number of packets over time.
+
+```bash
+# Either H1 or H2
+cd /shared
+./gen_graph.py
+```
+
+Then, `graph.png` will be generated. An example is shown in the following figure.
+
+![Congesting Window Size Over Time]({{site.baseurl}}/assets/img/assignments/assignment4/congestion_window.png)
+
+You will be able to observe the number of packets increase since congestion window grows when `client` successfully sends data.
+
+In your report, provide the generated figures for the following configurations and describe the results when increasing latency or reducing bandwidth.
+Use `tcset` to apply new configurations, as shown in the above examples:
+
+  * --delay 100ms
+  * --delay 200ms
+  * --delay 100ms --rate 500Kbps
+  * --delay 100ms --rate 200Kbps
 
 ### Submission
 
@@ -337,11 +401,14 @@ The naming format for the code and report is `assign4_groupX.[tar.gz/zip]` and `
 
 ### Grading
 
-* Implementation (70%)
+* Implementation (80%)
+* Report (20%)
+
+Your implementation will be automatically graded based on the following four criteria:
   * Handshake
   * Flow Control
   * Congestion Control
-* Experiments (30%)
+  * End-to-End Test Cases (e.g., Reliable file transfer under loss)
 
 ### Acknowledgement
 
