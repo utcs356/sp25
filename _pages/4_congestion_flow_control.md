@@ -10,33 +10,41 @@ title: "Assignment 4: Reliable Transport Protocol and Congestion Control"
 
 ### Overview
 
-In this assignment, you will implement a transport layer of the network stack.
-Your transport layer must ensure *reliable transmission of packets* even when packet corruptions and losses occur.
-Also, to enable efficient communication, you will implement sliding window, flow control and congestion control.
+In this assignment, you will implement the transport layer of a network stack. Your implementation must ensure reliable packet transmission, even in the presence of packet corruption and loss. To achieve efficient communication, you will also implement sliding window, flow control, and congestion control mechanisms.
 
 ### Environment Setup
 
-In this assignment, we recommend you use `cs356-base` profile on CloudLab for implementing and testing your code.
-To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment4.git).
+We recommend using the `cs356-base` profile on CloudLab for implementation and testing.
 
-Install dependencies by running the following command (We recommend you to use CloudLab machines for development):
+1. Obtain the Skeleton Code
+
+* Create a private repository by clicking "Use this template" > "Create a repository" on the provided [GitHub repository](https://github.com/utcs356/assignment4.git).
+
+2. Install Dependencies
+
+* Run the following command to install required dependencies (we recommend using CloudLab machines for development):
+
 ```bash
 > bash setup/setup.sh
 ```
 
 ### Implementation
 
-The goal of this assigment is to support reliable communications by implementing `UT TCP`.
-In the skeleton codes, we provide `UT TCP` socket and APIs (in `ut_tcp.h`):
+The objective of this assignment is to implement `UT TCP` to support reliable communication.
+We provide skeleton code that includes a `UT TCP` socket and its corresponding APIs in `ut_tcp.h`:
 
-* `ut_socket`: creates a new socket for `UT TCP`. The socket includes all information about address, send/receive buffers, sliding window, congestion control, and so on.
-  * When a new socket is created, a thread will bind to the socket, which is in charge of sending and receiving data through the `begin_backend` function.
-* `ut_close`: closes the socket.
-* `ut_read`: reads data from the received buffer in the socket.
-* `ut_write`: writes data to the send buffer in the socket.
+**Provided APIs**
 
-Examples of how the socket are created and APIs are used can be found in `server.c` and `client.c`.
-A simplified version would look as follows:
+* `ut_socket()`: Creates a new UT TCP socket, which maintains information such as the address, send/receive buffers, sliding window, and congestion control.
+  * When a socket is created, a dedicated thread binds to it, handling data transmission and reception via the begin_backend function.
+* `ut_close()`: Closes the socket.
+* `ut_read()`: Reads data from the receive buffer.
+* `ut_write()`: Writes data to the send buffer.
+
+**Usage Example**
+
+You can find examples of how to create sockets and use these APIs in `server.c` and `client.c`.
+A simplified version is shown below:
 
 ```c
 ut_socket_t socket;
@@ -47,50 +55,50 @@ printf("Received: %.*s\n", n, buf);
 ut_close(&socket) // Closes the socket.
 ```
 
-Your tasks are to enable reliable communications by implementing functions in `backend.c`.
-Read the following descriptions and implement `TODOs` specified in the skeleton.
-Feel free to change skeleton codes other than codeblocks in `TODOs` if you make sure not to change function signatures of `UT TCP` socket and APIs.
+Your goal is to enable reliable communication by implementing the required functions in `backend.c`.
+Carefully read the following descriptions and complete the `TODOs` specified in the skeleton code.
+You may modify the skeleton code outside the TODO sections, but do not change the function signatures of the UT TCP socket and its APIs.
 
-#### Part1: Connection establishment and termination
+#### Part1: Connection Establishment and Termination
 
-The first step for reliable transmission between two entities (`INITIATOR` and `LISTENER`) is to establish connections.
-To do so, you will implement TCP three-way handshake before data transmission happens.
-To finish connection safely when no more data to transmit, you will perform connection teardown.
+To enable reliable communication between two entities (`INITIATOR` and `LISTENER`), the connection must first be established. You will implement the **TCP three-way handshake** before data transmission begins. Additionally, you will handle **connection teardown** to safely terminate the connection when no more data needs to be transmitted.
 
-**Three-way handshake**
+---
 
-We first describe the handshake workflow:
+**Three-Way Handshake**
 
-1. The client (`INITIATOR`) sends a SYN packet to the server (`LISTENER`), and the server receives the SYN packet from the client.
+The connection establishment follows this workflow:
 
-    * As a starting point, we include how to send SYN packets from the client side in our skeleton codes. Please check `send_pkts_handshake()` function for the implementation.
-    * Note that `sock->send_syn` flag is used to determine whether to send SYN packets or not.
-    * When the server receives SYN, the server initialize the receive window (`sock->recv_win`). The receive window attributes should be updated based on the sequence number.
+1. **Client (`INITIATOR`) → Server (`LISTENER`): SYN**
+   * The client sends a **SYN** packet to initiate the connection, and the server receives it.
+   * The skeleton code provides an example of sending SYN packets in `send_pkts_handshake()`.
+   * The `sock->send_syn` flag determines whether a SYN packet should be sent.
+   * Upon receiving the SYN, the server initializes the **receive window (`sock->recv_win`)**, updating its attributes based on the sequence number.
 
-2. The server replies back with SYN+ACK, and the client receives the SYN+ACK.
+2. **Server (`LISTENER`) → Client (`INITIATOR`): SYN+ACK**
+   * The server responds with a **SYN+ACK** packet.
+   * The client receives the SYN+ACK and updates its **send and receive windows** based on the sequence and acknowledgment numbers.
 
-    * The client updates the send/receive windows based on the acknowledge and sequence numbers.
-
-3. The client replies back with ACK, and the server receives the ACK.
-
-    * The server updates the send window based on the ACK packet. Both the client and server complete the initialization phase.
+3. **Client (`INITIATOR`) → Server (`LISTENER`): ACK**
+   * The client sends an **ACK** to acknowledge the connection.
+   * The server receives the ACK and updates its **send window** accordingly.
+   * At this point, both the client and server have successfully completed the initialization phase.
 
 **Connection teardown**
 
-When a socket is done transmitting data, the socket calls `ut_close()` to terminate communications. We describe the expected behaviors during termination from one side as follows.
-Your task is to handle when receiving `FIN` packets and sending corresponding `ACK` packets.
-The termination process can be triggered by either server or client, whoever is ready to send `FIN` packets:
+When a socket has finished transmitting data, it calls `ut_close()` to terminate communication. Your task is to handle **receiving `FIN` packets** and **sending the corresponding `ACK` packets** as part of the termination process.
 
-1. When there is no more data to send, the socket sets the sequence number to be included in `FIN` (Refer to the `check_dying()` function).
-2. Either server or client sends a `FIN` packet (Refer to the first `if` statement in `begin_backend()`). Even after sending `FIN`, it should be able to receive packets.
-3. When the other entity receives `FIN`, it sends back with an `ACK` packet.
+Either the **server** or **client** can initiate termination by sending a `FIN` packet when ready. The expected behavior is as follows:
 
-When one entity 1) receives an `ACK` after sending `FIN`, and 2) receives `FIN` from the other entity, then it can exit the thread after timeout (Refer to `begin_backend()`).
+1. When there is no more data to send, the socket sets the **sequence number** for the `FIN` packet (see `check_dying()`).
+2. The initiating entity (server or client) sends a `FIN` packet (see the first `if` statement in `begin_backend()`).
+   * Even after sending `FIN`, the socket must still be able to receive packets.
+3. Upon receiving a `FIN` packet, the other entity responds with an `ACK`.
+4. An entity can safely terminate its thread **after a timeout** if both of the following conditions are met (see `begin_backend()`):
+   * It has received an **ACK** for its `FIN` packet.
+   * It has received a **FIN** from the other entity.
 
-```
-NOTE: We do not consider when both server and client terminate at the same time.
-(i.e., You do not have to handle scenarios to send `FIN & ACK` flags in a packet.)
-```
+> **Note:** Simultaneous termination (where both the server and client send `FIN & ACK` in the same packet) is **not** considered in this assignment. You do not need to handle this scenario.
 
 In this part, you will have to implement the following functions in `backend.c` to eatablish connections:
 
@@ -100,44 +108,75 @@ In this part, you will have to implement the following functions in `backend.c` 
 
 #### Part2: Sliding Window and Flow Control
 
-Now, server and client are ready to send and receive data after completing three-way handshake. For efficient data transmission, your goal is to implement a sliding window and flow control. Sliding window allows the sender to transmit multiple packets before waiting for an acknowledgment (ACK). We recommend you to read [Chapter 5.2](https://book.systemsapproach.org/e2e/tcp.html#sliding-window-revisited) in the P&D textbook to understand how sliding window and flow control work.
+After completing the three-way handshake, the **server** and **client** are ready to send and receive data. To achieve efficient data transmission, you will implement **sliding window** and **flow control** mechanisms.
 
-* At the sending side, three pointers are maintained into the send buffer (`sock->send_win`): `last_ack`, `last_sent`, and `last_write`. The following invariants hold for the three pointers:
-  * `last_ack`: The last byte acked by the receiver. When you receive new ACK numbers higher than `last_ack`, then the sender can update `last_ack` based on the receive ACK (i.e., `last_ack` = new ACK - 1).
-  * `last_sent`: The last byte sent by the socket. You will have to update `last_sent` when you 1) send new packets or 2) start data retransmissions from `last_ack`.
-  * `last_write`: The last byte written by client or server using `ut_write` APIs.
-    ```
-                  [send_win]
-        ┌────────────────┬─────────────┐
-        │                │             │
-        └────────────────┴─────────────┘
-        ^                ^             ^
-    last_ack         last_sent     last_write
+A **sliding window** allows the sender to transmit multiple packets before waiting for an acknowledgment (ACK). We recommend reading [Chapter 5.2](https://book.systemsapproach.org/e2e/tcp.html#sliding-window-revisited) in the P&D textbook for a deeper understanding of these concepts.
 
-    * last_ack <= last_sent
-    * last_sent <= last_write
-    ```
+---
 
-* A similar set of pointers (sequence numbers) are maintained on the receiving side (`sock->recv_win`): `last_read`, `next_expect`, and `last_recv`. The following relationships hold for the three pointers:
-  * `last_read`: The last byte read by client or server using `ut_read` APIs.
-  * `next_expect`: The next expected sequence number.
-  * `last_recv`: The last byte received. The receive buffer may have not received some bytes in between `next_expect` and `last_recv` if a packet's sequence number is larger than `next_expect`. This can happen when packets do not arrive in order.
-    ```
-                  [recv_win]
-        ┌────────────────┬────░░░░░────┐
-        │                │    ░░░░░    │
-        └────────────────┴────░░░░░────┘
-        ^                ^  <missing>  ^
-    last_read        next_expect   last_recv
+### **Sliding Window at the Sender (`sock->send_win`)**
 
-    * last_read < next_expect
-    * next_expect <= last_recv + 1
-    ```
+On the **sending side**, three pointers are maintained within the send buffer:
 
-* Use the receiver’s advertised window as the maximum window size when sending packets.
-  * UT TCP header includes the `advertised_window` field when sending packets.
-    * The advertised window is calculated by `MAX_NETWORK_BUFFER - (last_recv - last_read)`.
-  * The receiver updates the advertised window (`sock->send_adv_win`) as it receives data.
+* **`last_ack`**: The last byte acknowledged by the receiver.
+  * When a new ACK is received, update `last_ack` as:
+    \[
+    \text{last\_ack} = \text{new ACK} - 1
+    \]
+
+* **`last_sent`**: The last byte sent by the socket.
+  * Update `last_sent` when:
+    1. Sending new packets.
+    2. Retransmitting data starting from `last_ack`.
+
+* **`last_write`**: The last byte written by the client or server using `ut_write()`.
+
+```
+              [send_win]
+    ┌────────────────┬─────────────┐
+    │                │             │
+    └────────────────┴─────────────┘
+    ^                ^             ^
+last_ack         last_sent     last_write
+
+* last_ack <= last_sent
+* last_sent <= last_write
+```
+
+---
+
+### **Sliding Window at the Receiver (`sock->recv_win`)**
+
+On the **receiving side**, three sequence number pointers are maintained:
+
+* **`last_read`**: The last byte read by the client or server using `ut_read()`.
+* **`next_expect`**: The next expected sequence number.
+* **`last_recv`**: The last byte received.
+  * There may be missing bytes between `next_expect` and `last_recv` if packets arrive out of order.
+
+```
+              [recv_win]
+    ┌────────────────┬────░░░░░────┐
+    │                │    ░░░░░    │
+    └────────────────┴────░░░░░────┘
+    ^                ^  <missing>  ^
+last_read        next_expect   last_recv
+
+* last_read < next_expect
+* next_expect <= last_recv + 1
+```
+
+---
+
+### **Flow Control and Advertised Window**
+
+* The **receiver’s advertised window** determines the maximum amount of data the sender can transmit.
+  * The UT TCP header includes the `advertised_window` field to communicate this value.
+    * The advertised window is calculated as:
+      \[
+      \text{advertised\_window} = \text{MAX\_NETWORK\_BUFFER} - (\text{last\_recv} - \text{last\_read})
+      \]
+  * The receiver updates the advertised window (`sock->send_adv_win`) as it processes incoming data.
 
 In `backend.c`, you will have to implement the following functions to support sliding window and flow control:
 
