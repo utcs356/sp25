@@ -39,7 +39,8 @@ We recommend using the `cs356-base` profile on CloudLab for implementation and t
 
 ### Implementation
 
-The objective of this assignment is to implement `UT TCP` to support reliable communication.
+The objective of this assignment is to implement a transport layer protocol called `UT TCP` that supports reliable and efficient communication.
+As the name suggests, many of the ideas are adopted from the existing TCP implementation, but it is much simpler version. 
 We provide skeleton code that includes a `UT TCP` socket and its corresponding APIs in `ut_tcp.h`:
 
 **Provided APIs**
@@ -72,7 +73,9 @@ You may modify the skeleton code outside the TODO sections, but do not change th
 
 #### Part1: Connection Establishment and Termination
 
-To enable reliable communication between two entities (`INITIATOR` and `LISTENER`), the connection must first be established. You will implement the **TCP three-way handshake** before data transmission begins. Additionally, you will handle **connection teardown** to safely terminate the connection when no more data needs to be transmitted.
+To enable reliable communication between two entities (`INITIATOR` and `LISTENER`), the connection must first be established. 
+You will implement the **TCP three-way handshake** before data transmission begins. 
+Additionally, you will handle **connection teardown** to safely terminate the connection when no more data needs to be transmitted.
 
 **Three-Way Handshake**
 
@@ -95,7 +98,8 @@ The connection establishment follows this workflow:
 
 **Connection teardown**
 
-When a socket has finished transmitting data, it calls `ut_close()` to terminate communication. Your task is to handle **receiving `FIN` packets** and **sending the corresponding `ACK` packets** as part of the termination process.
+When a socket has finished transmitting data, it calls `ut_close()` to terminate communication. 
+Your task is to handle **receiving `FIN` packets** and **sending the corresponding `ACK` packets** as part of the termination process.
 
 Either the **server** or **client** can initiate termination by sending a `FIN` packet when ready. The expected behavior is as follows:
 
@@ -195,14 +199,14 @@ In `backend.c`, you will have to implement the following functions to support sl
 
 #### Part 3: Congestion Control
 
-In this part, you will implement **congestion control** using the TCP Reno algorithm.
-You will control the congestion window (`sock->cong_win`) and the slow start threshold (`sock->slow_start_thresh`).
+In this part, you will implement **congestion control** based on the TCP Reno algorithm.
+Your implementation must control the congestion window (`sock->cong_win`) and the slow start threshold (`sock->slow_start_thresh`).
 
 When implementing congestion control:
 
 * The **sending window size** should be the minimum of:
   * The congestion window (`cong_win`).
-  * The advertised window (flow control).
+  * The advertised window (`advertised_window`) determined by the flow control.
 * Ensure that the total buffered data remains below `MAX_NETWORK_BUFFER`.
 
 **TCP Reno Congestion Control**
@@ -221,16 +225,16 @@ The figure above shows the full TCP Reno congestion control state diagram.
   * The congestion window is adjusted as:
     `new congestion window` = `current congestion window` + `MSS` * (`MSS` / `current congestion window`)
 
-* Fast Recovery (Triggered three duplicate ACKs)
-  * On receiving three duplicate ACKs, retransmit the lost segment immediately.
+* Fast Recovery (Triggered by three duplicate ACKs)
+  * Upon receiving three duplicate ACKs, retransmit the lost segment immediately.
   * Transition from **Slow Start** → **Fast Recovery**.
   * While duplicate ACKs continue:
     * Transmit new segments.
     * Increase `cong_win` by `MSS` for each duplicate ACK.
-  * On receiving a new ACK, transition to **Congestion Avoidance**.
+  * Upon receiving a new ACK, transition to **Congestion Avoidance**.
 
 * Timeout Handling
-  * If a timeout occurs, the sender returns to **Slow Start**.
+  * Upon a timeout, the sender returns to **Slow Start**.
   * The slow start threshold is halved, and `cong_win` is reset to `MSS`.
   * *For grading consistency, this assignment uses a static timeout instead of adaptive timeout techniques (e.g., Karn/Partridge algorithm).*
 
@@ -241,7 +245,7 @@ The **TODO items** in the skeleton code will guide you through this process.
 
 To help you implement the TCP Reno state transitions, we provide an example of handling duplicate ACKs in the `handle_ack()` function.
 
-Functions to Modify:
+Functions to modify:
 
 * `handle_ack()`
 * `handle_pkt()`
@@ -257,7 +261,7 @@ We describe tools for developing and testing the implementation.
 We provide example implementations of the server and client that use UT TCP sockets.
 For more details, please refer to `server.c` and `client.c`.
 
-To execute the programs, run the following commands. In this example, we assume the server and client are running in local environments.
+To execute the programs, run the following commands. This example assumes the server and client are running in local environments.
 Feel free to modify the address and port in the environment variables as needed.
 
 ```bash
@@ -275,7 +279,7 @@ UT_TCP_ADDR=127.0.0.1 UT_TCP_PORT=8000 ./server
 UT_TCP_ADDR=127.0.0.1 UT_TCP_PORT=8000 ./client
 ```
 
-We expect server and client to finish communications successfully after a few seconds.
+We expect the server and the client to finish communications successfully after a few seconds.
 You can check the correctness of data transmission using the following command:
 (We expect no outputs to appear. The command will print out messages when the files are different.)
 
@@ -296,7 +300,7 @@ For grading, we will limit our test cases to file sizes of up to 50KB.
 
 We provide testing tools using Python's `unittest` framework to manipulate packets and validate the behavior of the server and client.
 
-Example test cases can be found in `tests/test_ack_packets.py`, and sample server/client implementations are located in `tests/testing_[client/server].c`. You are welcome to modify or add test cases as needed.
+Example test cases are in `tests/test_ack_packets.py`, and sample server/client implementations are located in `tests/testing_[client/server].c`. You are welcome to modify or add test cases as needed.
 
 To run the Python tests, use the following command:
 
