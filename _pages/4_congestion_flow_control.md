@@ -176,31 +176,57 @@ In `backend.c`, you will have to implement the following functions to support sl
 * `handle_pkt()`
 * `updated_received_buf()`
 
+---
 
-#### Part3: Congestion Control
+### **Part 3: Congestion Control**
 
-In this part, you will implement congestion control following TCP Reno algorithm.
-You can control congestion window and slow start threshold through `sock->cong_win` and `sock->slow_start_thresh`.
+In this part, you will implement **congestion control** using the TCP Reno algorithm.
+You will control the **congestion window** (`sock->cong_win`) and the **slow start threshold** (`sock->slow_start_thresh`).
 
-When implementing congestion control, the size of your sending window should now be the minimum of the congestion window and the advertised window. You should additionally make sure that the total amount of data buffered for the application (unread data, both ordered and unordered bytes) is less than `MAX_NETWORK_BUFFER`.
+When implementing congestion control:
 
-Now we describe how TCP Reno works:
+* The **sending window size** should be the **minimum** of:
+  * The **congestion window** (`cong_win`).
+  * The **advertised window** (flow control).
+* Ensure that the total buffered data remains **below** `MAX_NETWORK_BUFFER`.
+
+**TCP Reno Congestion Control**
 
 ![TCP Reno Congestion Control State Diagram]({{site.baseurl}}/assets/img/assignments/assignment4/tcp_reno.png)
-The above figure shows the full TCP Reno congestion control state diagram
-(Extracted from `Computer Networking: A Top-Down Approach (7th Edition)` by Kurose and Ross).
+The figure above shows the full **TCP Reno** congestion control state diagram.
+*(Extracted from* **Computer Networking: A Top-Down Approach (7th Edition)** *by Kurose and Ross.)*
 
-* During the `slow start` state, the congestion window increases by `MSS` (Additive Increase) for each new ACK. Transit to the `congestion avoidance` state when the congestion window is larger than the slow start threshold.
-* In `congestion avoidance` state, the congestion window is adjusted as follows for each new ACK:
-  * `new congestion window` = `current congestion window` + `MSS` * (`MSS` / `current congestion window`)
-* `Fast recovery` state enables to recover more quickly is to retransmit whenever you see three duplicate ACKs.
-  * Implement retransmission on the receipt of three duplicate ACKs (i.e., state transitions from `slow start` to `fast recovery`).
-  * When duplicated ACKs continue after three duplicate ACKs, transmit new segments while increasing the congestion window size by `MSS`.
-  * When new ACKs are received, transit to the `congestion avoidance` state.
-* Sender returns to slow start on timeout. The slow start threshold is halved and the congestion window size is reset to `MSS`.
-  * For the ease of grading, we use static timeout in this assignment instead of using adaptive timeout methods such as Karn/Partridge algorithm.
+**States and Transitions**
 
-In `backend.c`, you will implement or modify the following functions to implement the congestion control algorithm. We describe TODO items in the skeleton code. To show how the above state diagram can be implemented, we provide an example implementation of handling duplicated ACKs during the `fast recovery` state in the `handle_ack()` function:
+* **Slow Start**
+  * The congestion window (`cong_win`) increases by **MSS** for each new ACK (**Additive Increase**).
+  * Transition to **Congestion Avoidance** when `cong_win > slow_start_thresh`.
+
+* **Congestion Avoidance**
+  * The congestion window is adjusted as:
+    `new congestion window` = `current congestion window` + `MSS` * (`MSS` / `current congestion window`)
+
+* **Fast Recovery** (Triggered by **three duplicate ACKs**)
+  * On receiving **three duplicate ACKs**, retransmit the lost segment immediately.
+  * Transition from **Slow Start** → **Fast Recovery**.
+  * While duplicate ACKs continue:
+    * Transmit new segments.
+    * Increase **cong_win** by `MSS` for each duplicate ACK.
+  * On receiving a **new ACK**, transition to **Congestion Avoidance**.
+
+* **Timeout Handling**
+  * If a timeout occurs, the sender **returns to Slow Start**.
+  * The **slow start threshold is halved**, and **cong_win is reset to MSS**.
+  * *For grading consistency, this assignment uses a **static timeout** instead of adaptive timeout techniques (e.g., Karn/Partridge algorithm).*
+
+**Implementation Details**
+
+In `backend.c`, you will implement or modify the following functions to implement congestion control.
+The **TODO items** in the skeleton code will guide you through this process.
+
+To help you implement the **TCP Reno state transitions**, we provide an **example** of handling duplicate ACKs in the `handle_ack()` function.
+
+Functions to Modify:
 
 * `handle_ack()`
 * `handle_pkt()`
