@@ -34,7 +34,7 @@ We recommend using the `cs356-base` profile on CloudLab for implementation and t
 * Run the following command to install required dependencies (we recommend using CloudLab machines for development):
 
 ```bash
-> bash setup/setup.sh
+> sudo bash setup/setup.sh
 ```
 
 ### Implementation
