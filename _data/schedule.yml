@@ -238,7 +238,7 @@
 - date: T 03/25
   lecturer:
   title: >
-    <strong>Resource allocation</strong>
+    <strong>Flow and congestion control</strong>
   recitation:
   slides:
   notes:
@@ -249,7 +249,7 @@
 - date: Th 03/27
   lecturer:
   title: >
-    <strong>Queuing disciplines and Congestion control</strong>
+    <strong>Congestion control (Cont'd)</strong>
   recitation:
   slides:
   notes:
@@ -260,7 +260,7 @@
 - date: T 04/01
   lecturer:
   title: >
-    <strong>Congestion control (Cont'd)</strong>
+    <strong>Queuing disciplines</strong>
   recitation:
   slides:
   notes:
