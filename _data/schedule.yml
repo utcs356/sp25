@@ -240,10 +240,12 @@
   title: >
     <strong>Flow and congestion control</strong>
   recitation:
-  slides:
+  slides: https://drive.google.com/file/d/19InYNzmNO57-DYTPzveaOPi5EnujVR8A/view?usp=drive_link
   notes:
   video:
   readings:
+  - P&D 5.2.4, 6.3.1, and 6.3.2
+  - K&R 3.5.5, 3.6, and 3.7.1
   logistics:
 
 - date: Th 03/27
