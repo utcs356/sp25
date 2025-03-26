@@ -183,8 +183,8 @@ last_read        next_expect   last_recv
 * The **receiver’s advertised window** determines the maximum amount of data the sender can transmit.
   * The UT-TCP header includes the `advertised_window` field to communicate this value.
     * The advertised window is calculated as: `advertised_window = MAX_NETWORK_BUFFER - (last_recv - last_read)`
-  * The receiver updates the advertised window (`sock->send_adv_win`) as it processes incoming data.
-
+  * The sender updates the advertised window (`sock->send_adv_win`) as it processes incoming data.
+    * Make sure to handle when the advertised window is 0 by keep probing with one data bytes.
 
 **Implementation Details**
 
