@@ -185,6 +185,7 @@ last_read        next_expect   last_recv
     * The advertised window is calculated as: `advertised_window = MAX_NETWORK_BUFFER - (last_recv - last_read)`
   * The sender updates the advertised window (`sock->send_adv_win`) as it processes incoming data.
     * Make sure to handle when the advertised window is 0 by keep probing with one data bytes.
+    * Currently, `send_empty()` in the skeleton code prevents the advertised window from reaching zero (by setting the lower bound to MSS). This behavior can lead to inefficient data transmission when the receiver's buffer is full.
 
 **Implementation Details**
 
