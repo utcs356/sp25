@@ -253,11 +253,13 @@
   title: >
     <strong>Congestion control (Cont'd)</strong>
   recitation:
-  slides:
+  slides: https://drive.google.com/file/d/19SXu5iRFVA6xNgSoO83_pRZMg3mstiSm/view?usp=drive_link
   notes:
   video:
   readings:
   logistics:
+  - P&R 6.3.2 and 6.3.3
+  - K&R 3.7
 
 - date: T 04/01
   lecturer:
