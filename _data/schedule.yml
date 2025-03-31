@@ -257,19 +257,21 @@
   notes:
   video:
   readings:
-  logistics:
-  - P&R 6.3.2 and 6.3.3
+  - P&D 6.3.2 and 6.3.3
   - K&R 3.7
+  logistics:
 
 - date: T 04/01
   lecturer:
   title: >
-    <strong>Queuing disciplines</strong>
+    <strong>Router-based resource allocation</strong>
   recitation:
   slides:
   notes:
   video:
   readings:
+  - P&D 6.1 and 6.2
+ 
   logistics:
 
 - date: Th 04/03
