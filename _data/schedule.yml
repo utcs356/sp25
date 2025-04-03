@@ -279,10 +279,11 @@
   title: >
     <strong>Domain name system (DNS)</strong>
   recitation:
-  slides:
+  slides: https://drive.google.com/file/d/19T4nPOw3yCObgJwunDdHneE5pL8wy0rL/view?usp=drive_link
   notes:
   video:
   readings:
+  - P&D 9.3.1
   logistics:
 
 - date: T 04/08
