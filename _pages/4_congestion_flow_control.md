@@ -83,7 +83,7 @@ The connection establishment follows this workflow:
 1. **Client (`INITIATOR`) → Server (`LISTENER`): SYN**
    * The client sends a **SYN** packet to initiate the connection, and the server receives it.
    * The skeleton code provides an example of sending SYN packets in `send_pkts_handshake()`.
-   * The `sock->send_syn` flag determines whether a SYN packet should be sent.
+   * The `sock->send_syn` flag determines whether a SYN packet (a SYN+ACK packet for the server) should be sent.
    * Upon receiving the SYN, the server initializes the **receive window (`sock->recv_win`)**, updating its attributes based on the sequence number.
 
 2. **Server (`LISTENER`) → Client (`INITIATOR`): SYN+ACK**
@@ -271,12 +271,12 @@ make clean && make
 
 ```bash
 # A terminal for server
-UT_TCP_ADDR=127.0.0.1 UT_TCP_PORT=8000 ./server
+UT_TCP_ADDR=127.0.0.1 UT_TCP_PORT=8000 UT_TCP_FILE_SIZE=10240 ./server
 ```
 
 ```bash
 # Another terminal for client
-UT_TCP_ADDR=127.0.0.1 UT_TCP_PORT=8000 ./client
+UT_TCP_ADDR=127.0.0.1 UT_TCP_PORT=8000 UT_TCP_FILE_SIZE=10240 ./client
 ```
 
 We expect the server and the client to finish communications successfully after a few seconds.
@@ -295,6 +295,7 @@ dd if=/dev/urandom of=tests/random.input bs=1K count=10
 ```
 
 For grading, we will limit our test cases to file sizes of up to 50KB.
+Be sure to update the `UT_TCP_FILE_SIZE` environment variable accordingly whenever you change the test file.
 
 **Python unit test**
 
@@ -349,6 +350,8 @@ Similarly, you can check the correctness of data transmission using the followin
 ```bash
 diff tests/random.input tests/random.output
 ```
+
+**If you encounter errors while running the Kathara experiments, check whether they relate to issue #247 in the Ed discussion.**
 
 ### Report
 
