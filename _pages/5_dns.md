@@ -9,8 +9,7 @@ title: "Assignment 5: Hierarchical DNS"
 
 ### Part 0: Setup and Overview
 #### Setup
-In this assignment, we recommend you use `cs356-base` or `cs356-p4` profile on CloudLab for implementing and testing your code.
-To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment5.git).
+Please use the `cs356-base` profile on CloudLab for implementing and testing your code. To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment5.git).
 
 #### Overview
 In this assignment, you will implement DNS servers that enable a client to access nodes with domains instead of raw IP addresses. Your task is to complete the implementation of DNS nameservers for the `utexas.edu` zone and `cs.utexas.edu` zone (Part 1) and a local DNS server that can handle the query iteratively (Part 2). We provide you with a DNS library that does tedious jobs such as message parsing on behalf of you. Refer to the Appendix for more details on the library. For simplicity, you can assume there are no incoming queries other than `A, AAAA, NS` queries.
@@ -41,17 +40,24 @@ For testing `ut-dns.c`,
 For testing `cs-dns.c`,    
 `$ kathara connect cs_dns`   
 `$ ./shared/bin/cs-dns`    
-3. Send A queries and check the response with `$ dig`.    
-`$ kathara connect h1`   
-* For testing `ut-dns.c`, run below on `h1`.   
-`$ dig @40.0.0.20 A www.utexas.edu`      
-`$ dig @40.0.0.20 A thisshouldfail.utexas.edu`     
-`$ dig @40.0.0.20 A cs.utexas.edu`     
-`$ dig @40.0.0.20 A aquila.cs.utexas.edu`     
-* For testing `cs-dns.c`, run below on `h1`.   
-`$ dig @50.0.0.30 A cs.utexas.edu`     
-`$ dig @50.0.0.30 A aquila.cs.utexas.edu`     
-`$ dig @50.0.0.30 A thisshouldfail.cs.utexas.edu`     
+3. Send A queries and check the response with `$ dig` on `h1`. Make sure to run `$ kathara connect h1`.
+  * For testing `ut-dns.c`, run below on `h1`.
+    <details>
+    <summary markdown="span"> `Commands </summary> 
+
+    `$ dig @40.0.0.20 A www.utexas.edu`      
+    `$ dig @40.0.0.20 A thisshouldfail.utexas.edu`     
+    `$ dig @40.0.0.20 A cs.utexas.edu`     
+    `$ dig @40.0.0.20 A aquila.cs.utexas.edu`  
+    </details>   
+  * For testing `cs-dns.c`, run below on `h1`.   
+    <details>
+    <summary markdown="span"> Commands </summary> 
+    
+    `$ dig @50.0.0.30 A cs.utexas.edu`     
+    `$ dig @50.0.0.30 A aquila.cs.utexas.edu`     
+    `$ dig @50.0.0.30 A thisshouldfail.cs.utexas.edu` 
+    </details> 
 
 ### Part 2: An Iterative Local DNS Server
 Your task is to complete `local-dns.c` in the `[a5_directory]/labs/dns/shared/src` directory. `local-dns.c` is a default nameserver for the on-campus network. Note that it is an iterative DNS server, so its response should be always an answer or error. If it receives a DNS record that indicates delegation (referral), it should resolve a query iteratively.
@@ -89,13 +95,18 @@ You can find the step-by-step specifications in the source code as well.
 3. Configure the local DNS server on `h1`.    
 `$ kathara connect h1`         
 `$ echo "nameserver 20.0.0.10" >> /etc/resolv.conf`   
-4. Send A queries and check the response with `$ dig` on `h1`.       
-`$ dig A ns.utexas.edu`       
-`$ dig A www.utexas.edu`     
-`$ dig A abc.utexas.edu`     
-`$ dig A cs.utexas.edu`      
-`$ dig A aquila.cs.utexas.edu`    
-`$ dig A abc.utexas.edu`   
+4. Send A queries and check the responses. 
+  * Send dig commands with `$ dig` on `h1`.
+  <details>
+  <summary markdown="span"> Commands </summary> 
+  `$ dig A ns.utexas.edu`       
+  `$ dig A www.utexas.edu`     
+  `$ dig A abc.utexas.edu`     
+  `$ dig A cs.utexas.edu`      
+  `$ dig A aquila.cs.utexas.edu`    
+  `$ dig A abc.utexas.edu`   
+  </details>
+
 5. Try to use domain names with `$ ping`.    
 The `-n` flag is necessary since the servers ignore a reverse query (PTR).   
 `$ ping -n www.utexas.edu`    
