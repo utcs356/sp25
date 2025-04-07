@@ -284,6 +284,7 @@
   video:
   readings:
   - P&D 9.3.1
+  - K&R 2.4
   logistics:
 
 - date: T 04/08
@@ -291,10 +292,12 @@
   title: >
     <strong>Web and Email</strong>
   recitation:
-  slides:
+  slides: https://drive.google.com/file/d/1GghVosiUIYIHv-YCdOyoaMsSqmBH7E4c/view?usp=drive_link
   notes:
   video:
   readings:
+  - P&D 9.1
+  - K&R 2.2 and 2.3
   logistics:
   - Assignment 4 is due
   - Assignment 5 is out
