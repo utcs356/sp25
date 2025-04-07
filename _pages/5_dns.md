@@ -9,10 +9,10 @@ title: "Assignment 5: Hierarchical DNS"
 
 ### Part 0: Setup and Overview
 #### Setup
-Please use the `cs356-base` profile on CloudLab for implementing and testing your code. To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment5.git).
+Please use the `cs356-base` profile on CloudLab to implement and test your code. To get the skeleton code, create a **private** repository by clicking `Use this template> Create a repository` on the [GitHub repository](https://github.com/utcs356/assignment5.git).
 
 #### Overview
-In this assignment, you will implement DNS servers that enable a client to access nodes with domains instead of raw IP addresses. Your task is to complete the implementation of DNS nameservers for the `utexas.edu` zone and `cs.utexas.edu` zone (Part 1) and a local DNS server that can handle the query iteratively (Part 2). We provide you with a DNS library that does tedious jobs such as message parsing on behalf of you. Refer to the Appendix for more details on the library. For simplicity, you can assume there are no incoming queries other than `A, AAAA, NS` queries.
+In this assignment, you will implement DNS servers that enable a client to access nodes with domains instead of raw IP addresses. Your task is implementing DNS nameservers for the `utexas.edu` zone and `cs.utexas.edu` zone (Part 1) and a local DNS server that can handle the query iteratively (Part 2). We provide you with a DNS library that does tedious jobs like message parsing for you. Refer to the Appendix for more details on the library. For simplicity, you may assume that incoming queries only request `A, AAAA, NS` records.
 
 You will run this experiment on top of Kathara. The Kathara topology is depicted below. The Kathara lab is located in the `[a5_directory]/labs/dns`.    
 ![a5_topology]({{site.baseurl}}/assets/img/assignments/assignment5/A5_topology.png)   
@@ -25,11 +25,11 @@ The overview for this part of the assignment is depicted below.
 
 #### Specification
 You can find the step-by-step specifications in the starter codes as well.
-* The servers should receive a message on top of UDP. Note that a UDP server doesn't have to `listen()` and `accept()` since it is connectionless, unlike TCP (what we did in A1). Also, the UDP server should use `sendto()`/`recvfrom()` to set/get a client's address along with sending/receiving a message.
+* The servers should receive a message on top of UDP. Note that a UDP server doesn't have to `listen()` and `accept()` since it is connectionless, unlike TCP (what we did in A1). Also, the UDP server should use `sendto()`/`recvfrom()` to set/get a client's address and send/receive a message.
 * Initialize a server-wide context (e.g., DNS records) using TDNSInit(). The context will be used for future DNS-related operations such as searching for a DNS record.
-* Create a zone using `TDNSCreateZone` and add records to the server `TDNSAddRecord`. You should be able to infer the contents of records from the comments in the source code and the topology figure.
+* Create a zone using `TDNSCreateZone` and add records to the server `TDNSAddRecord`. You should be able to infer the contents of DNS records from the comments in the source code and the topology figure.
 * Receive a message continuously and parse it using `TDNSParseMsg()`.
-* If the received message is a query for A, AAAA, or NS, find the corresponding record using `TDNSFind()` and return the response. Ignore all the other messages.
+* If the received message is a query for A, AAAA, or NS, find the corresponding record using `TDNSFind()` and return the response. Ignore all the other types.
 
 #### Test your implementation
 1. Compile your code with `$ make` in the lab's shared directory (`[a5_directory]/labs/dns/shared`). The compiled binary would be in the `[a5_directory]/labs/dns/shared/bin` directory.
@@ -46,7 +46,7 @@ You can find the step-by-step specifications in the starter codes as well.
     `$ kathara connect cs_dns`   
     `$ ./shared/bin/cs-dns`  
     </details>
-3. Send A queries and check the response with `$ dig` on `h1`. Make sure to run `$ kathara connect h1`.
+3. Send `A` queries and check the response with `$ dig` on `h1`. Make sure to run `$ kathara connect h1`.
     <details>
     <summary markdown="span"> Testing `ut-dns.c` </summary> 
 
@@ -65,8 +65,8 @@ You can find the step-by-step specifications in the starter codes as well.
     </details> 
 
 ### Part 2: An Iterative Local DNS Server
-Your task is to complete `local-dns.c` in the `[a5_directory]/labs/dns/shared/src` directory. `local-dns.c` is a default nameserver for the on-campus network. Note that it is an iterative DNS server, so its response should be always an answer or error. If it receives a DNS record that indicates delegation (referral), it should resolve a query iteratively.
-The below figure is an example of an iterative query resolution that is possible in our setup.     
+Your task is to complete `local-dns.c` in the `[a5_directory]/labs/dns/shared/src` directory. `local-dns.c` is a default nameserver for the on-campus network. Note that it is an iterative DNS server, so its response should always be an answer or an error. If it receives a DNS record that indicates delegation (referral), it should resolve a query iteratively.
+The figure below is an example of an iterative query resolution possible in our setup.     
 ![a5_p2]({{site.baseurl}}/assets/img/assignments/assignment5/A5_P2.png)    
 
 #### Specification
@@ -77,11 +77,11 @@ You can find the step-by-step specifications in the source code as well.
 * Receive a message continuously and parse it using `TDNSParseMsg()`.
 * If the received message is a query for A, AAAA, or NS, find the corresponding record using `TDNSFind()`. Ignore all the other messages.
     1. If the record is found and the record indicates delegation, send an iterative query to the corresponding nameserver. Note that the server should store a per-query context using `putAddrQID()` and `putNSQID()` for future response handling.
-    2. If the record is found and the record doesn't indicate delegation, send a response back to the client.
+    2. If the record is found and doesn't indicate delegation, send a response back to the client.
     3. If the record is not found, send a response back to the client. (The library would set the error flag.)
-* If the received message is a response
-    1. and it is an authoritative response (i.e., final response), add the NS information to the response and send it to the original client. Delete a per-query context using `delAddrQID()` and `delNSQID()`. You can retrieve the NS and client address information for the response using `getNSbyQID()` and `getAddrbyQID()`. You can add the NS information to the response using `TDNSPutNStoMessage()`.  
-    2. and it is a non-authoritative response (i.e., it indicates delegation), send an iterative query to the corresponding nameserver. You can extract the query from the response using `TDNSGetIterQuery()`. The server should update a per-query context using `putNSQID()`.
+* If the received message is a response and 
+    1. If it is an authoritative response (i.e., final response), add the NS information to the response and send it to the original client. Delete a per-query context using `delAddrQID()` and `delNSQID()`. You can retrieve the NS and client address information for the response using `getNSbyQID()` and `getAddrbyQID()`. You can add the NS information to the response using `TDNSPutNStoMessage()`.  
+    2. If it is a non-authoritative response (i.e., it indicates delegation), send an iterative query to the corresponding nameserver. You can extract the query from the response using `TDNSGetIterQuery()`. The server should update a per-query context using `putNSQID()`.
 
 ### Test your implementation
 1. Compile your code with `$ make` in the lab's shared directory (`[a5_directory]/labs/dns/shared`). The compiled binary would be in the `[a5_directory]/labs/dns/shared/bin` directory.
@@ -158,7 +158,7 @@ struct TDNSServerContext;
 struct TDNSParseResult {
   struct dnsheader *dh; /* parsed dnsheader, you need this in Part 2 */
   uint16_t qtype; /* query type, the value should be one of enum TDNSType values */
-  const char *qname; /* query name (i.e. domain name for A type query) */
+  const char *qname; /* query name (i.e., domain name for A type query) */
   uint16_t qclass; /* query class */
 
   /* Below are for handling delegation. */
@@ -243,4 +243,4 @@ void delNSQID(struct TDNSServerContext* context, uint16_t qid);
 
 
 ### Acknowledgements
-The C DNS library used in this assignment built on top of the `tdns` c++ library from the [`hello-dns`](https://powerdns.org/hello-dns/) project.
+The C DNS library used in this assignment was built on top of the `tdns` C++ library from the [`hello-dns`](https://powerdns.org/hello-dns/) project.
