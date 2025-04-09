@@ -31,7 +31,7 @@ These policies are in place to maximize the effectiveness of office hours and en
 ### Grading
 
 * **Quizzes (30%)**:  Three in-class quizzes will be conducted throughout the semester.
-* **Programming assignments (60%)**: Five programming assignments will reinforce key course concepts.
+* **Programming assignments (60%)**: Six programming assignments will reinforce key course concepts.
 * **Class participation (10%)**: Active participation includes attending class, asking questions, engaging in discussions, and answering pop-up quizzes.
 * Grades will be uploaded to [Canvas](https://utexas.instructure.com/courses/1414169).
 
