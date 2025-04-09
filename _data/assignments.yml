@@ -27,3 +27,9 @@
   number: 4
   title: >
     Reliable Transport Protocol and Congestion Control
+
+- release_date: 04/09/2025
+  due_date: 04/24/2025
+  number: 5
+  title: >
+    Hierarchical DNS
