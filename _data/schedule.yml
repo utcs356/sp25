@@ -307,10 +307,12 @@
   title: >
     <strong>Content distribution network (CDN)</strong>
   recitation:
-  slides:
+  slides: https://drive.google.com/file/d/1GmjParKVr0kyac83KZfPxrn0V2yWaJ7i/view?usp=drive_link
   notes:
   video:
   readings:
+  - P&D 9.4.3
+  - K&R 2.2.5 and 2.6.3
   logistics:
 
 - date: T 04/15
