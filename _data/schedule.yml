@@ -320,10 +320,12 @@
   title: >
     <strong>Network security</strong>
   recitation:
-  slides:
+  slides: https://drive.google.com/file/d/19wJHRjXaFphawC0eA3yA9yH93W6DMWyp/view?usp=drive_link
   notes:
   video:
   readings:
+  - P&D 8.1--8.5
+  - K&R 8.1--8.3, 8.6, and 8.9 
   logistics:
 
 - date: Th 04/17
