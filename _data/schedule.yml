@@ -346,10 +346,11 @@
   title: >
     <strong>Machine learning for networking and Wrap-up</strong>
   recitation:
-  slides:
+  slides: https://drive.google.com/file/d/1A_Fa56UkhOuKts_-6WIJ_TaM2rh12vDZ/view?usp=drive_link
   notes:
   video:
   readings:
+  - Papers in the slide
   logistics:
 
 - date: Th 04/24
